@@ -1,0 +1,1091 @@
+                        =====================================================================
+                                                LINQ (JavatPoint)
+                        =====================================================================
+    It is the process through which we perform operations (create/edit/delete) on the database or get data from database for further use.
+
+    Linq has three parts 
+    1. DataSource (DB or Dataset(array etc.))
+    2. Query (get data or perform operation on db)
+    3. Execution (use of that data)
+
+Linq Syntax 
+===========
+    1. LINQ Query Syntax
+        LINQ is one of the easiest ways to write the complex LINQ Queries in an accessible and readable format. The syntax 
+    of this type of Query is much similar to SQL queries.
+
+            FROM obj IN datasource
+            WHERE condition
+            SELECT obj
+
+    2. LINQ Method Syntax
+        Method Syntax becomes the most popular now a days to write LINQ queries. It uses a lambda expression to define the 
+    condition for the Query. Method Syntax is easy to write simple queries to perform the read-write operations on a
+    particular data source.  For the complex queries, Method Syntaxes are a little hard as compared to the Query Syntax.
+
+            (FROM obj IN datasource
+            WHERE condition
+            SELECT obj)
+            .method();
+
+=======================
+Program 1
+=======================
+
+Now we will see How to write Linq in different syntax
+
+namespace LinqSample1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //1. DataSource
+            List<int> list = new List<int>() { 1,2,3,4,5,6,7,8,9,10};
+
+	        Console.WriteLine("-- Query Syntax---");
+
+                //2. Query
+            var querySyntax = from obj in list
+                              where obj > 2
+                              select obj;
+		    // ====== OR ==============
+            Note : here var == IEnumerable<int> (take datatype of IEnumerable like below)
+
+                /*	IEnumerable<int> querySyntax = from obj in list
+                                        where obj > 2
+                                        select obj;    */
+
+ 
+                    //3. Execution
+            foreach(var item in querySyntax)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine("--Method Syntax---");
+
+            var MethodSyntax = list.Where(obj => obj > 2);
+           
+            foreach (var item in MethodSyntax)
+            {
+                Console.WriteLine(item);
+	        }
+
+            //======================================================================================
+            //kim: we don't use foreach where we are querying for the maximum and minimum single value	
+
+		    Console.WriteLine("--Combinedly use Syntax---");
+            var MixedSyntax = (from obj in list
+                               select obj).Max();
+            
+                Console.WriteLine("Maximum Value" + MixedSyntax);
+          		
+        }
+    }
+}
+
+==========================================================================================
+
+==============================
+Program 2 : Arithmatical 
+==============================
+
+namespace LinqSample1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            List<int> list = new List<int>() { 1,2,3,4,5,6,7,8,9,10};
+
+
+            //========================== Arithmatics things ================
+
+                    int Max = list.Max();
+                    Console.WriteLine($"Max value : {Max}");
+
+                    int Min = list.Min();
+                    Console.WriteLine($"Min value : {Min}");
+
+                    int Sum = list.Sum();
+                    Console.WriteLine($"sum of list : {Sum}");
+
+                    double average = list.Average();
+                    Console.WriteLine("Average: " + average);
+
+                    int Count = list.Count();
+                    Console.WriteLine($"Total count of list : {Count}");
+
+
+                    === Use of Aggregate ===
+                    double sum1 = list.Aggregate((a, b) => a + b);
+                    Console.WriteLine($"sum of list : {sum1}");
+                    double average = sum1 / list.Count;
+                    Console.WriteLine($"avg of list : {average}");
+
+
+                    ===========Aggregate function ===================
+                    can be used for 
+                    1. Perform mathematical operation(sum, avg, multiplication , div etc)
+                    double sum = list.Aggregate((a, b) => (a + b));
+
+                    2. to concat the strings :
+                    string[] charlist = { "a", "b", "c", "d" };  
+            
+                    var concat = charlist.Aggregate((a, b) => a + ',' + b);  
+		
+        }
+    }
+}
+===========================================================
+Program 3 : Element operators(i.e. Position check )
+===========================================================
+Type 1: Position : it will provide value at that position
+Type 2 : PositionOrDefault: here it will check for the value at the specific position and if it 
+don't find it then it will give the default datatype e.g.for int default value is zero(0)
+
+namespace LinqSample1
+{
+    class Program//for normal dataset
+    {
+        static void Main(string[] args)
+        {
+		List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+
+
+		int first = numbers.First();
+		Console.WriteLine("First: " + first); // Output: First: 1
+
+		int last = numbers.Last();
+		Console.WriteLine("Last: " + last); // Output: Last: 5
+
+		// Element at : give element at xyz position in an array or dataset
+		int elementAt = numbers.ElementAt(2);
+		Console.WriteLine("ElementAt: " + elementAt); // Output: ElementAt: 3
+
+        List<int> num = new List<int> { 42 };
+
+        //Single: the dataset must have only one element or else it give exception
+		int single = num.Single();
+		Console.WriteLine("Single: " + single); // Output: Single: 42
+		
+        }
+    }
+}
+
+
+namespace LinqSample1
+{
+    class Program//for empty dataset
+    {
+        static void Main(string[] args)
+        {
+		List<int> numbers = new List<int> {};
+
+		int firstOrDefault = numbers.FirstOrDefault();
+		Console.WriteLine("FirstOrDefault: " + firstOrDefault); // Output: FirstOrDefault: 0
+
+		int lastOrDefault = numbers.LastOrDefault();
+		Console.WriteLine("LastOrDefault: " + lastOrDefault); // Output: LastOrDefault: 0
+
+
+		//Single: the dataset must have only one element or else it give exception
+		int singleOrDefault = numbers.SingleOrDefault();
+		Console.WriteLine("SingleOrDefault: " + singleOrDefault); // Output: SingleOrDefault: 0
+
+		// Element at : give element at xyz position in an array or dataset
+		int elementAtOrDefault = numbers.ElementAtOrDefault(10);
+                Console.WriteLine("ElementAtOrDefault: " + elementAtOrDefault); // Output: ElementAtOrDefault: 0
+	
+		************ this is extra feature *****************
+
+		var defaultIfEmpty = numbers.DefaultIfEmpty();
+		foreach (var num in defaultIfEmpty)
+		{
+  		  Console.WriteLine("DefaultIfEmpty: " + num); // Output: DefaultIfEmpty: 0
+		}
+
+        }
+    }
+}
+
+==========================================================================================================
+Program 4 : Partition operators ( e.g. I want first 100 records only or I want record starting with "u")
+==========================================================================================================
+
+
+namespace LinqSample1
+{
+    class Program//for normal dataset
+    {
+        static void Main(string[] args)
+        {
+		  string[] countries = {  "US", "UK", "India", "Russia", "China", "Australia", "Argentina"  };  
+		
+		//Take first 3 countries  
+            IEnumerable<string> result = countries.Take(3);  
+             
+		
+		// Take countries starting with "u"
+		    IEnumerable<string> result = countries.TakeWhile(x => x.StartsWith("U"));  
+
+		// Skip 3 countries
+		    IEnumerable<string> result = countries.Skip(3);
+
+        //then finally print the list using foreach
+		    foreach (string s in result){  Console.WriteLine(s);    }
+                
+        }
+    }
+}
+
+==========================================================================================================
+Program 5 : Conversion operators ( e.g. list, array etc)
+==========================================================================================================
+
+Choosing the right data structure for specific operations like searching, sorting, and filtering depends on the characteristics 
+and capabilities of each data structure. Here's a breakdown of which data structure is best suited for common operations:
+
+
+Arrays :
+==========
+Best For:
+            Access by Index: Arrays provide constant-time (O(1)) access to elements by index.
+            Example: element = array[index];
+
+            Sorting: Arrays can be efficiently sorted using methods like Array.Sort().
+            Example: Array.Sort(array);
+
+
+Not Ideal For: 
+            Dynamic resizing (since arrays have a fixed size).
+            Frequent insertions and deletions (requires shifting elements).
+
+
+
+
+Lists :
+===========
+Best For:
+
+        Dynamic Resizing: Lists automatically resize as elements are added or removed.
+        Example: list.Add(element);
+
+        Insertion and Deletion:Lists provide methods for adding or removing elements at specific positions.
+        Example: list.RemoveAt(index);
+
+        Filtering: LINQ methods like Where can be used to filter elements.
+        Example: var filteredList = list.Where(x => x > 10).ToList();
+        
+        Sorting : Lists can be sorted using the Sort method or LINQ.
+        Example: list.Sort();
+
+       
+Not Ideal For:
+
+        Fast lookups by key (better suited for dictionaries).
+
+Dictionaries :
+===============
+Best For:
+
+        Fast Lookups by Key: Dictionaries provide constant-time (O(1)) average time complexity for lookups by key.
+        Example: var value = dictionary[key];
+
+
+        Associating Unique Keys with Values: Ensures each key is unique and efficiently maps to a specific value.
+        Example: dictionary.Add(key, value);
+
+
+Not Ideal For:
+
+        Access by index (since dictionaries use keys, not indices).
+        Sorting (dictionaries are inherently unordered).
+
+Summary of Significance and Usage:
+=======================================================================================================================================
+Type	   |  Significance	                            | Usage Need
+=======================================================================================================================================
+Array	   |  Fixed-size, efficient access by index.	| When you have a known, unchanging number of elements.
+=======================================================================================================================================
+List	   |  Dynamic-size, provides methods to add,    | When the number of elements can change and you need list-specific operations.
+           |  remove, and manipulate elements.	        |
+=======================================================================================================================================
+Dictionary | Key-value pairs, fast lookups by           | When you need to associate unique keys with values for quick lookup.
+           |  unique keys.	                            |
+=======================================================================================================================================
+
+Summery 
+==================
+        => Arrays are best for scenarios where you need fast access by index and have a fixed number of elements. They are also good 
+        for sorting operations.
+        => Lists are best for scenarios where you need dynamic resizing, frequent insertions and deletions, and operations like 
+        filtering and sorting.
+        => Dictionaries are best for scenarios where you need fast lookups by key and want to associate unique keys with values.
+
+
+namespace LinqSample1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+		  string[] countries = {  "US", "UK", "India", "Russia", "China", "Australia", "Argentina"  };  
+		
+		//1. countries.ToList() convert the collection of data into the list.  
+            	List<string> result = countries.ToList();  
+		
+		//2. countries.ToArray() is used to convert the collection of data into the form of array  
+            string[] countryarray = countries.ToArray();  
+
+		//then finally print the list using foreach
+		 foreach (string s in result){  Console.WriteLine(s);    }
+                
+
+		//3. create an objEmployee of the class Employee and create a list of Employee  
+
+                List<Employees> objEmployee = new List<Employees>()
+                {
+                    new Employees(){ Name="Akshay Tyagi", Department="IT", Country="India"},
+                    new Employees(){ Name="Ajay Tyagi", Department="IT", Country="India"},
+                    new Employees(){ Name="Vaishali Tyagi", Department="Marketing", Country="Australia"},
+                    new Employees(){ Name="Arpita Rai", Department="HR", Country="China"},
+                    new Employees(){ Name="Shubham Ratogi", Department="Sales", Country="USA"},
+                    new Employees(){ Name="Himanshu Tyagi", Department="Operations", Country="Canada"}
+                };
+
+            //objEmployee.ToLookup() method is used to print the value of the data in the pair/collection of items.  
+            
+                    var Emp = objEmployee.ToLookup(x => x.Department);
+                    Console.WriteLine("Grouping Employees by Department");
+                    Console.WriteLine("---------------------------------");
+
+                        foreach (var KeyValurPair in Emp)
+                        {
+                            Console.WriteLine(KeyValurPair.Key);
+                            // Lookup employees by Department  
+                            foreach (var item in Emp[KeyValurPair.Key])
+                            {
+                                Console.WriteLine("\t" + item.Name + "\t" + item.Department + "\t" + item.Country);
+                            }
+                        }  
+
+		//4. we are converting the ArrayList object to String type of object(e.g. Here we have the array list of 
+            strings  so we have converted it to the list of the "strings" to perform the list operations)
+
+                     //create an object named 'obj' of ArrayList   
+                        ArrayList obj = new ArrayList();
+
+                    //assign the values to the object 'obj'   
+                        obj.Add("USA");  
+            
+                        obj.Add("Australia");  
+            
+                        obj.Add("UK");  
+            
+                        obj.Add("India");
+
+
+                    //Here we are converting the ArrayList object to String type of object and store the result in 'result'  
+                        IEnumerable<string> result = obj.Cast<string>();  
+
+
+                    //Now with the help of foreach loop we will print the value of result  
+                        foreach (var item in result)  
+                        {  
+                            Console.WriteLine(item);  
+                        }  
+
+
+        //5. TypeOf() operator: we have list which has many types of elements e.g. string , int etc and we 
+            want only the list of the string elements then we can use TypeOf() operator
+
+                    //Create an object of ArrayList and add the values  
+                    ArrayList obj = new ArrayList();  
+                    obj.Add("Australia");  
+                    obj.Add("India");  
+                    obj.Add("UK");  
+                    obj.Add("USA");  
+                    obj.Add(1);  
+
+                    //ofType() method will return the value only the specific type  
+                    IEnumerable<string> result = obj.OfType<string>(); 
+
+                    //foreach loop is applied to print the value of the item  
+                    foreach (var item in result)  
+                    {  
+                        Console.WriteLine(item);  
+                    }  
+
+        //6. ToDictionary(): consider we have list of employees , we will make the employeeId as key and other
+        things such as name etc are mapped to key as the values mapped to key.    
+
+                  
+                    List<Employees> objEmployee = new List<Employees>()
+                    { 
+                        new Employees() {Id = 1, Name = "Tom", Email = "tom@email.com"},
+                        new Employees() {Id = 2, Name = "Sarah", Email = "sarah@email.com"},
+                        new Employees() {Id = 3, Name = "Mike", Email = "mike@email.com"},
+                        new Employees() {Id = 4, Name = "Linda", Email = "linda@email.com"},
+                        new Employees() {Id = 5, Name = "James", Email = "james@email.com"},
+                        new Employees() {Id = 6, Name = "Karen", Email = "karen@email.com"},
+                        new Employees() {Id = 7, Name = "Robert", Email = "robert@email.com"},
+                        new Employees() {Id = 8, Name = "Emily", Email = "emily@email.com"},
+                        new Employees() {Id = 9, Name = "John", Email = "john@email.com"},
+                        new Employees() {Id = 10, Name = "Sophia", Email = "sophia@email.com"},
+                    };
+
+                    /*  here with the help of ToDictionary() method we are converting the collection  of
+                    information in the form of dictionary and will fetch only the required information*/  
+
+                        var employee = objEmployee.ToDictionary(x => x.Id, x => x.Name);  
+                        //foreach loop is used to print the information of the student  
+                        foreach (var stud in student)  
+                        {  
+                            Console.WriteLine(stud.Key + "\t" + stud.Value);  
+                        }  
+        }
+    }
+}
+
+==========================================================================================================
+Program 6 : GroupBy() ( e.g. we have list of students then we can get list of students according to 
+            to the location )
+            SequenceEqual()  is used to compare whether two sequences (typically IEnumerable<T> collections) 
+            contain the same elements in the same order.
+==========================================================================================================
+
+
+namespace LinqSample1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //Create an object 'objStudent' of the list of the student  
+            List<Student> objStudent = new List<Student>  ()  
+            {  
+            new Student() { Name = "Ak Tyagi", Gender = "Male",Location="Chennai" },  
+            new Student() { Name = "Rohini", Gender = "Female", Location="Chennai" },  
+            new Student() { Name = "Praveen", Gender = "Male",Location="Bangalore" },  
+            new Student() { Name = "Sateesh", Gender = "Male", Location ="Vizag"},  
+            new Student() { Name = "Madhav", Gender = "Male", Location="Nagpur"}  
+            };  
+
+            // here with the help of GrouBy we will fetch the student on the base of location  
+                var student1 = objStudent.GroupBy(x => x.Location);  
+                foreach (var sitem in student1)  
+                {  
+                     // WriteLine() function here count the number of student  
+                        Console.WriteLine(sitem.Key, sitem.Count());  
+                        Console.WriteLine();  
+                foreach (var stud in sitem)  
+                {  
+                    //show the information of the student on the base of the location  
+                    Console.WriteLine(stud.Name + "\t" + stud.Location);  
+                } 
+
+
+                int[] numbers1 = { 1, 2, 3, 4, 5 };
+                int[] numbers2 = { 1, 2, 3, 4, 5 };
+
+                bool areEqual = numbers1.SequenceEqual(numbers2);
+
+                Console.WriteLine($"Are numbers1 and numbers2 equal? {areEqual}");
+
+            }
+        }
+    }
+    class Student  
+    {  
+        public string Name { get; set; }  
+        public string Gender { get; set; }  
+        public string Location { get; set; }  
+    }  
+}
+
+==========================================================================================================
+Program 7 : Joins (Inner join, group join , left outer join, cross join)
+==========================================================================================================
+                                            : Theory Joins :
+                                            =============== 
+    In LINQ, you can use several types of joins to combine data from different sequences (collections). The main types of joins available in LINQ are:
+
+
+
+Left Outer Join: Includes all elements from the first (left) sequence and the matched elements from the second (right) sequence. If there is no match, the result will contain the element from the left sequence with a default value for the right sequence.
+
+
+Dept table 
+=====================
+DeptID | DepName
+=====================
+1      | HR
+2      | IT
+3      | Marketing
+======================
+
+Employee table 
+==========================
+EmpID | Name    | DeptID
+==========================
+101   | Alice   | 1
+102   | Bob     | 2
+103   | Charlie | 2
+104   | Dave    | 3
+105   | Eve     | 3
+==========================
+
+1. Inner Join: Combines elements from two sequences based on matching keys. Only elements that have a match in both sequences are included in the result.
+
+var result = from d in Dept
+             join e in Emp
+             on d.DepId equals e.DeptId
+             select new  
+             {  
+                 EmployeeName = e.Name,  
+                 DepartmentName = d.DepName  
+             };
+==================================
+EmployeeName | DepartmentName
+==================================
+Alice        | HR
+Bob          | IT
+Charlie      | IT
+Dave         | Finance
+==================================
+
+2. Group Join: Groups the elements of the sequences based on matching keys and produces a sequence of groups. Each group consists of a key and a collection of elements that match that key.
+
+Query Syntax:
+
+var result = from d in Dept
+             join e in Emp on d.DepId equals e.DeptId into empGroup
+             select new  
+             {  
+                 DepartmentName = d.DepName,
+                 Employees = empGroup
+             };
+Result:
+
+===================================
+DepartmentName | Employees
+===================================
+HR             | Alice
+IT             | Bob, Charlie
+Finance        | Dave
+===================================
+
+===================================
+EmployeeName | DepartmentName
+===================================
+Alice        | HR
+Bob          | IT
+Charlie      | IT
+Dave         | Finance
+No Employee  | Marketing
+===================================
+
+
+3. Left Outer Join: Includes all elements from the first (left) sequence and the matched elements from the second (right) sequence. If there is no match, the result will contain the element from the left sequence with a default value for the right sequence.
+
+Query Syntax:
+
+var result = from d in Dept
+             join e in Emp on d.DepId equals e.DeptId into empGroup
+             from e in empGroup.DefaultIfEmpty()
+             select new  
+             {  
+                 EmployeeName = e?.Name ?? "No Employee",  
+                 DepartmentName = d.DepName  
+             };
+Result:
+=======================================
+EmployeeName | DepartmentName
+=======================================
+Alice        | HR
+Bob          | IT
+Charlie      | IT
+Dave         | Finance
+No Employee  | Marketing
+=======================================
+
+4. Cross Join: Produces the Cartesian product of two sequences, meaning every element of the first sequence is paired with every element of the second sequence. This is done using the SelectMany method in LINQ.
+
+Query Syntax:
+
+var result = from d in Dept
+             from e in Emp
+             select new  
+             {  
+                 EmployeeName = e.Name,  
+                 DepartmentName = d.DepName  
+             };
+Result:
+======================================
+EmployeeName | DepartmentName
+======================================
+Alice        | HR
+Bob          | HR
+Charlie      | HR
+Dave         | HR
+Eve          | HR
+Alice        | IT
+Bob          | IT
+Charlie      | IT
+Dave         | IT
+Eve          | IT
+Alice        | Finance
+Bob          | Finance
+Charlie      | Finance
+Dave         | Finance
+Eve          | Finance
+======================================
+
+
+//query syntax
+namespace LinqSample1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+           
+
+                    List<Department> departments = new List<Department>
+                    {
+                        new Department { DepId = 1, DepName = "HR" },
+                        new Department { DepId = 2, DepName = "IT" },
+                        new Department { DepId = 3, DepName = "Finance" }
+                    };
+
+                    List<Employee> employees = new List<Employee>
+                    {
+                        new Employee { EmpId = 101, Name = "Alice", DeptId = 1 },
+                        new Employee { EmpId = 102, Name = "Bob", DeptId = 2 },
+                        new Employee { EmpId = 103, Name = "Charlie", DeptId = 2 },
+                        new Employee { EmpId = 104, Name = "Dave", DeptId = null }
+                    };
+
+                    //1. Inner Join : We have employee table(EmpId, Name, DeptId) which has dept Id as foreign key from Department table
+                    (DeptId, DeptName). Now we want a new set of data where we can see only employee Name and dept name 
+
+                    var innerJoin = from d in departments
+                                    join e in employees on d.DepId equals e.DeptId
+                                    select new
+                                    {
+                                        EmployeeName = e.Name,
+                                        DepartmentName = d.DepName
+                                    };
+
+                    Console.WriteLine("Inner Join:");
+                    foreach (var item in innerJoin)
+                    {
+                        Console.WriteLine($"Employee: {item.EmployeeName}, Department: {item.DepartmentName}");
+                    }
+
+                    //2. Group Join : 
+                    var groupJoin = from d in departments
+                                    join e in employees on d.DepId equals e.DeptId into empGroup
+                                    select new
+                                    {
+                                        DepartmentName = d.DepName,
+                                        Employees = empGroup
+                                    };
+
+                    Console.WriteLine("\nGroup Join:");
+                    foreach (var item in groupJoin)
+                    {
+                        Console.WriteLine($"Department: {item.DepartmentName}");
+                        foreach (var emp in item.Employees)
+                        {
+                            Console.WriteLine($"  Employee: {emp.Name}");
+                        }
+                    }
+                   
+
+        // Left Outer Join : Select element from dept and matching elements from employee
+        var leftOuterJoin = from d in departments
+                            join e in employees on d.DepId equals e.DeptId into empGroup
+                            from e in empGroup.DefaultIfEmpty()
+                            select new
+                            {
+                                EmployeeName = e?.Name ?? "No Employee",
+                                DepartmentName = d.DepName
+                            };
+
+            Console.WriteLine("\nLeft Outer Join:");
+            foreach (var item in leftOuterJoin)
+            {
+                Console.WriteLine($"Employee: {item.EmployeeName}, Department: {item.DepartmentName}");
+            }
+
+        // Cross Join
+        var crossJoin = from d in departments
+                        from e in employees
+                        select new
+                        {
+                            EmployeeName = e.Name,
+                            DepartmentName = d.DepName
+                        };
+
+        Console.WriteLine("\nCross Join:");
+        foreach (var item in crossJoin)
+        {
+            Console.WriteLine($"Employee: {item.EmployeeName}, Department: {item.DepartmentName}");
+        }
+
+
+        }
+    }
+
+    public class Department
+    {
+        public int DepId { get; set; }
+        public string DepName { get; set; }
+    }
+
+    public class Employee
+    {
+        public int EmpId { get; set; }
+        public string Name { get; set; }
+        public int? DeptId { get; set; }
+    }
+  
+}
+
+
+//Method syntax
+
+namespace LinqSample1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<Department> departments = new List<Department>
+            {
+                new Department { DepId = 1, DepName = "HR" },
+                new Department { DepId = 2, DepName = "IT" },
+                new Department { DepId = 3, DepName = "Finance" }
+            };
+
+            List<Employee> employees = new List<Employee>
+            {
+                new Employee { EmpId = 101, Name = "Alice", DeptId = 1 },
+                new Employee { EmpId = 102, Name = "Bob", DeptId = 2 },
+                new Employee { EmpId = 103, Name = "Charlie", DeptId = 2 },
+                new Employee { EmpId = 104, Name = "Dave", DeptId = null }
+            };
+
+            // 1. Inner Join
+            var innerJoin = departments.Join(
+                employees,
+                d => d.DepId,
+                e => e.DeptId,
+                (d, e) => new
+                {
+                    EmployeeName = e.Name,
+                    DepartmentName = d.DepName
+                });
+
+            Console.WriteLine("Inner Join:");
+            Console.WriteLine("Employee Name | Department Name");
+            Console.WriteLine("--------------|----------------");
+            foreach (var item in innerJoin)
+            {
+                Console.WriteLine($"{item.EmployeeName.PadRight(14)} | {item.DepartmentName}");
+            }
+
+            // 2. Group Join
+            var groupJoin = departments.GroupJoin(
+                employees,
+                d => d.DepId,
+                e => e.DeptId,
+                (d, empGroup) => new
+                {
+                    DepartmentName = d.DepName,
+                    Employees = empGroup
+                });
+
+            Console.WriteLine("\nGroup Join:");
+            Console.WriteLine("Department Name | Employees");
+            Console.WriteLine("----------------|----------");
+            foreach (var item in groupJoin)
+            {
+                Console.WriteLine($"{item.DepartmentName.PadRight(16)} | {string.Join(", ", item.Employees.Select(e => e.Name))}");
+            }
+
+            // 3. Left Outer Join
+            var leftOuterJoin = departments.GroupJoin(
+                employees,
+                d => d.DepId,
+                e => e.DeptId,
+                (d, empGroup) => new
+                {
+                    d,
+                    empGroup
+                })
+                .SelectMany(
+                    temp => temp.empGroup.DefaultIfEmpty(),
+                    (temp, e) => new
+                    {
+                        EmployeeName = e?.Name ?? "No Employee",
+                        DepartmentName = temp.d.DepName
+                    });
+
+            Console.WriteLine("\nLeft Outer Join:");
+            Console.WriteLine("Employee Name | Department Name");
+            Console.WriteLine("--------------|----------------");
+            foreach (var item in leftOuterJoin)
+            {
+                Console.WriteLine($"{item.EmployeeName.PadRight(14)} | {item.DepartmentName}");
+            }
+
+            // 4. Cross Join
+            var crossJoin = departments.SelectMany(
+                d => employees,
+                (d, e) => new
+                {
+                    EmployeeName = e.Name,
+                    DepartmentName = d.DepName
+                });
+
+            Console.WriteLine("\nCross Join:");
+            Console.WriteLine("Employee Name | Department Name");
+            Console.WriteLine("--------------|----------------");
+            foreach (var item in crossJoin)
+            {
+                Console.WriteLine($"{item.EmployeeName.PadRight(14)} | {item.DepartmentName}");
+            }
+        }
+    }
+
+    public class Department
+    {
+        public int DepId { get; set; }
+        public string DepName { get; set; }
+    }
+
+    public class Employee
+    {
+        public int EmpId { get; set; }
+        public string Name { get; set; }
+        public int? DeptId { get; set; }
+    }
+}
+
+
+==========================================================================================================
+Program 8 : Set Operators (Union , Intersection , Distinct, Except )
+==========================================================================================================
+
+LINQ Set Operations :
+=====================
+In LINQ, Set Operators are used to return the set of the result based on the presence or absence of equivalent elements within the same or separate collections.
+
+In LINQ, we have different types of set operators available. These are:
+=============================================================================================================================================
+Operators |	Description
+=============================================================================================================================================
+UNION	  |  Union operator combines multiple collections into single collection and return the resultant collection with unique element.
+INTERSECT |	 It returns the element in a sequence, which is common in both the input sequence.
+DISTINCT  |  It removes the duplicate elements from the collection and returns the collection with unique values.
+EXCEPT	  |  It returns the sequence element from the first input sequence, which is not present in the second input sequence.
+=============================================================================================================================================
+
+
+namespace LinqSample1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] count1 = { "India", "USA", "UK", "Australia" };
+            string[] count2 = { "India", "Canada", "UK", "China" };
+
+            // 1. Union: Find unique elements from both collections
+            var UnionRes = count1.Union(count2);
+
+            Console.WriteLine("Union:");
+            foreach (var item in UnionRes)
+            {
+                Console.WriteLine(item);
+            }
+
+            // 2. Intersection: Find common elements from both collections
+            var IntersectionRes = count1.Intersect(count2);
+
+            Console.WriteLine("\nIntersection:");
+            foreach (var item in IntersectionRes)
+            {
+                Console.WriteLine(item);
+            }
+
+            // 3. Distinct: Get distinct elements from the collection
+            var DistinctRes = count1.Concat(count2).Distinct();
+
+            Console.WriteLine("\nDistinct:");
+            foreach (var item in DistinctRes)
+            {
+                Console.WriteLine(item);
+            }
+
+            // 4. Except: Return elements from count1 that do not exist in count2
+            var ExceptRes = count1.Except(count2);
+
+            Console.WriteLine("\nExcept:");
+            foreach (var item in ExceptRes)
+            {
+                Console.WriteLine(item);
+            }
+        }
+    }  
+}
+
+============================================
+B2B: Difference between the Set and List
+============================================
+The significance of using sets over lists in programming, especially in contexts like LINQ or general data manipulation, revolves around their
+unique characteristics and intended use cases:
+
+Uniqueness of Elements:
+
+Sets: Ensure each element is unique. When you add an element that already exists, it doesn't add a duplicate.
+Lists: Can contain duplicate elements. Each element is accessed by its index.
+Operations Based on Set Theory:
+
+Sets: Naturally support operations like union, intersection, difference (except in programming terms), and testing for membership efficiently.
+Lists: Typically used for sequential access and operations like sorting, appending, and slicing.
+Performance Considerations:
+
+Sets: Often optimized for membership testing and uniqueness checks, making them suitable for scenarios where you need to quickly determine if an element exists or maintain a collection of unique items.
+Lists: Useful for scenarios where the order of elements matters or where you frequently access elements by their index.
+Use Case Specificity:
+
+Sets: Ideal when dealing with collections that should not contain duplicates or when you need to perform operations that are based on mathematical set operations.
+Lists: More appropriate when you need to maintain elements in a specific order or when you require duplicate elements in your collection.
+
+
+==========================================================================================================
+Program 9 : LINQ Generation Operations (DefaultfEmpty , Range , Repeat, Empty )
+==========================================================================================================
+LINQ Generation Operations
+In LINQ, generation operations are used to create the new sequence of the elements. In LINQ, we have a different type of generation operator methods available. These are:
+
+These LINQ generation operators will help us to generate a new sequence of elements.
+
+The following table shows more detailed information related to generation operator methods.
+=============================================================================================================================================
+Method	       | Description
+=============================================================================================================================================
+DefaultfEmpty  |	If the collection contains the empty elements, then it will return the default value.
+Empty          |    It returns the empty collection of sequences.
+Range          |    It returns the collection that contains a sequence of numbers.
+Repeat         |    It returns a collection that contains the one repeated value-based on a specified length.
+=============================================================================================================================================
+
+namespace LinqSample1
+{
+    class Program
+    {
+        public class Person
+        {
+            public string Name { get; set; }
+            public int Age { get; set; }
+        }
+
+
+        static void Main(string[] args)
+        {
+            // Generate a sequence of numbers from 1 to 10
+        var numbers = Enumerable.Range(1, 10);
+
+        Console.WriteLine("Range:");
+        foreach (var number in numbers)
+        {
+            Console.WriteLine(number);
+        }
+
+         Console.WriteLine("============================");
+
+        // Generate a sequence where the value "Hello" is repeated 5 times
+        var repeatedValues = Enumerable.Repeat("Hello", 5);
+
+        Console.WriteLine("Repeat:");
+        foreach (var value in repeatedValues)
+        {
+            Console.WriteLine(value);
+        }
+
+         var person = new Person { Name = "John", Age = 30 };
+        var repeatedPeople = Enumerable.Repeat(person, 3);
+
+        Console.WriteLine("Repeat with Custom Type:");
+        foreach (var p in repeatedPeople)
+        {
+            Console.WriteLine($"Name: {p.Name}, Age: {p.Age}");
+        }
+
+         Console.WriteLine("============================");
+          // Generate an empty sequence of integers
+        var emptySequence = Enumerable.Empty<int>();
+
+        Console.WriteLine("Empty:");
+        foreach (var value in emptySequence)
+        {
+            Console.WriteLine(value);  // This won't print anything
+        }
+
+        Console.WriteLine("Count: " + emptySequence.Count());  // Output will be 0
+
+         Console.WriteLine("============================");
+        List<int> emptyList = new List<int>();
+        var defaultIfEmpty = emptyList.DefaultIfEmpty(42);
+
+        Console.WriteLine("DefaultIfEmpty:");
+        foreach (var value in defaultIfEmpty)
+        {
+            Console.WriteLine(value);  // This will print 42
+        }
+
+        }
+    }  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

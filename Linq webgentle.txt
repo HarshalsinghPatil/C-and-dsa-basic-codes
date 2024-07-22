@@ -1,0 +1,208 @@
+Projection: select data in original form or any other form.
+
+//Lec 06 : Select statement(List,prop,one class, two class, anonymous class, index)
+    
+namespace LinqSample1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<Employees> employees = new List<Employees>()
+              {
+
+                  new Employees() {Id = 1, Name = "Tom", Email = "tom@email.com"},
+                  new Employees() {Id = 2, Name = "Sarah", Email = "sarah@email.com"},
+                  new Employees() {Id = 3, Name = "Mike", Email = "mike@email.com"},
+                  new Employees() {Id = 4, Name = "Linda", Email = "linda@email.com"},
+                  new Employees() {Id = 5, Name = "James", Email = "james@email.com"},
+                  new Employees() {Id = 6, Name = "Karen", Email = "karen@email.com"},
+                  new Employees() {Id = 7, Name = "Robert", Email = "robert@email.com"},
+                  new Employees() {Id = 8, Name = "Emily", Email = "emily@email.com"},
+                  new Employees() {Id = 9, Name = "John", Email = "john@email.com"},
+                  new Employees() {Id = 10, Name = "Sophia", Email = "sophia@email.com"},
+              };
+        }
+        public class Employees
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public string Email { get; set; }
+        }
+    }
+}
+
+
+
+ // ================ to get List =================================
+            //1. Query syntax
+            var getAll = (from emp in employees select emp).ToList();// IN query also we need to write this ToList() method ;
+
+            foreach (var emp in getAll)
+            {
+                Console.WriteLine($"Employee ID = {emp.Id} , Name = {emp.Name} , Email = {emp.Email}");
+            }
+
+            //2. Method syntax
+            var getAllM = employees.ToList();
+
+            foreach (var emp in getAllM)
+            {
+                Console.WriteLine($"Employee ID = {emp.Id} , Name = {emp.Name} , Email = {emp.Email}");
+            }
+
+
+// ================ to get List of any one property =================================
+            //1. Query syntax
+            var propQuery = (from emp in employees select emp.Id).ToList();// IN query also we need to write this ToList() method ;
+
+            foreach (var Id in propQuery)
+            {
+                Console.WriteLine($"Employee ID = {Id}");
+            }
+
+            //2. Method syntax
+            Console.WriteLine("=============  Method syntax =========");
+            var propMethod = employees.Select( e => e.Id).ToList();
+
+            foreach (var Id in propMethod)
+            {
+                Console.WriteLine($"Employee ID = {Id}");
+            }
+
+// ================ to get List of any one property  and use it in query =================================
+       //1. Query syntax
+       var propQuery = (from emp in employees
+                        select emp.Id)//we got here id so we can do any operation like below 
+                        .ToList();
+
+       /*
+            //e.g.1)  emp.Id + 1(increase id by one )
+
+           var propQuery = (from emp in employees
+                            select emp.Id + 1)
+                            .ToList();
+
+
+           // e.g.2)  convert to string emp.Id.ToString();
+
+                   var propQuery1 = (from emp in employees
+                                   select emp.Id.ToString())
+                                   .ToList();
+
+            */
+// ============= How to select only specific columns ===========
+          
+
+            var propQuery = (from emp in employees
+                             select new Employees()
+                             {
+                                 Id = emp.Id,
+                                 Name = emp.Name
+                             }).ToList();
+
+            foreach (var emp in propQuery)
+            {
+                Console.WriteLine($" Id = {emp.Id}  and Name = {emp.Name}");
+            }
+
+
+// ============= How to assign the props of employee class to student class ===========
+
+                var selectQuery = (from emp in employees
+                                select new Student()
+                                {
+                                    StudentId = emp.Id,
+                                    FullName = emp.Name,
+                                    StudentEmail = emp.Email
+                                }).ToList();
+
+                                
+                Console.WriteLine("== Forcefully converted employee to students==");
+
+                foreach (var st in selectQuery)
+                {
+                    Console.WriteLine($" Id = {st.StudentId}  and Name = {st.FullName}  Email = {st.StudentEmail}");
+                }
+
+    //OR
+
+
+            var selectMethod = employees.Select(emp => new Student()
+                {
+                    StudentId = emp.Id,
+                    FullName = emp.Name,
+                    StudentEmail = emp.Email
+                }).ToList();
+
+            Console.WriteLine("== Forcefully converted employee to students==");
+
+                foreach (var item  in selectMethod)
+                {
+                    Console.WriteLine($" Id = {item.StudentId}  and Name = {item.FullName}  Email = {item.StudentEmail}");
+                }
+
+    // =========== Bina maa baap ka object(anonymous object) ============
+
+
+                var selectQuery = (from emp in employees
+                                select new 
+                                {
+                                    StudentId = emp.Id,
+                                    FullName = emp.Name,
+                                    StudentEmail = emp.Email
+                                }).ToList();
+
+                                //OR
+
+                var selectMethod = employees.Select(emp => new 
+                {
+                    StudentId = emp.Id,
+                    FullName = emp.Name,
+                    StudentEmail = emp.Email
+                }).ToList();
+
+//======= print Anonymous object with Index ======================
+
+            Console.WriteLine("==== print Anonymous object with Index ====");
+            
+            var IndexObj = employees.Select( (emp, index) =>  new {FullName = emp.Name , Index = index}).ToList();
+
+            foreach (var item in IndexObj)
+            {
+                Console.WriteLine($" Index = {item.Index}  and Name = {item.FullName}  ");
+            }
+
+
+// ===== Lec 07 : SelectMany() =====
+
+            var strList = new List<string>() { "Tom", "John" };
+
+
+            var methodResult = strList.SelectMany(x => x).ToList();//It contains 7 char(t,o,m,j,o,h,n)
+
+            //OR 
+
+            var queryResult = (from rec in strList
+                               from  ch in rec
+                              select ch).ToList();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
