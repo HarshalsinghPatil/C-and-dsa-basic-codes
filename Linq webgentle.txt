@@ -185,19 +185,274 @@ namespace LinqSample1
 
             var queryResult = (from rec in strList
                                from  ch in rec
-                              select ch).ToList();
+                              select ch).ToList();// this will give number of char and their ascii values
+
+//==========
+
+
+    public class Employees
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+
+        public List<string> Programming {  get; set; }
+
+    }
+            var dataset = new List<Employees>() {
+                new Employees() { Id = 1, Name = "Tom" , Email = "Tom@email.com" , Programming = new List<String>{"C#","PHP","JAVA" } } ,
+                new Employees() { Id = 2, Name = "Harry" , Email = "Harry@email.com" , Programming = new List<String>{ "LINQ", "C#", "MVC" } },
+                new Employees() { Id = 3, Name = "John" , Email = "John@email.com" , Programming = new List<String>{ "LINQ", "VB", "SQL" } }
+            };
+
+              var  MethodSyntax = dataset.SelectMany(emp => emp.Programming).ToList();
+
+                foreach (var item in MethodSyntax)
+                {
+                    Console.WriteLine(" Programming language =  " + item);
+                }
+
+//OR
+             var querySyntax = (from emp in dataset
+                    from skill in emp.Programming
+                    select skill
+                     ).ToList();
+
+                foreach (var item in querySyntax)
+                {
+                    Console.WriteLine(" Programming  =  " + item);
+                }
+
+
+// ============= List of objects of subclass  ============
+
+              //==== classes required for program ======
+
+        public class Employees
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public string Email { get; set; }
+
+            public List<Tech> Programming { get; set; }
+
+        }
+
+        public class Tech
+        {
+
+            public string Technology { get; set; }
+        }
+
+                    //========== Program =======================
+
+            var dataset = new List<Employees>() {
+                    new Employees() { Id = 1, Name = "Tom" , Email = "Tom@email.com" , Programming = new List<Tech>{ 
+                                                new Tech() { Technology = "C#" },
+                                                new Tech() { Technology = "PHP" },
+                                                new Tech() { Technology = "JAVA" } } } ,
+                    new Employees() { Id = 2, Name = "Harry" , Email = "Harry@email.com" , Programming = new List<Tech>{ 
+                                                new Tech() { Technology = "LINQ" },
+                                                new Tech() { Technology = "C#" },
+                                                new Tech() { Technology = "MVC" } } },
+                    new Employees() { Id = 3, Name = "John" , Email = "John@email.com" , Programming = new List < Tech > { 
+                                                new Tech() { Technology = "LINQ" }, 
+                                                new Tech() { Technology = "VB" }, 
+                                                new Tech() { Technology = "SQL" } } },
+                    new Employees() { Id = 4,Name = "King" , Email = "King@email.com", Programming = new List<Tech> ()},
+                    new Employees() { Id = 5,Name = "Raftaar" , Email = "Raftaar@email.com", Programming = new List<Tech> ()}
+            };
+
+            var MethodQuery = dataset.SelectMany(emp => emp.Programming).ToList();
+
+            foreach (var item in MethodQuery)
+            {
+                Console.WriteLine(" Programming obj =  " + item.Technology);
+            }
+
+        //OR 
+
+        var querySyntax =  var querySyntax = (from emp in dataset
+                        from pro in emp.Programming
+                        select pro).ToList();
+
+        foreach (var item in querySyntax)
+        {
+            Console.WriteLine(" Programming obj =  " + item.Technology);
+        }
 
 
 
+======== Lec 08, 09, 10 : filtering operators =============
+
+There are two types of filtering 
+    1. where ()
+    2. OfType()
+    
+======== Lec 09 : where()
+
+    1. where  =>  to filter specific data from a data source based on a condition
+    ===========
+    - Always expects a condition.
+
+    => Conditions can be written using the following symbols:
+        == (equal to)
+        >= (greater than or equal to)
+        <= (less than or equal to)
+        > (greater than)
+        < (less than)
+        || (logical OR)
+
+                                ===========================================================================
+
+                                List<int> list = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+                                
+                                    var querySyntax = (from ele in list
+                                                    where ele > 5
+                                                    select ele).ToList();
+
+                                    foreach ( var ele in querySyntax )
+                                    {
+                                        Console.WriteLine(ele);
+                                    }
+                                    Console.WriteLine("======================");
+
+                                    var methodSyntax = list.Where(ele => ele > 5).ToList();
+
+                                    foreach (var ele in methodSyntax)
+                                    {
+                                        Console.WriteLine(ele);
+                                    }
 
 
+                                ====================================================================
+
+                                    List<int> list = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+                                    var querySyntax = (from ele in list
+                                                    where ele <= 5 || ele >9
+                                                    select ele).ToList();
+
+                                    foreach ( var ele in querySyntax )
+                                    {
+                                        Console.WriteLine(ele);
+                                    }
+                                    Console.WriteLine("======================");
+
+                                    var methodSyntax = list.Where(ele => ele <= 5 || ele > 9).ToList();
+
+                                    foreach (var ele in methodSyntax)
+                                    {
+                                        Console.WriteLine(ele);
+                                    }
+                                ===================================================================
+                                    List<string> names = new List<string>()
+                                                {
+                                                    "Alice",
+                                                    "Bob",
+                                                    "Charlie",
+                                                    "Diana",
+                                                    "Edward",
+                                                    "Fiona",
+                                                    "George",
+                                                    "Hannah",
+                                                    "Ian",
+                                                    "Jackie"
+                                                };
 
 
+                                        var querySyntax = (from str in names
+                                                        where str.Length <= 3
+                                                        select str).ToList();
+
+                                        foreach ( var ele in querySyntax )
+                                        {
+                                            Console.WriteLine(ele);
+                                        }
+                                        Console.WriteLine("======================");
+
+                                        var methodSyntax = names.Where(str => str.Length <= 3).ToList();
+
+                                        foreach (var ele in methodSyntax)
+                                        {
+                                            Console.WriteLine(ele);
+                                        }
+
+                                ====================================================================
+
+                                        var querySyntax = (from str in names
+                                                where  str == "tom" || str.Length < 5
+                                                select str).ToList();
+
+                                        foreach ( var ele in querySyntax )
+                                        {
+                                            Console.WriteLine(ele);
+                                        }
+                                        Console.WriteLine("======================");
+
+                                        var methodSyntax = names.Where(str => str == "tom" || str.Length < 5).ToList();
+
+                                        foreach (var ele in methodSyntax)
+                                        {
+                                            Console.WriteLine(ele);
+                                        }
+
+                                ==============================================================================
+                                        var dataset = new List<Employees>() {
+                                            new Employees() { Id = 1, Name = "Tom" , Email = "Tom@email.com" , Programming = new List<Tech>{ 
+                                                                        new Tech() { Technology = "C#" },
+                                                                        new Tech() { Technology = "PHP" },
+                                                                        new Tech() { Technology = "JAVA" } } } ,
+                                            new Employees() { Id = 2, Name = "Harry" , Email = "Harry@email.com" , Programming = new List<Tech>{ 
+                                                                        new Tech() { Technology = "LINQ" },
+                                                                        new Tech() { Technology = "C#" },
+                                                                        new Tech() { Technology = "MVC" } } },
+                                            new Employees() { Id = 3, Name = "John" , Email = "John@email.com" , Programming = new List < Tech > { 
+                                                                        new Tech() { Technology = "LINQ" }, 
+                                                                        new Tech() { Technology = "VB" } } },
+                                            new Employees() { Id = 4,Name = "King" , Email = "King@email.com", Programming = new List<Tech> ()},
+                                            new Employees() { Id = 5,Name = "Raftaar" , Email = "Raftaar@email.com", Programming = new List<Tech> ()}
+                                        };
 
 
+                                        var querySyntax = (from emp in dataset
+                                        where emp.Programming.Count == 0
+                                        select emp).ToList();
 
+                                        var methodQuery = dataset.Where(emp => emp.Programming.Count == 0).ToList();
+                                ==============================================================================
+                                        var querySyntax = (from emp in dataset
+                                                        where emp.Programming.Count == 2
+                                                        select emp).ToList();
 
+                                        var methodQuery = dataset.Where(emp => emp.Programming.Count == 2).ToList();
+                                ==============================================================================
+                                var querySyntax = (from emp in dataset
+                                            where emp.Programming.Count == 2
+                                            && emp.Id == 4
+                                            select emp).ToList();
 
+                        var methodQuery = dataset.Where(emp => emp.Programming.Count == 2 && emp.Id == 4).ToList();
+                        ============================================================================================
+=============Lec 10 : OFType
+
+2. OfType : used as generic method to filter data according to the datatype
+
+            var dataSource = new List<object>() { "Adam", "Harry", "Kim", "John", 1, 2, 3, 4, 5};
+            var methodSyntax = dataSource.OfType<string>().ToList();
+            var querySyntax (from x in dataSource where x is string select x).ToList();
+
+            ===================================================================================================
+
+            var dataSource = new List<object>() { "Adam", "Harry", "Kim", "John", 1, 2, 3, 4, 5};
+            var methodSyntax = dataSource.OfType<string>().Where(x => x.tength > 3).ToList();
+            var querySyntax = (from x in dataSource
+                   let str = x as string
+                   where str != null && str.Length > 3
+                   select str).ToList();
+
+=========== Lec 11 : Sorting operations ====================================================================
 
 
 
