@@ -1,4 +1,10 @@
-Projection: select data in original form or any other form.
+        =================================================================================================================================
+                                                        LINQ PART 2 : WebGentle YT Channel
+        =================================================================================================================================
+
+--------------------------------------------------------------------------------------------------------------------------------------------------            
+            Lect 06: Projection: select data in original form or any other form.
+--------------------------------------------------------------------------------------------------------------------------------------------------
 
 //Lec 06 : Select statement(List,prop,one class, two class, anonymous class, index)
     
@@ -282,9 +288,9 @@ namespace LinqSample1
         }
 
 
-
+------------------------------------------------------------------------------------------------------------------------------------------------
 ======== Lec 08, 09, 10 : filtering operators =============
-
+------------------------------------------------------------------------------------------------------------------------------------------------
 There are two types of filtering 
     1. where ()
     2. OfType()
@@ -303,7 +309,7 @@ There are two types of filtering
         < (less than)
         || (logical OR)
 
-                                ===========================================================================
+                    ===========================================================================
 
                                 List<int> list = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
@@ -326,7 +332,7 @@ There are two types of filtering
                                     }
 
 
-                                ====================================================================
+                    ====================================================================
 
                                     List<int> list = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
@@ -346,20 +352,12 @@ There are two types of filtering
                                     {
                                         Console.WriteLine(ele);
                                     }
-                                ===================================================================
-                                    List<string> names = new List<string>()
-                                                {
-                                                    "Alice",
-                                                    "Bob",
-                                                    "Charlie",
-                                                    "Diana",
-                                                    "Edward",
-                                                    "Fiona",
-                                                    "George",
-                                                    "Hannah",
-                                                    "Ian",
-                                                    "Jackie"
-                                                };
+                    ===================================================================
+                                    List<string> names = new List<string>() 
+                                        {  
+                                            "Alice","Bob","Charlie", "Diana", "Edward",
+                                            "Fiona","George","Hannah","Ian","Jackie"
+                                        };
 
 
                                         var querySyntax = (from str in names
@@ -451,13 +449,344 @@ There are two types of filtering
                    let str = x as string
                    where str != null && str.Length > 3
                    select str).ToList();
-
+------------------------------------------------------------------------------------------------------------------------------------------------
 =========== Lec 11 : Sorting operations ====================================================================
+------------------------------------------------------------------------------------------------------------------------------------------------
+Lec 12 : order by 
+
+            var dataset = new List<int>() { 1,12,24,75,85,94,63,74,35};
+                    //==============================================
+
+                    var querySyntax = ( from num in dataset
+                                        orderby num select num ).ToList();
+
+                    var methodQuery = dataset.OrderBy(num => num).ToList();
+
+                    //=====with where condition =======
+                    
+                      var querySyntax = ( from num in dataset
+                      where num > 10
+                      orderby num 
+                      select num ).ToList();
+
+                        var methodQuery = dataset.Where(num => num >10).OrderBy(num => num).ToList();
+
+        ====================================================================================================
+
+          List<string> names = new List<string>() 
+            {  
+                "Alice","Bob","Charlie", "Diana", "Edward",
+                "Fiona","George","Hannah","Ian","Jackie"
+            };
+
+        ========= Arrange names in alphabetical order ============
+
+        var querySyntax = (form nm in names 
+                            orderby nm 
+                            select nm 
+                            ).ToList();
+
+        var methodQuery = names.OrderBy( names =>names).ToList();
+
+        =========== Sort according to number of letters in names ====
+
+        var querySyntax = ( from nm in names 
+                            where nm.Length >3
+                            orderby nm 
+                            select nm)
+                            .ToList();
+
+        var methodQuery = names
+                        .Where(nm => nm.Length > 3 )
+                        .OrderBy(nm =>nm)
+                        .ToList();
+
+    //================== within the objects =================
+
+        var dataset = new List<Employees>() {
+                new Employees() { Id = 1, Name = "Tom" , Email = "Tom@email.com"  } ,
+                new Employees() { Id = 2, Name = "Harry" , Email = "Harry@email.com"  },
+                new Employees() { Id = 3, Name = "John" , Email = "John@email.com"  }
+            };
+
+            var querySyntax = (from emp in dataset
+                              orderby emp.Id 
+                              select emp
+                              ).ToList();
+
+            var methodSyntax = dataset.OrderBy(emp => emp.Name).ToList();
+
+            foreach (var item in querySyntax)
+            {
+                Console.WriteLine($"Id = {item.Id}, Name = {item.Name} , Email = {item.Email}");
+            }
+
+//===============================================================================================
+
+Lec 13 : order by descending 
+
+        
+            var dataset = new List<int>() { 1,12,24,75,85,94,63,74,35};
+                    //==============================================
+
+                    var querySyntax = ( from num in dataset
+                                        orderby num descending
+                                        select num ).ToList();
+
+                    var methodQuery = dataset.OrderByDescending(num => num).ToList();
+
+                    //=====with where condition =======
+                    
+                      var querySyntax = ( from num in dataset
+                      where num > 10
+                      orderby num descending
+                      select num ).ToList();
+
+                var methodQuery = dataset.Where(num => num >10).OrderByDescending(num => num).ToList();
+
+        ====================================================================================================
+
+          List<string> names = new List<string>() 
+            {  
+                "Alice","Bob","Charlie", "Diana", "Edward",
+                "Fiona","George","Hannah","Ian","Jackie"
+            };
+
+        ========= Arrange names in alphabetical order ============
+
+        var querySyntax = (form nm in names 
+                            orderby nm descending
+                            select nm 
+                            ).ToList();
+
+        var methodQuery = names.OrderByDescending( names =>names).ToList();
+
+        =========== Sort according to number of letters in names ====
+
+        var querySyntax = ( from nm in names 
+                            where nm.Length >3
+                            orderby nm descending
+                            select nm)
+                            .ToList();
+
+        var methodQuery = names
+                        .Where(nm => nm.Length > 3 )
+                        .OrderByDescending(nm =>nm)
+                        .ToList();
+
+    //================== within the objects =================
+
+        var dataset = new List<Employees>() {
+                new Employees() { Id = 1, Name = "Tom" , Email = "Tom@email.com"  } ,
+                new Employees() { Id = 2, Name = "Harry" , Email = "Harry@email.com"  },
+                new Employees() { Id = 3, Name = "John" , Email = "John@email.com"  }
+            };
+
+            var querySyntax = (from emp in dataset
+                              orderby emp.Id descending
+                              select emp
+                              ).ToList();
+
+            var methodSyntax = dataset.OrderByDescending(emp => emp.Name).ToList();
+
+            
+            foreach (var item in querySyntax)
+            {
+                Console.WriteLine($"Id = {item.Id}, Name = {item.Name} , Email = {item.Email}");
+            }
+
+//================================================================================================
+
+Lec 14 : ThenBy and ThenByDescending
+
+        It is used for second level of the sorting operation( e.g sort by first name and then sort this names later with the lastname)
+
+Program 
+============
+
+        
+            var dataset = new List<Employees>() {
+                new Employees() { Id = 2, Name = "Harry" , LastName = "LN2"},
+                new Employees() { Id = 3, Name = "John" ,  LastName = "LN3"  },
+                new Employees() { Id = 1, Name = "Tom" , LastName = "LN1"   } ,
+                new Employees() { Id = 4, Name = "Tom" , LastName = "LN4"}
+            };
+
+            Console.WriteLine("=== a + a =======");
+
+            var querySyntax = (from emp in dataset
+                               orderby emp.Name , emp.LastName
+                               select emp
+                              ).ToList();
+            foreach (var item in querySyntax)
+            {
+                Console.WriteLine($"Id = {item.Id}, Name = {item.Name} , Lastname = {item.LastName}");
+            }
+
+            Console.WriteLine("====== d + a ===================");
+
+            var methodSyntax = dataset.OrderBy(emp => emp.Name).ThenBy(emp => emp.LastName).ToList();
+
+            var querySyntax1 = (from emp in dataset
+                               orderby emp.Name descending , emp.LastName
+                               select emp
+                              ).ToList();
+
+            foreach (var item in querySyntax1)
+            {
+                Console.WriteLine($"Id = {item.Id}, Name = {item.Name} , Lastname = {item.LastName}");
+            }
+
+            Console.WriteLine("==== a + d ==========");
+
+            var querySyntax2 = (from emp in dataset
+                                orderby emp.Name , emp.LastName descending
+                                select emp
+                              ).ToList();
+
+            foreach (var item in querySyntax2)
+            {
+                Console.WriteLine($"Id = {item.Id}, Name = {item.Name} , Lastname = {item.LastName}");
+            }
+
+            Console.WriteLine("======= d + d => qs ======");
+
+            var querySyntax3 = (from emp in dataset
+                                orderby emp.Name descending, emp.LastName descending
+                                select emp
+                              ).ToList();
+
+            foreach (var item in querySyntax3)
+            {
+                Console.WriteLine($"Id = {item.Id}, Name = {item.Name} , Lastname = {item.LastName}");
+            }
+            Console.WriteLine("======= d + d => ms ======");
+            var methodSyntax1 = dataset.OrderByDescending(emp => emp.Name).ThenByDescending(emp => emp.LastName).ToList();
+
+
+            foreach (var item in methodSyntax1)
+            {
+                Console.WriteLine($"Id = {item.Id}, Name = {item.Name} , Lastname = {item.LastName}");
+            }
+
+
+
+OUTPUT :
+-----------------
+
+=== a + a =======
+Id = 2, Name = Harry , Lastname = LN2
+Id = 3, Name = John , Lastname = LN3
+Id = 1, Name = Tom , Lastname = LN1
+Id = 4, Name = Tom , Lastname = LN4
+====== d + a ===================
+Id = 1, Name = Tom , Lastname = LN1
+Id = 4, Name = Tom , Lastname = LN4
+Id = 3, Name = John , Lastname = LN3
+Id = 2, Name = Harry , Lastname = LN2
+==== a + d ==========
+Id = 2, Name = Harry , Lastname = LN2
+Id = 3, Name = John , Lastname = LN3
+Id = 4, Name = Tom , Lastname = LN4
+Id = 1, Name = Tom , Lastname = LN1
+======= d + d => qs ======
+Id = 4, Name = Tom , Lastname = LN4
+Id = 1, Name = Tom , Lastname = LN1
+Id = 3, Name = John , Lastname = LN3
+Id = 2, Name = Harry , Lastname = LN2
+======= d + d => ms ======
+Id = 4, Name = Tom , Lastname = LN4
+Id = 1, Name = Tom , Lastname = LN1
+Id = 3, Name = John , Lastname = LN3
+Id = 2, Name = Harry , Lastname = LN2
+
+//================ Lec 15 : Reverse()  ========================
+
+Reverse function 
+-----------------
+
+    -   It reverses the data e.g 1 to 100 is reversed as 100 to 1 , 
+        like descending order.
+        BUT
+        it reverses without sorting them ascending or descending it just reverses the raw data
+    -   We don't pass any arguments in it (we directly write it at the end of the object)
+        eg. methodquery = Employee.Reverse();
+
+              int[] RollNum = new int[] { 1,2,3,4,5,6,7,8,9,10};
+
+              // directly reverse original object
+
+                RollNum.Reverse();
+
+
+                var qs = (from num in RollNum select num).Reverse();
+
+                foreach (var r in qs)
+                {
+                    Console.WriteLine(r);
+                }
+                Console.WriteLine("==== methodquery ======");
+                var ms = RollNum.Reverse();
+
+                foreach (var r in ms)
+                {
+                    Console.WriteLine(r);
+                }
+
+//====================================================================================================================
+
+            List<string> names = new List<string>() 
+            {  
+                "Alice","Bob","Charlie", "Diana", "Edward",
+                "Fiona","George","Hannah","Ian","Jackie"
+            };
+
+            //But list of strings can be directly reversed 
+            names.Reverse();
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+//=========================           Quantifies operators:     ===================================
+---------------------------------------------------------------------------------------------------------------------------------------------
+Lec 16 Quantifies operators: 
+
+  -  We use these to check if all or some elements of datasource satisfty the given condition or not.
+  -  return boolean values
+  -  conditions are for all or some values in datasource
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
 
 
