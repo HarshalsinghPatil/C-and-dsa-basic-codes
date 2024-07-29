@@ -745,13 +745,25 @@ Reverse function
             names.Reverse();
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
-//=========================           Quantifies operators:     ===================================
+//=========================           Quantifier operators:     ===================================
 ---------------------------------------------------------------------------------------------------------------------------------------------
-Lec 16 Quantifies operators: 
+Lec 16 Quantifier operators: 
 
   -  We use these to check if all or some elements of datasource satisfty the given condition or not.
   -  return boolean values
   -  conditions are for all or some values in datasource
+
+    Belew are the Quantifier operators
+    1. All : Whether all elements of the dataSource satisfy a condition.
+    2. Any : Atleast one element should satisfy the condition.
+    3. Contains : check whether data source contains a specified elements.
+
+=========================
+Lec 17 : All operators
+-------------------------
+
+
+
 
 
 
