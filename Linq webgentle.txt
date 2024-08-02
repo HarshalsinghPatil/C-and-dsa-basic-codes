@@ -1,6 +1,6 @@
-        =================================================================================================================================
-                                                        LINQ PART 2 : WebGentle YT Channel
-        =================================================================================================================================
+            ======================================================================================================================
+                                                    LINQ PART 2 : WebGentle YT Channel
+            ======================================================================================================================
 
 --------------------------------------------------------------------------------------------------------------------------------------------------            
             Lect 06: Projection: select data in original form or any other form.
@@ -760,7 +760,50 @@ Lec 16 Quantifier operators:
 
 =========================
 Lec 17 : All operators
--------------------------
+=========================
+
+        Student[] students = {
+    new Student { Name = "Kim", Marks = 90 },
+    new Student { Name = "John", Marks = 80 },
+    new Student { Name = "Lee", Marks = 75 },
+    new Student { Name = "Sara", Marks = 85 },
+    new Student { Name = "Mike", Marks = 70 },
+    new Student { Name = "Emma", Marks = 95 },
+    new Student { Name = "Paul", Marks = 60 },
+    new Student { Name = "Anna", Marks = 88 }
+};
+
+    foreach (var student in students)
+    {
+        Console.WriteLine($"Name: {student.Name}, Marks: {student.Marks}");
+    }
+
+            var query = students.All(stud => stud.Marks > 80);
+
+            var ms = (from std in students
+                      select std).All(x => x.Marks > 80);
+
+    ====================================================================
+
+        public class Student
+        {
+            //public int StudentId { get; set; }
+            //public string FullName { get; set; }
+            //public string StudentEmail { get; set; }
+
+            public string Name { get; set; }
+            public int Marks { get; set; }  
+
+            public List<Subject> Subject { get; set; }
+        }
+
+        public class Subject
+        {
+            public string SubjectName { get; set; }
+            public int SubjectMarks { get; set; }
+        }
+
+
 
 
 
