@@ -1,0 +1,45 @@
+Get: 
+---------------
+_api/web/lists/getbytitle('Power Platform Trainings')
+
+Post: (Create)
+-------
+_api/web/lists/getbytitle('Power Platform Trainings')/items
+
+Content-Type   application/json;odata=verbose
+If-Match          *
+
+
+(Note : 
+1. for meta data there are two underscore line.
+2. for "Power_x0020_Platform_x0020_Training" I have removed "s" from trainings, but why?
+because originally I have given it name "Power Platform Training" and then renamed
+but this had not changed it "Internal Name")
+
+json
+{
+"__metadata": { "type":
+"SP.Data.Power_x0020_Platform_x0020_TrainingListItem"//Ge
+},
+"Title": "Power BI",
+"PersonName":"Harshal"
+}
+
+
+
+Patch(Update):
+---------------
+_api/web/lists/getbytitle('Power Platform Trainings')/items(5)
+{
+"__metadata": { "type":
+"SP.Data.Power_x0020_Platform_x0020_TrainingListItem"
+},
+"Title": "Machine Learning",
+"PersonName":"Harshal"
+}
+
+
+
+
+
+

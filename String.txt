@@ -1,0 +1,54 @@
+Strings in Java and C#
+=-=======================
+Key Differences:
+-----------------
+=> String is immutable in both Java and C#; any modification creates a new object.
+=> StringBuilder is mutable in both languages, making it more efficient for frequent modifications.
+=> StringBuffer exists only in Java, and it is thread-safe due to synchronization, whereas C# lacks a direct equivalent.
+
+						JAVA
+					-------------------------------
+
+public class Main {
+    public static void main(String[] args) {
+
+	============= String Example (Immutable) =======================
+        String str1 = "Hello";
+        String str2 = str1.concat(" World"); // Creates a new string
+        System.out.println(str1);            // Outputs: Hello
+        System.out.println(str2);            // Outputs: Hello World
+	============= StringBuilder Example (Mutable) ==================
+	StringBuilder sb = new StringBuilder("Hello");
+        sb.append(" World");  // Modifies the original object
+        System.out.println(sb.toString());  // Outputs: Hello World
+	============= StringBuffer Example (Mutable & Thread-Safe) ======
+	StringBuilder sb1 = new StringBuilder("Hello");
+        sb1.append(" World");  // Modifies the original object
+        System.out.println(sb1.toString());  // Outputs: Hello World
+    }
+}
+
+
+
+						C#
+					-------------------------
+
+using System;
+using System.Text;//stringbuilder 
+
+class Program {
+    static void Main(string[] args) {
+	
+	//=========String Example (Immutable) =====================
+        string str1 = "Hello";
+        string str2 = str1 + " World";  // Creates a new string
+        Console.WriteLine(str1);        // Outputs: Hello
+        Console.WriteLine(str2);        // Outputs: Hello World
+
+	//=========StringBuilder Example (Mutable)==================
+	StringBuilder sb = new StringBuilder("Hello");
+        sb.Append(" World");  // Modifies the original object
+        Console.WriteLine(sb.ToString());  // Outputs: Hello World
+	
+    }
+}

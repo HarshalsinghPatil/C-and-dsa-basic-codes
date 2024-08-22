@@ -1,0 +1,234 @@
+Some basic understanding of c# concepts
+-------------------------------------------
+- we use for loop when we know there are fix number of iterations . 
+- In case of exception...... try-catch-finally
+	- if we catch exception then finally will get executed
+	- if we hadle specific exception and the exception we got is different
+	 then our code will be existed and finally will not be executed e.g. 
+	 we used catch block to handle the arithmatic exception but at runtime 
+	 runtime we got null exception then our program will be terminated without
+	 executing finally block.
+
+-- In same class if we have to call the function then we can do it in two ways 
+1. static method 
+2. Create an object and then call the this method without declaring it static
+
+# function
+---------------
+
+using System;
+
+public class Program
+{
+    void Show()//Non-parameterised function
+    {
+        Console.WriteLine("This is the Non-parameterised function");
+    }
+    
+    void Show2(string msg)//Parameterised function
+    {
+        Console.WriteLine("Hello "+ msg);
+    }
+    
+    string Show3(string msg) //Parameterised function with the return type 
+    {
+       Console.WriteLine("Mgs inside Show3 function: " + msg);
+       return msg;
+    }
+
+    void Show4(int val)
+    {
+	val *= val; // Manipulating value  
+        Console.WriteLine("Value inside the show4 function "+val);  
+    }
+
+ 
+    public void Show5(ref int val)  
+    {  
+             val *= val; // Manipulating value  
+            Console.WriteLine("Value inside the show5 function "+val);  
+           
+     }  
+    
+    public static void Main(string[] args)
+    {
+         Program pg = new Program();
+         
+         pg.Show();
+         pg.Show2("Harshal");
+         string msg = pg.Show3("Harshal lets check");
+         Console.WriteLine("Hi " + msg);
+
+	//Lets check what is pass by value and pass by reference
+
+	    int val = 50;  
+	    // 1. Pass by value 
+            Program program = new Program(); // Creating Object 
+	    Console.WriteLine("Value before calling the show4 "+val);  
+            program.Show4(val); // Calling Function by passing value            
+            Console.WriteLine("Value after calling the show4 " + val);  
+ 
+	    // 2. Pass by reference
+            Console.WriteLine("Value before calling the show5 "+val);  
+            program.Show5(ref val); // Calling Function by passing reference            
+            Console.WriteLine("Value after calling the show5 " + val);  
+
+	    // 3."out" parameter
+	    // C# Out Parameter
+	    // C# provides out keyword to pass arguments as out-type. It is like
+	    // reference-type, except that it does not require variable to 
+	    // initialize before passing. We must use out keyword to pass argument
+	    // as out-type. It is useful when we want a function to return multiple values.
+	    
+    }
+}
+
+
+C# Arrays
+-------------
+	Like other programming languages, array in C# is a group of similar types of elements 
+that have contiguous memory location. In C#, array is an object of base type System.Array. In
+ C#, array index starts from 0. We can store only fixed set of elements in C# array.
+
+C# Array Types
+There are 3 types of arrays in C# programming:
+
+1. Single Dimensional Array
+2. Multidimensional Array
+3. Jagged Array
+
+1.C# Single Dimensional Array : 
+-------------------------------
+put square bracket after datatype like below :
+
+int[] arr = new int[5];//creating array  
+
+class Program {
+    public static void Main(string[] args)
+    {
+        int[] arr = new int[5];//here we have specified size of array
+        
+        //How to assign the values to the array indes
+        arr[0] = 10; 
+        arr[1] = 20 ; 
+        arr[3] = 40; 
+        arr[4] = 50;
+        int count = 0;//If you place it inside of foreach loop then count will be resetted to zero everytime
+        foreach(int val in arr)
+        {   
+            Console.WriteLine("The value at Index " + count + " is "+ val);
+            ++count;
+        }
+    }
+}
+
+
+using System;
+
+public class Program
+{
+    
+    //here you can't call method in same class without using static keyword
+    static void printArray(int[] arr)
+    {
+        
+        Console.WriteLine("Elements in this array are : ");
+        for(int i= 0 ; i<arr.Length; i++)
+        {
+            Console.WriteLine(arr[i]);
+        }
+    }
+    //Kim : here arr.Length is property and not method don't use the round bracket here
+    static void maxValueInArray(int[] arr)
+    {
+        int max = arr[0];
+        
+        for(int i = 0; i< arr.Length; i++)
+        {
+            if(max<arr[i])
+            {
+                max = arr[i];
+            }
+        }
+        
+        Console.WriteLine("The max number here is :" + max);
+    }
+    
+    static void minValueInArray(int[] arr)
+    {
+        int min = arr[0];
+        
+        for( int i = 0 ; i< arr.Length ; i++)
+        {
+            if(min> arr[i])
+            {
+                min = arr[i];
+            }
+        }
+        
+        Console.WriteLine("The min number here is :" + min);
+        
+    }
+    
+    public static void Main(string[] args)
+    {
+        int[] arr1 = {25, 10, 20, 15, 40, 50};
+        int[] arr2 = {12, 23, 44, 11, 54 };
+        
+        printArray(arr1);
+        printArray(arr2);
+        
+        minValueInArray(arr1);
+	minValueInArray(arr2);
+
+	maxValueInArray(arr1);
+	maxValueInArray(arr2);
+        
+    }
+}
+
+
+# Multi-dimensional Array :
+------------------------------
+To create multidimensional array, we need to use comma inside the square brackets like below 
+
+int[,] arr=new int[3,3];//declaration of 2D array  
+int[,,] arr=new int[3,3,3];//declaration of 3D array 
+
+class Program {
+	public static void Main(string [] args)
+	{
+		int[,] arr = new int[3,3];
+		
+		arr[0,3] = 10;
+		arr[1,2] = 20;
+		arr[1,2] = 20;
+
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
