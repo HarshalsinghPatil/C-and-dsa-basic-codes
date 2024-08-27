@@ -113,7 +113,8 @@ class Program {
         arr[1] = 20 ; 
         arr[3] = 40; 
         arr[4] = 50;
-        int count = 0;//If you place it inside of foreach loop then count will be resetted to zero everytime
+        int count = 0;
+	//If you place it inside of foreach loop then count will be resetted to zero everytime
         foreach(int val in arr)
         {   
             Console.WriteLine("The value at Index " + count + " is "+ val);
@@ -195,21 +196,117 @@ To create multidimensional array, we need to use comma inside the square bracket
 int[,] arr=new int[3,3];//declaration of 2D array  
 int[,,] arr=new int[3,3,3];//declaration of 3D array 
 
+2D Array:
+----------
+
 class Program {
 	public static void Main(string [] args)
 	{
 		int[,] arr = new int[3,3];
 		
-		arr[0,3] = 10;
+		arr[0,1] = 10;
 		arr[1,2] = 20;
-		arr[1,2] = 20;
+		arr[2,0] = 30;
 
+		for(int i = 0 ; i<3 ; i++)
+		{
+			for(int j= 0; j<3 ; j++)
+			{
+				Console.Write(arr[i,j]+ "\t" );
+			}
+			Console.WriteLine( );
+		}
 	}
+}
+
+3D Array:
+----------
+using System;
+
+public class Program
+{
+    public static void Main()
+    {
+        // Define and initialize a 3D array
+        int[,,] arr = new int[2, 3, 4]
+        {
+            {
+                { 1, 2, 3, 4 },
+                { 5, 6, 7, 8 },
+                { 9, 10, 11, 12 }
+            },
+            {
+                { 13, 14, 15, 16 },
+                { 17, 18, 19, 20 },
+                { 21, 22, 23, 24 }
+            }
+        };
+
+        // Iterate over the 3D array and print its elements
+        for (int i = 0; i < arr.GetLength(0); i++) // Iterate over the first dimension (depth)
+        {
+            Console.WriteLine($"Layer {i}:");
+            for (int j = 0; j < arr.GetLength(1); j++) // Iterate over the second dimension (rows)
+            {
+                for (int k = 0; k < arr.GetLength(2); k++) // Iterate over the third dimension (columns)
+                {
+                    Console.Write(arr[i, j, k] + "\t"); // Print each element with a tab space
+                }
+                Console.WriteLine(); // Move to the next line after each row
+            }
+            Console.WriteLine(); // Add an extra line between layers for better readability
+        }
+    }
 }
 
 
 
+C# Jagged Arrays
+-------------------
 
+In C#, jagged array is also known as "array of arrays" because its elements are arrays. The element size of jagged array can be different.
+
+Declaration of Jagged array :-
+---------------------------
+Let's see an example to declare jagged array that has two elements.
+int[][] arr = new int[2][]; 
+
+ 
+Initialization of Jagged array
+----------------------------------
+Let's see an example to initialize jagged array. The size of elements can be different.
+arr[0] = new int[4];  
+arr[1] = new int[6];  
+
+Initialization and filling elements in Jagged array
+---------------------------------------------------------
+Let's see an example to initialize and fill elements in jagged array
+arr[0] = new int[4] { 11, 21, 56, 78 };         
+arr[1] = new int[6] { 42, 61, 37, 41, 59, 63 };  
+
+Here, size of elements in jagged array is optional. So, you can write above code as given below:
+arr[0] = new int[] { 11, 21, 56, 78 };         
+arr[1] = new int[] { 42, 61, 37, 41, 59, 63 };  
+
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        int[][] arr = new int[2][];
+        arr[0] = new int[] {1,2,3,4,5,6};
+        arr[1] =  new int[] {7,5,9,8,1,4};
+        
+        for(int i = 0; i<arr.Length; i++) 
+        {
+            for(int j = 0; j< arr[i].Length; j++)
+            {
+                Console.Write(arr[i][j] + "\t");
+            }
+            Console.WriteLine();
+        }
+    }
+}
 
 
 
