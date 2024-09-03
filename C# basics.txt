@@ -1,10 +1,16 @@
 Some basic understanding of c# concepts
 -------------------------------------------
-- we use for loop when we know there are fix number of iterations . 
+- Datatypes 
+    - f - for float eg. myFloat = 1.2345f (range 10^-45)
+    - for double eg. No need to write any suffix (range 10 ^ -340)
+    - m - for decimal eg. myDecimal = 1.2345m(range 10^-28)
+
+- we use for loop when we know there are fix number of iterations. 
 - In case of exception...... try-catch-finally
 	- if we catch exception then finally will get executed
-	- if we hadle specific exception and the exception we got is different
-	 then our code will be existed and finally will not be executed e.g. 
+	- if we hadle specific exception and we got the different exception at the
+     runtime then our code will be existed and finally will not be executed
+	 e.g. 
 	 we used catch block to handle the arithmatic exception but at runtime 
 	 runtime we got null exception then our program will be terminated without
 	 executing finally block.
@@ -48,9 +54,29 @@ public class Program
              val *= val; // Manipulating value  
             Console.WriteLine("Value inside the show5 function "+val);  
            
-     }  
+    }
+
+    Kim : Static keyword - in same class we are calling show6 function 
+    without object.
+    public static oid Show6(out int val) // Out parameter  
+    {  
+            int square = 5;  
+            val = square;  
+            val *= val; // Manipulating value  
+    } 
+
+    // To return multiple values
+         public static  void Show(out int a, out int b) 
+        {  
+            int square = 5;  
+            a = square;  
+            b = square;  
+            // Manipulating value  
+            a *= a;   
+            b *= b;  
+        }  
     
-    public static void Main(string[] args)
+    public static void Main(string[] args) 
     {
          Program pg = new Program();
          
@@ -69,19 +95,34 @@ public class Program
             Console.WriteLine("Value after calling the show4 " + val);  
  
 	    // 2. Pass by reference
+
             Console.WriteLine("Value before calling the show5 "+val);  
             program.Show5(ref val); // Calling Function by passing reference            
             Console.WriteLine("Value after calling the show5 " + val);  
 
-	    // 3."out" parameter
-	    // C# Out Parameter
-	    // C# provides out keyword to pass arguments as out-type. It is like
-	    // reference-type, except that it does not require variable to 
-	    // initialize before passing. We must use out keyword to pass argument
-	    // as out-type. It is useful when we want a function to return multiple values.
+	    
+	    /* 3."out" Parameter : 
+            -------------------
+	     - reference-type, not require to initialize variable before passing
+	     - We must use out keyword to pass argument as out-type
+	     - It is useful when we want a function to return multiple values.
+         */
+
+            Console.WriteLine("Value before passing out variable " + val);  
+            Show6(out val); // Passing out argument  
+            Console.WriteLine("Value after recieving the out variable " + val); 
+
+            // To function has to return multiple values
+             int val2 = 50, val3 = 100;  
+             
+            Console.WriteLine("Value before passing \n val1 = " + val2+" \n val2 = "+val3);  
+            Show7(out val1, out val2); // Passing out argument  
+            Console.WriteLine("Value after passing \n val1 = " + val2 + " \n val2 = " + val3);   
 	    
     }
 }
+
+==============================================================================================================
 
 
 C# Arrays
@@ -310,12 +351,263 @@ public class HelloWorld
 
 
 
+        C# Array class Signature:
+        ----------------------------
+
+        [SerializableAttribute]  
+        [ComVisibleAttribute(true)]  
+        public abstract class Array : ICloneable, IList, ICollection,   
+        IEnumerable, IStructuralComparable, IStructuralEquatable  
+
+        Property: Length , IsFixedSize, Rank
+
+        Methods: 
+        1. Copy(Array,Array,Int32)
+        2. IndexOf(Array,Object)
+        3. Reverse(Array)
+        4. Sort(Array)
+        5. ToString()
+
+    #  Params
+    ------------
+    - used to specify a parameter that takes variable number of arguments
+    - useful when we don't know the number of arguments prior
+    - one params keyword is allowed & no additional parameter is permitted after
+     params keyword in a function declaration
+
+    class Program {
+    
+            public static void PassMultipleValues (params object[] items)
+            {
+                for (int i = 0; i < items.Length; i++)  
+                {  
+                    Console.WriteLine(items[i]);  
+                } 
+            }
+            
+            public static void Main(String [] args)
+            {
+                PassMultipleValues("harshal", 100, "Ramakrishnan Ayyer","Ramesh",101, 20.50,"Peter", 'A');
+                
+            }
+    }
+
+
+====================================================================================================
+                        Object oriented programming
+====================================================================================================
+- Note you can't declare class in a namespace private 
+
+- Basic example of a class 
+
+public class Employee {
+    public int Id ;
+    public string Name ;
+    public double salary;
+    
+    public void Insert (int i , string n, double s)
+    {
+        Id = i;
+        Name = n;
+        salary = s;
+    }
+    
+    public void Display()
+    {
+        Console.WriteLine(Id+" "+Name+
+        ""+salary);
+    }
+}
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+       Employee e1 = new Employee();
+       Employee e2 = new Employee();
+    
+        e1.Insert(1, "name 1", 10000.23);
+        e2.Insert(2, "name 2", 10000.65);
+        
+        e1.Display();
+        e2.Display();
+    }
+}
+
+--------constructor(parameterised and non-parameterised) ----------
+
+public class Employee {
+    public int Id ;
+    public string Name ;
+    public double salary;
+
+    public Employee()
+    {
+        Console.WriteLine("Default constructor invoked ")
+    }
+    
+    //Constructor do not require a return type
+    public Employee (int i , string n, double s)//Parameterised
+    {
+        Id = i;
+        Name = n;
+        salary = s;
+    }
+
+    Note : here if parameter names and class properties have same name 
+    then we use "this" keyword.
+
+    ~Employee()
+    {  
+            Console.WriteLine("Destructor Invoked");  
+    } 
+    
+    public void Display()
+    {
+        Console.WriteLine(Id+" "+Name+
+        ""+salary);
+    }
+}
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+       Employee e0 = new Employee();
+       Employee e1 = new Employee(1, "name 1", 10000.23);
+       Employee e2 = new Employee(2, "name 2", 10000.65);
+        
+        e1.Display();
+        e2.Display();
+    }
+}
+
+# Static Constructor: 
+----------------------
+- while creating object/instance Static constructor called only once 
+and that is when the class is load for the first time.
+- It is used to initialize the static fields of the class.
+- No matter how many objects of class are created but static contructor
+called only once.
+using System;
+public class Employee {
+    public int Id ;
+    public string Name ;
+    public double salary;
+
+    static Employee()//kim : we can't apply "public" to static modifier
+    {
+        Console.WriteLine("Static constructor invoked ");
+    } 
+
+    public Employee()
+    {
+        Console.WriteLine("Default constructor invoked ");
+    }
+    
+    
+}
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+       Employee e0 = new Employee();
+       Employee e1 = new Employee();
+       Employee e2 = new Employee();
+    }
+}
 
 
 
+Sept#2024
 
 
 
+Q. why destructors are not needed in c# ?
+=> destructors are not required in C#. The .NET garbage collector effectively
+ manages memory, and the IDisposable interface provides a more controlled way
+  to release unmanaged resources when necessary. Destructors should be used 
+  sparingly and only when working with unmanaged resources that need to be 
+  released explicitly.
+
+
+Boxing and unboxing
+----------------------
+⚫ Boxing : Value type is converted to object type, it is called boxing. 
+Allocates box, copies value into it.
+object obj;
+ obj = 100; // this is boxing
+⚫ Unboxing : when an Object type is converted to a value type, it is 
+called unboxing. Checks type of box, copies value out
+int i = 123;
+object obj = i; //boxing
+int j = (int)obj; //unboxing
+
+
+Types of Method Parameters 
+------------------------------
+- optional parameters : we give default values if user don't provide anything
+- Named and positional parameters : if we keep field(i.e. variable) name same then we don't need
+to keep the sequence of arguments and parameters same . 
+- params
+
+
+STATIC 
+-----------
+1. Static field : 
+- instance field which gets memory each time whenever you create object But if we are using 
+same varible field at 100 places then its better to make it static so that it's copy get 
+shared among all
+-there is only one copy of static field created in the memory. It is shared to all the objects.
+e.g. we can have multiple Accounts but it should have same rateOfInterest.Then we will declare 
+it static.
+
+using System;  
+   public class Account  
+    {  
+        public int accno;   
+        public String name;  
+        public static float rateOfInterest=8.8f;  
+        public Account(int accno, String name)  
+        {  
+            this.accno = accno;  
+            this.name = name;  
+        }  
+          
+        public void display()  
+        {  
+            Console.WriteLine(accno + " " + name + " " + rateOfInterest);  
+        }  
+   }  
+   class TestAccount{  
+       public static void Main(string[] args)  
+        {  
+            Account a1 = new Account(101, "Sonoo");  
+            Account a2 = new Account(102, "Mahesh");  
+            a1.display();  
+            a2.display(); 
+
+            Warning: But remember if you change value of static field then it will be changed 
+            for all the fields 
+              Account.rateOfInterest = 10.5f;//changing value   
+
+            Account a3 = new Account(103, "Sonoo");  
+            Account a4 = new Account(104, "Mahesh"); 
+  
+        }  
+    } 
+
+
+C# static class :
+=================
+Points to remember for C# static class
+- C# static class contains only static members.
+- C# static class cannot be instantiated.
+- C# static class is sealed.
+- C# static class cannot contain instance constructors.
+
+    
 
 
 
