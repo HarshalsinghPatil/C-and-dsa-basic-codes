@@ -16,22 +16,21 @@ Some basic understanding of c# concepts
 	 executing finally block.
 
 -- In same class if we have to call the function then we can do it in two ways 
-1. static method 
-2. Create an object and then call the this method without declaring it static
+	1. static method 
+	2. Create an object and then call the this method without declaring it static
 
 # function
 ---------------
-
 using System;
 
 public class Program
 {
-    void Show()//Non-parameterised function
+    void Show() //Non-parameterised function
     {
         Console.WriteLine("This is the Non-parameterised function");
     }
     
-    void Show2(string msg)//Parameterised function
+    void Show2(string msg) //Parameterised function
     {
         Console.WriteLine("Hello "+ msg);
     }
@@ -92,13 +91,13 @@ public class Program
             Program program = new Program(); // Creating Object 
 	    Console.WriteLine("Value before calling the show4 "+val);  
             program.Show4(val); // Calling Function by passing value            
-            Console.WriteLine("Value after calling the show4 " + val);  
+            Console.WriteLine("Value after calling the show4 " + val); //value doesn't change 
  
 	    // 2. Pass by reference
 
             Console.WriteLine("Value before calling the show5 "+val);  
             program.Show5(ref val); // Calling Function by passing reference            
-            Console.WriteLine("Value after calling the show5 " + val);  
+            Console.WriteLine("Value after calling the show5 " + val);// value changes  
 
 	    
 	    /* 3."out" Parameter : 
@@ -127,9 +126,10 @@ public class Program
 
 C# Arrays
 -------------
-	Like other programming languages, array in C# is a group of similar types of elements 
-that have contiguous memory location. In C#, array is an object of base type System.Array. In
- C#, array index starts from 0. We can store only fixed set of elements in C# array.
+- Like other programming languages, array in C# is a group of similar types of elements 
+that have contiguous memory location. We can store only fixed set of elements in C# array. 
+- In C#, array is an object of base type System.Array. 
+- In C#, array index starts from 0.
 
 C# Array Types
 There are 3 types of arrays in C# programming:
@@ -138,23 +138,31 @@ There are 3 types of arrays in C# programming:
 2. Multidimensional Array
 3. Jagged Array
 
-1.C# Single Dimensional Array : 
--------------------------------
+1. C# Single Dimensional Array : 
+--------------------------------
 put square bracket after datatype like below :
 
-int[] arr = new int[5];//creating array  
+int[] arr = new int[5];//creating array with specifiying size at creation
+
+// Creating and initializing an array of integers
+int[] numbers = { 1, 2, 3, 4, 5 };
+
+// Another way to initialize without specifying size
+int[] otherNumbers = new int[] { 6, 7, 8, 9, 10 };
+
 
 class Program {
     public static void Main(string[] args)
     {
         int[] arr = new int[5];//here we have specified size of array
         
-        //How to assign the values to the array indes
+        //How to assign the values to the array index
         arr[0] = 10; 
-        arr[1] = 20 ; 
+        arr[1] = 20; 
         arr[3] = 40; 
         arr[4] = 50;
         int count = 0;
+
 	//If you place it inside of foreach loop then count will be resetted to zero everytime
         foreach(int val in arr)
         {   
@@ -284,18 +292,18 @@ public class Program
         };
 
         // Iterate over the 3D array and print its elements
-        for (int i = 0; i < arr.GetLength(0); i++) // Iterate over the first dimension (depth)
+        for (int i = 0; i < arr.GetLength(0); i++) //first dimension (depth)
         {
             Console.WriteLine($"Layer {i}:");
-            for (int j = 0; j < arr.GetLength(1); j++) // Iterate over the second dimension (rows)
+            for (int j = 0; j < arr.GetLength(1); j++) // second dimension (rows)
             {
-                for (int k = 0; k < arr.GetLength(2); k++) // Iterate over the third dimension (columns)
+                for (int k = 0; k < arr.GetLength(2); k++) 
                 {
-                    Console.Write(arr[i, j, k] + "\t"); // Print each element with a tab space
+                    Console.Write(arr[i, j, k] + "\t"); 
                 }
                 Console.WriteLine(); // Move to the next line after each row
             }
-            Console.WriteLine(); // Add an extra line between layers for better readability
+            Console.WriteLine(); 
         }
     }
 }
@@ -356,8 +364,8 @@ public class HelloWorld
 
         [SerializableAttribute]  
         [ComVisibleAttribute(true)]  
-        public abstract class Array : ICloneable, IList, ICollection,   
-        IEnumerable, IStructuralComparable, IStructuralEquatable  
+        public abstract class Array : ICloneable, IList, ICollection, IEnumerable, IStructuralComparable, IStructuralEquatable   
+          
 
         Property: Length , IsFixedSize, Rank
 
@@ -426,7 +434,7 @@ public class HelloWorld
        Employee e1 = new Employee();
        Employee e2 = new Employee();
     
-        e1.Insert(1, "name 1", 10000.23);
+        e1.Insert(1, "name 1", 10000.23);// call methods using objects
         e2.Insert(2, "name 2", 10000.65);
         
         e1.Display();
@@ -443,11 +451,11 @@ public class Employee {
 
     public Employee()
     {
-        Console.WriteLine("Default constructor invoked ")
+        Console.WriteLine("Default constructor invoked ");
     }
     
     //Constructor do not require a return type
-    public Employee (int i , string n, double s)//Parameterised
+    public Employee (int i , string n, double s); //Parameterised
     {
         Id = i;
         Name = n;
@@ -489,6 +497,7 @@ and that is when the class is load for the first time.
 - It is used to initialize the static fields of the class.
 - No matter how many objects of class are created but static contructor
 called only once.
+
 using System;
 public class Employee {
     public int Id ;
@@ -534,20 +543,21 @@ Q. why destructors are not needed in c# ?
 
 Boxing and unboxing
 ----------------------
-⚫ Boxing : Value type is converted to object type, it is called boxing. 
-Allocates box, copies value into it.
-object obj;
- obj = 100; // this is boxing
-⚫ Unboxing : when an Object type is converted to a value type, it is 
-called unboxing. Checks type of box, copies value out
-int i = 123;
-object obj = i; //boxing
-int j = (int)obj; //unboxing
+⚫ Boxing : Value type is converted to object type
+
+ 	object obj;
+ 	obj = 100; // this is boxing
+
+⚫ Unboxing : Object type is converted to a value type
+
+	int i = 123;
+	object obj = i; //boxing
+	int j = (int)obj; //unboxing
 
 
 Types of Method Parameters 
 ------------------------------
-- optional parameters : we give default values if user don't provide anything
+- optional parameters : we give default values if user don't provide anything e.g. body temp = 37.
 - Named and positional parameters : if we keep field(i.e. variable) name same then we don't need
 to keep the sequence of arguments and parameters same . 
 - params
@@ -607,14 +617,140 @@ Points to remember for C# static class
 - C# static class is sealed.
 - C# static class cannot contain instance constructors.
 
+
+
+Static Class in C#
+A static class is a class that cannot be instantiated. It can only contain static members,
+ which means all fields, methods, and properties of the class must also be static. Static
+ classes are useful when you want to create utility classes that provide a collection of 
+methods or constants without maintaining any state or instance data.
+
+Rules for Static Classes
+------------------------------
+- No Instance Members: A static class cannot contain instance members like 
+  non-static fields,properties, or methods.
+- No Object Instantiation: You cannot create an object of a static class using the 
+  new keyword.
+- Static Constructor:
+	- Static classes can have a static constructor. 
+	- The static constructor is parameterless.
+- Cannot have an access modifier (e.g., public, private).
+- Is called automatically once, before any static member is accessed or any static method is called.   
+- Static Fields: All fields in a static class must be static.
+- Static Methods and Properties: All methods and properties in a static class mustbe static.   
+- Inheritance: A static class cannot inherit from other classes, nor can it be inherited by any other class
     
 
+public static class MathUtility
+{
+    // Static field
+    private static int calculationCount = 0;
+
+    // Static constructor
+    static MathUtility()
+    {
+        Console.WriteLine("Static constructor of MathUtility invoked.");
+    }
+
+    // Static property
+    public static int CalculationCount
+    {
+        get { return calculationCount; }
+    }
+
+    // Static method
+    public static double Add(double a, double b)
+    {
+        calculationCount++;
+        return a + b;
+    }
+
+    // Another static method
+    public static double Multiply(double a, double b)
+    {
+        calculationCount++;
+        return a * b;
+    }
+}
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        // Accessing static methods
+        double sum = MathUtility.Add(3.5, 2.5); // Allowed
+        double product = MathUtility.Multiply(4, 5); // Allowed
+
+        // Accessing static property
+        Console.WriteLine("Calculation count: " + MathUtility.CalculationCount); // Allowed
+        
+        // Cannot instantiate a static class
+        // MathUtility mathUtility = new MathUtility(); // Not Allowed (Compile-time error)
+    }
+}
+
+C# Properties
+=================
+	C# Properites doesn't have storage location. C# Properites are extension of fields 
+and accessed like fields.
+
+The Properties have accessors that are used to set, get or compute their values.
+
+Usage of C# Properties
+-----------------------
+	- C# Properties can be read-only or write-only.
+	- We can have logic while setting values in the C# Properties.
+	- We make fields of the class private, so that fields can't be accessed from outside 
+the class directly.
+	- Now we are forced to use C# properties for setting or getting values.
 
 
+using System;  
+   public class Employee  
+    {  
+        private string name;  
+  
+        public string Name  
+        {  
+            get  
+            {  
+                return name;  
+            }  
+            set  
+            {  
+                name = value;  
+            }  
+        }  
+   }  
+   class TestEmployee{  
+       public static void Main(string[] args)  
+        {  
+            Employee e1 = new Employee();  
+            e1.Name = "Sonoo Jaiswal";  
+            Console.WriteLine("Employee Name: " + e1.Name);  
+        }  
+    }  
 
 
+======================================================================================================
 
-
+using System;  
+   public class Animal  
+    {  
+       public void eat() { Console.WriteLine("Eating..."); }  
+   }  
+   public class Dog: Animal  
+   {  
+       public void bark() { Console.WriteLine("Barking..."); }  
+   }  
+   class TestInheritance2{  
+       public static void Main(string[] args)  
+        {  
+            Dog d1 = new Dog();  
+            d1.eat();  
+            d1.bark();  
+        }  
+    }  
 
 
 
