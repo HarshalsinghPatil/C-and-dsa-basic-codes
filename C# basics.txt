@@ -2,9 +2,12 @@ Some basic understanding of c# concepts
 -------------------------------------------
 # Variables
 =============
-Variable Types: C# is a statically typed language, so you must declare the type of variable (e.g., int, string, double, etc.) before using it.
-Naming Conventions: Variable names should be meaningful and follow C# naming conventions (e.g., camelCase for local variables).
-Scope: The scope of a variable is defined by where it is declared. Variables can be declared at class level (fields) or inside methods (local variables).
+Variable Types: C# is a statically typed language, so you must declare the type of variable
+ (e.g., int, string, double, etc.) before using it.
+Naming Conventions: Variable names should be meaningful and follow C# naming conventions 
+(e.g., camelCase for local variables).
+Scope: The scope of a variable is defined by where it is declared. Variables can be declared
+ at class level (fields) or inside methods (local variables).
 
 using System;
 
@@ -12,12 +15,11 @@ class Program
 {
     static void Main()
     {
-        // Declaration
+        //Saperate declaration and defination
         double height;
-	// Definition
         height = 5.5; 
 
-	// Declaration and Initialization
+	// Declaration and Initialization at same time 
         int age = 25;
         string name = "Alice";
 
@@ -171,7 +173,7 @@ public class Program
 
 ==============================================================================================================
 
-
+-------------
 C# Arrays
 -------------
 - Like other programming languages, array in C# is a group of similar types of elements 
@@ -179,127 +181,215 @@ that have contiguous memory location. We can store only fixed set of elements in
 - In C#, array is an object of base type System.Array. 
 - In C#, array index starts from 0.
 
-C# Array Types
-There are 3 types of arrays in C# programming:
+    Lets below discuss the array signature , how to initialise the array , and important 
+    array methods and properties which are important to use the arrays.
 
-1. Single Dimensional Array
-2. Multidimensional Array
-3. Jagged Array
+        C# Array class Signature:
+        ----------------------------
+        [SerializableAttribute]  
+        [ComVisibleAttribute(true)]  
+        public abstract class Array : ICloneable, IList, ICollection, IEnumerable, IStructuralComparable, IStructuralEquatable 
+
+
+C# Array Types
+---------------
+There are 3 types of arrays in C# programming:
+    1. Single Dimensional Array
+    2. Multidimensional Array
+    3. Jagged Array
 
 1. C# Single Dimensional Array : 
 --------------------------------
 put square bracket after datatype like below :
 
-1. Saperately declare and define arrray
-----------------------------------------------
-// Declaration
-int[] myArray; 
+    1. Saperately declare and define arrray
+    ----------------------------------------------
+        // Declaration
+        int[] myArray; 
 
-// Defination
-myArray = new int[5]; // Definition with a size of 5
-// or
-myArray = new int[] { 1, 2, 3, 4, 5 }; // Definition with initial values
+        // Defination
+        myArray = new int[5]; // Definition with a size of 5
+        // or
+        myArray = new int[] { 1, 2, 3, 4, 5 }; // Definition with initial values
 
+        class Array 
+        {
+            public static void Main(string [] args)
+            {
+                // Declare and assign size
+                int[] myArray;
+                myArray = new int[5];
+                Console.WriteLine("Length of Array: " + myArray.Length);
+                Console.WriteLine("Length of Array: {0} " , myArray.Length);
+                Console.WriteLine("Size is fixed? " + myArray.IsFixedSize);
+                
+                // Declare and initialise array
+                int[] myArray1 = new int[] { 1, 2, 3, 4, 5 };
+                Console.WriteLine("Size of array: "+ myArray1.Length);
+                Console.WriteLine("Size is fixed? " + myArray1.IsFixedSize);
 
-2. Declaration and Initialization at same time
--------------------------------------------------
-int[] myArray = new int[5]; // Creates an array of integers with a size of 5
-
-
-3. Inline Initialization
-----------------------------------
-int[] myArray = new int[] { 1, 2, 3, 4, 5 }; // Initializes with specific values without specifying size
-
-4. Implicitly Typed Array
-----------------------------------
-var myArray = new[] { 1, 2, 3, 4, 5 }; // Compiler infers the type (int array)
-
-
-class Program {
-    public static void Main(string[] args)
-    {
-        int[] arr = new int[5];//here we have specified size of array
-        
-        //How to assign the values to the array index
-        arr[0] = 10; 
-        arr[1] = 20; 
-        arr[3] = 40; 
-        arr[4] = 50;
-        int count = 0;
-
-	//If you place it inside of foreach loop then count will be resetted to zero everytime
-        foreach(int val in arr)
-        {   
-            Console.WriteLine("The value at Index " + count + " is "+ val);
-            ++count;
+                // Implicitly typed array
+                var myArray2 = new[] {"one", "tow", "three"};
+                Console.WriteLine("Size of array: "+ myArray2.Length);
+                
+            }
         }
+
+
+    2. Declaration and Initialization at same time
+    -------------------------------------------------
+    int[] myArray = new int[5]; // Creates an array of integers with a size of 5
+
+
+    3. Inline Initialization
+    ----------------------------------
+    int[] myArray = new int[] { 1, 2, 3, 4, 5 }; // Initializes with specific values without specifying size
+
+    4. Implicitly Typed Array
+    ----------------------------------
+    var myArray = new[] { 1, 2, 3, 4, 5 }; // Compiler infers the type (int array)
+
+          
+        Properties of the Arrays:
+        ------------------------
+		1. Length (i.e. size of array) 
+		2. IsFixedSize(kim: The size of array is always fixed but this property usefull for other data structures) 
+		3. Rank(i.e. Dimension of array 2D,3D)
+
+            Note: this are not only used for array but also for other collections/data structures.
+
+        Some useful Methods of Array:
+        ------------------------------ 
+        1. Copy(Array,Array,Int32)
+        2. IndexOf(Array,Object)
+        3. Reverse(Array)
+        4. Sort(Array)
+        5. ToString()
+
+==================== Array declaration assigning the values ===================
+        class Program {
+        public static void Main(string[] args)
+        {
+            ====  way 1 : declare and assign values saperately
+                        
+                    myArr = new int[5];
+                
+                    
+                    Console.WriteLine("Size of array 1 : "+ myArr.Length);
+                
+                    myArr[0] = 10;
+                    myArr[1] =  20;
+                    myArr[2] = 30;
+                    myArr[3] = 40;
+                    myArr[4] = 50;
+                    
+                    int count = 0;
+
+                    for(int i = 0 ; i< myArr.Length; i++)
+                    {
+                        int num = myArr[i];
+                        
+                        Console.WriteLine($"Value at index [{count}] is : " + num );
+                        ++count;
+                    }
+
+        ========================== OOOOOOOOOOORRRRRRRRRRRRRRRR ====================================
+
+                    // way 2.1 : same time declare and define them below both methods are ok 
+                    i.e.with giving size of array and second one without array size
+                    
+                    int[] arr = new int[5] {1,2,3,4,5};//with size
+                    int[] arr = new int[] {1,2,3,4,5};
+
+                    //way 2.2 : first declare and then define 
+                    int[] arr ;
+                    arr = new int[] {1,2,3,4,5};
+
+                    //=== With foreach Loop =======
+                    int index = 0;
+                    foreach (int val in arr)
+                    {
+                        Console.WriteLine($"The element at arr[{index}] : is {val}");
+                        index++;
+                    }
+                    
+                    //=== With simple for =======
+                    index = 0;
+                    for(int i = 0; i<arr.Length ; i++)
+                    {
+                        int val = arr[i];
+                        Console.WriteLine($"The element at arr[{index}] : is {val}");
+                        index++;
+                    }
+
+
     }
 }
 
 
-using System;
+    using System;
 
-public class Program
-{
-    
-    //here you can't call method in same class without using static keyword
-    static void printArray(int[] arr)
+    public class Program
     {
         
-        Console.WriteLine("Elements in this array are : ");
-        for(int i= 0 ; i<arr.Length; i++)
-        {
-            Console.WriteLine(arr[i]);
-        }
-    }
-    //Kim : here arr.Length is property and not method don't use the round bracket here
-    static void maxValueInArray(int[] arr)
-    {
-        int max = arr[0];
-        
-        for(int i = 0; i< arr.Length; i++)
-        {
-            if(max<arr[i])
+        //here you can't call method in same class without using static keyword
+        static void printArray(int[] arr)
+        {  
+            Console.WriteLine("Elements in this array are : ");
+            for(int i= 0 ; i<arr.Length; i++)
             {
-                max = arr[i];
+                Console.WriteLine(arr[i]);
             }
         }
-        
-        Console.WriteLine("The max number here is :" + max);
-    }
-    
-    static void minValueInArray(int[] arr)
-    {
-        int min = arr[0];
-        
-        for( int i = 0 ; i< arr.Length ; i++)
+
+        //Kim : here arr.Length is property and not method don't use the round bracket here
+        static void maxValueInArray(int[] arr)
         {
-            if(min> arr[i])
+            int max = arr[0];
+            
+            for(int i = 0; i< arr.Length; i++)
             {
-                min = arr[i];
+                if(max<arr[i])
+                {
+                    max = arr[i];
+                }
             }
+            
+            Console.WriteLine("The max number here is :" + max);
         }
         
-        Console.WriteLine("The min number here is :" + min);
+        static void minValueInArray(int[] arr)
+        {
+            int min = arr[0];
+            
+            for( int i = 0 ; i< arr.Length ; i++)
+            {
+                if(min> arr[i])
+                {
+                    min = arr[i];
+                }
+            }
+            
+            Console.WriteLine("The min number here is :" + min);
+            
+        }
         
-    }
-    
-    public static void Main(string[] args)
-    {
-        int[] arr1 = {25, 10, 20, 15, 40, 50};
-        int[] arr2 = {12, 23, 44, 11, 54 };
-        
-        printArray(arr1);
-        printArray(arr2);
-        
-        minValueInArray(arr1);
-	minValueInArray(arr2);
+        public static void Main(string[] args)
+        {
+            int[] arr1 = {25, 10, 20, 15, 40, 50};
+            int[] arr2 = {12, 23, 44, 11, 54 };
+            
+            printArray(arr1);
+            printArray(arr2);
+            
+            minValueInArray(arr1);
+        minValueInArray(arr2);
 
-	maxValueInArray(arr1);
-	maxValueInArray(arr2);
-        
+        maxValueInArray(arr1);
+        maxValueInArray(arr2);
+            
+        }
     }
-}
 
 
 # Multi-dimensional Array :
@@ -423,22 +513,7 @@ public class HelloWorld
 
 
 
-        C# Array class Signature:
-        ----------------------------
 
-        [SerializableAttribute]  
-        [ComVisibleAttribute(true)]  
-        public abstract class Array : ICloneable, IList, ICollection, IEnumerable, IStructuralComparable, IStructuralEquatable   
-          
-
-        Property: Length , IsFixedSize, Rank
-
-        Methods: 
-        1. Copy(Array,Array,Int32)
-        2. IndexOf(Array,Object)
-        3. Reverse(Array)
-        4. Sort(Array)
-        5. ToString()
 
     #  Params
     ------------
@@ -463,6 +538,33 @@ public class HelloWorld
                 
             }
     }
+
+
+====================================================================================================
+                        Strings 
+====================================================================================================
+
+C# Strings
+--------------
+In C#, string is an object of System.String class that represent sequence of characters. We can 
+perform many operations on strings such as concatenation, comparision, getting substring, search,
+ trim, replacement etc.
+
+string vs String
+------------------
+In C#, string is keyword which is an alias for System.String class. That is why string and String
+ are equivalent. We are free to use any naming convention.
+
+
+
+
+
+
+
+
+
+
+
 
 
 ====================================================================================================
