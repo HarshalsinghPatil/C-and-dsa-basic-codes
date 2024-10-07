@@ -1,0 +1,14 @@
+E:\linq  notes\DSA by me in c#\2. Queue\1.SimpleQueue\1.SimpleQueue\bin\Debug\net7.0\1.SimpleQueue.exe
+E:\linq  notes\DSA by me in c#\2. Queue\1.SimpleQueue\1.SimpleQueue\bin\Debug\net7.0\1.SimpleQueue.deps.json
+E:\linq  notes\DSA by me in c#\2. Queue\1.SimpleQueue\1.SimpleQueue\bin\Debug\net7.0\1.SimpleQueue.runtimeconfig.json
+E:\linq  notes\DSA by me in c#\2. Queue\1.SimpleQueue\1.SimpleQueue\bin\Debug\net7.0\1.SimpleQueue.dll
+E:\linq  notes\DSA by me in c#\2. Queue\1.SimpleQueue\1.SimpleQueue\bin\Debug\net7.0\1.SimpleQueue.pdb
+E:\linq  notes\DSA by me in c#\2. Queue\1.SimpleQueue\1.SimpleQueue\obj\Debug\net7.0\1.SimpleQueue.GeneratedMSBuildEditorConfig.editorconfig
+E:\linq  notes\DSA by me in c#\2. Queue\1.SimpleQueue\1.SimpleQueue\obj\Debug\net7.0\1.SimpleQueue.AssemblyInfoInputs.cache
+E:\linq  notes\DSA by me in c#\2. Queue\1.SimpleQueue\1.SimpleQueue\obj\Debug\net7.0\1.SimpleQueue.AssemblyInfo.cs
+E:\linq  notes\DSA by me in c#\2. Queue\1.SimpleQueue\1.SimpleQueue\obj\Debug\net7.0\1.SimpleQueue.csproj.CoreCompileInputs.cache
+E:\linq  notes\DSA by me in c#\2. Queue\1.SimpleQueue\1.SimpleQueue\obj\Debug\net7.0\1.SimpleQueue.dll
+E:\linq  notes\DSA by me in c#\2. Queue\1.SimpleQueue\1.SimpleQueue\obj\Debug\net7.0\refint\1.SimpleQueue.dll
+E:\linq  notes\DSA by me in c#\2. Queue\1.SimpleQueue\1.SimpleQueue\obj\Debug\net7.0\1.SimpleQueue.pdb
+E:\linq  notes\DSA by me in c#\2. Queue\1.SimpleQueue\1.SimpleQueue\obj\Debug\net7.0\1.SimpleQueue.genruntimeconfig.cache
+E:\linq  notes\DSA by me in c#\2. Queue\1.SimpleQueue\1.SimpleQueue\obj\Debug\net7.0\ref\1.SimpleQueue.dll
