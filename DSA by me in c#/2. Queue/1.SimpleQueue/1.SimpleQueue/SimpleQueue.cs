@@ -34,6 +34,14 @@ namespace _1.SimpleQueue
             return queue[front++];
         }
 
+        public void PrintAll()
+        {
+                for (int i = front; i <= rear; i++)
+                {
+                    Console.WriteLine($"The value of Queue at index queue[{i}] is {queue[i]}");
+                }
+        }
+
         public int ElementAtFront ()
         {
             return queue[front];
@@ -44,15 +52,6 @@ namespace _1.SimpleQueue
             return queue[rear];
         }
 
-        public void PrintAll()
-        {
-            int index = 0;
-            for (int i = 0; i < queue.Length; i++)
-            {
-                Console.WriteLine($"The value of Queue at index queue[{index}] is {queue[i]}");
-                index++;
-            }
-        }
         public bool IsFull()
         {
             return rear == maxSize - 1;
@@ -62,9 +61,6 @@ namespace _1.SimpleQueue
         {
             return front > rear;
         }
-
-
-
 
     }
 }

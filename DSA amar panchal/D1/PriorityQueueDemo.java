@@ -27,7 +27,7 @@ int front,rear,MaxSize,q[];
            {
                for(int j=front;j<rear;j++)
                {
-                   if(q[j]  q[j+1])
+                   if(q[j] < q[j+1])
                    {
                        int t=q[j];
                        q[j]=q[j+1];

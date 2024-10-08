@@ -1,4 +1,4 @@
-﻿using _1.SimpleQueue;
+﻿using CircularQueue;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,14 +8,14 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        SimpleQueue q = null;
+        Circular_Queue q = null;
         int size;
         int choice;
         int element;
 
         Console.WriteLine("Enter the size of Array");
         size = int.Parse(Console.ReadLine());
-        q = new SimpleQueue(size);
+        q = new Circular_Queue(size);
 
         do
         {
@@ -26,7 +26,7 @@ public class Program
             {
 
                 case 1:
-                    if(!q.IsFull())
+                    if (!q.IsFull())
                     {
                         Console.WriteLine("To enter the element");
                         element = int.Parse(Console.ReadLine());
@@ -89,7 +89,6 @@ public class Program
                     }
                    
                     break;
-
 
                 case 0:
                     Console.WriteLine("Wait .... Program exiting");
