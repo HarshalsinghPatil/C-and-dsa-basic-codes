@@ -70,8 +70,8 @@ public class LinkedListLinear
           t.next=n;//3
      }
    }
- void deleteRight()
- {
+void deleteRight()
+{
      if(root==null)
      {
          System.out.println("List Empty");
@@ -88,7 +88,7 @@ public class LinkedListLinear
          t2.next=null;//break link
          System.out.println("Deleted:"+t.data);
      }
-   }
+}
  void printList()
  {
      if(root==null)

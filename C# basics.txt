@@ -1,3 +1,4 @@
+-------------------------------------------
 Some basic understanding of c# concepts
 -------------------------------------------
 # Variables
@@ -693,10 +694,41 @@ public class HelloWorld
     }
 }
 
+========================== copy Contructor ==================================
 
+If we want to copy the object of same class when we want to use the same instance 
+everytime e.g. instance e1 in below case can be s
 
-Sept#2024
+//copy contructor
+public class Employee {
+    public int Id ;
+    public string Name;
+    
+    public Employee(int i , string n)
+    {
+        Id = i;
+        Name = n;
+        Console.WriteLine($" PC : Id and Name is : {Id} and {Name} ");
+    }
+    
+    public Employee(Employee e){
+        Id = e.Id;
+        Name = e.Name ;
+        Console.WriteLine($"CC : Id and Name is : {Id} and {Name} ");
+        
+    }
+}
 
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        Employee e1 = new Employee(1, "n1");
+        Employee e2 = new Employee(e1);
+    }
+}
+
+====================================================================================================
 
 
 Q. why destructors are not needed in c# ?
@@ -720,7 +752,7 @@ Boxing and unboxing
 	object obj = i; //boxing
 	int j = (int)obj; //unboxing
 
-
+------------------------------
 Types of Method Parameters 
 ------------------------------
 - optional parameters : we give default values if user don't provide anything e.g. body temp = 37.

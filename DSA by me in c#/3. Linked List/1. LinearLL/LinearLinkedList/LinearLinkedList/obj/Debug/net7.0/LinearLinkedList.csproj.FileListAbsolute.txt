@@ -1,0 +1,14 @@
+E:\linq  notes\DSA by me in c#\3. Linked List\1. LinearLL\LinearLinkedList\LinearLinkedList\bin\Debug\net7.0\LinearLinkedList.exe
+E:\linq  notes\DSA by me in c#\3. Linked List\1. LinearLL\LinearLinkedList\LinearLinkedList\bin\Debug\net7.0\LinearLinkedList.deps.json
+E:\linq  notes\DSA by me in c#\3. Linked List\1. LinearLL\LinearLinkedList\LinearLinkedList\bin\Debug\net7.0\LinearLinkedList.runtimeconfig.json
+E:\linq  notes\DSA by me in c#\3. Linked List\1. LinearLL\LinearLinkedList\LinearLinkedList\bin\Debug\net7.0\LinearLinkedList.dll
+E:\linq  notes\DSA by me in c#\3. Linked List\1. LinearLL\LinearLinkedList\LinearLinkedList\bin\Debug\net7.0\LinearLinkedList.pdb
+E:\linq  notes\DSA by me in c#\3. Linked List\1. LinearLL\LinearLinkedList\LinearLinkedList\obj\Debug\net7.0\LinearLinkedList.GeneratedMSBuildEditorConfig.editorconfig
+E:\linq  notes\DSA by me in c#\3. Linked List\1. LinearLL\LinearLinkedList\LinearLinkedList\obj\Debug\net7.0\LinearLinkedList.AssemblyInfoInputs.cache
+E:\linq  notes\DSA by me in c#\3. Linked List\1. LinearLL\LinearLinkedList\LinearLinkedList\obj\Debug\net7.0\LinearLinkedList.AssemblyInfo.cs
+E:\linq  notes\DSA by me in c#\3. Linked List\1. LinearLL\LinearLinkedList\LinearLinkedList\obj\Debug\net7.0\LinearLinkedList.csproj.CoreCompileInputs.cache
+E:\linq  notes\DSA by me in c#\3. Linked List\1. LinearLL\LinearLinkedList\LinearLinkedList\obj\Debug\net7.0\LinearLinkedList.dll
+E:\linq  notes\DSA by me in c#\3. Linked List\1. LinearLL\LinearLinkedList\LinearLinkedList\obj\Debug\net7.0\refint\LinearLinkedList.dll
+E:\linq  notes\DSA by me in c#\3. Linked List\1. LinearLL\LinearLinkedList\LinearLinkedList\obj\Debug\net7.0\LinearLinkedList.pdb
+E:\linq  notes\DSA by me in c#\3. Linked List\1. LinearLL\LinearLinkedList\LinearLinkedList\obj\Debug\net7.0\LinearLinkedList.genruntimeconfig.cache
+E:\linq  notes\DSA by me in c#\3. Linked List\1. LinearLL\LinearLinkedList\LinearLinkedList\obj\Debug\net7.0\ref\LinearLinkedList.dll
