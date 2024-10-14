@@ -12,7 +12,7 @@ namespace LinearLinkedList
         public Node root, temp, newNode,left;  // The root (start) of the linked list
 
         // This creates an empty linked list
-        public void CreateLinkedList()
+        public LinearLL()
         {
             root = null;
         }

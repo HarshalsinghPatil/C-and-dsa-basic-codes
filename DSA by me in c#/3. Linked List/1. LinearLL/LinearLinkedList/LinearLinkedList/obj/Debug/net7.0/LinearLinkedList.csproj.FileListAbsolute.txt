@@ -12,3 +12,4 @@ E:\linq  notes\DSA by me in c#\3. Linked List\1. LinearLL\LinearLinkedList\Linea
 E:\linq  notes\DSA by me in c#\3. Linked List\1. LinearLL\LinearLinkedList\LinearLinkedList\obj\Debug\net7.0\LinearLinkedList.pdb
 E:\linq  notes\DSA by me in c#\3. Linked List\1. LinearLL\LinearLinkedList\LinearLinkedList\obj\Debug\net7.0\LinearLinkedList.genruntimeconfig.cache
 E:\linq  notes\DSA by me in c#\3. Linked List\1. LinearLL\LinearLinkedList\LinearLinkedList\obj\Debug\net7.0\ref\LinearLinkedList.dll
+E:\linq  notes\DSA by me in c#\3. Linked List\1. LinearLL\LinearLinkedList\LinearLinkedList\obj\Debug\net7.0\LinearLinkedList.sourcelink.json
