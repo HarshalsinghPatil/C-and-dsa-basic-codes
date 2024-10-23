@@ -47,16 +47,22 @@ namespace LinearLinkedList
             }
         }
 
-        public void InsertRight (int data)
+        public void InsertRight(int data)
         {
-            newNode = new Node(data);
-            temp = root ;
-            while (temp != null)
+            Node newNode = new Node(data);
+            if (root == null)
             {
-                temp = temp.Next;
+                root = newNode; // If the list is empty, make the new node the root
             }
-
-            temp.Next = newNode; 
+            else
+            {
+                Node temp = root;
+                while (temp.Next != null)
+                {
+                    temp = temp.Next; // Move to the last node
+                }
+                temp.Next = newNode; // Link the last node to the new node
+            }
         }
 
         public void DeleteRight()
