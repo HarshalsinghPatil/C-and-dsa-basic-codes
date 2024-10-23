@@ -1,0 +1,97 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\linq  notes\\DSA by me in c#\\3. Linked List\\2. Circular LL\\SinglyCircularLinkedList\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1D14BE9C-21C6-433D-8142-156B0D624084}|SinglyCircularLinkedList.csproj|e:\\linq  notes\\dsa by me in c#\\3. linked list\\2. circular ll\\singlycircularlinkedlist\\singlycircularll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D14BE9C-21C6-433D-8142-156B0D624084}|SinglyCircularLinkedList.csproj|solutionrelative:singlycircularll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D14BE9C-21C6-433D-8142-156B0D624084}|SinglyCircularLinkedList.csproj|e:\\linq  notes\\dsa by me in c#\\3. linked list\\2. circular ll\\singlycircularlinkedlist\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D14BE9C-21C6-433D-8142-156B0D624084}|SinglyCircularLinkedList.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D14BE9C-21C6-433D-8142-156B0D624084}|SinglyCircularLinkedList.csproj|e:\\linq  notes\\dsa by me in c#\\3. linked list\\2. circular ll\\singlycircularlinkedlist\\node.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D14BE9C-21C6-433D-8142-156B0D624084}|SinglyCircularLinkedList.csproj|solutionrelative:node.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Node.cs",
+              "DocumentMoniker": "E:\\linq  notes\\DSA by me in c#\\3. Linked List\\2. Circular LL\\SinglyCircularLinkedList\\Node.cs",
+              "RelativeDocumentMoniker": "Node.cs",
+              "ToolTip": "E:\\linq  notes\\DSA by me in c#\\3. Linked List\\2. Circular LL\\SinglyCircularLinkedList\\Node.cs",
+              "RelativeToolTip": "Node.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T11:56:45.363Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SinglyCircularLL.cs",
+              "DocumentMoniker": "E:\\linq  notes\\DSA by me in c#\\3. Linked List\\2. Circular LL\\SinglyCircularLinkedList\\SinglyCircularLL.cs",
+              "RelativeDocumentMoniker": "SinglyCircularLL.cs",
+              "ToolTip": "E:\\linq  notes\\DSA by me in c#\\3. Linked List\\2. Circular LL\\SinglyCircularLinkedList\\SinglyCircularLL.cs",
+              "RelativeToolTip": "SinglyCircularLL.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAcwC4AAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T11:54:37.118Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\linq  notes\\DSA by me in c#\\3. Linked List\\2. Circular LL\\SinglyCircularLinkedList\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "E:\\linq  notes\\DSA by me in c#\\3. Linked List\\2. Circular LL\\SinglyCircularLinkedList\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T11:52:21.165Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 1073,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

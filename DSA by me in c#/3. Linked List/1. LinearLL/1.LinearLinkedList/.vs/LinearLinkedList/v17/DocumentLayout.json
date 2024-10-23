@@ -1,17 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\linq  notes\\DSA by me in c#\\3. Linked List\\1. LinearLL\\LinearLinkedList\\",
+  "WorkspaceRootPath": "E:\\linq  notes\\DSA by me in c#\\3. Linked List\\1. LinearLL\\1.LinearLinkedList\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2795ED6F-CC56-4A5C-8D5D-AFB7EA5C81C4}|LinearLinkedList\\LinearLinkedList.csproj|e:\\linq  notes\\dsa by me in c#\\3. linked list\\1. linearll\\linearlinkedlist\\linearlinkedlist\\linearll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2795ED6F-CC56-4A5C-8D5D-AFB7EA5C81C4}|LinearLinkedList\\LinearLinkedList.csproj|e:\\linq  notes\\dsa by me in c#\\3. linked list\\1. linearll\\1.linearlinkedlist\\linearlinkedlist\\linearll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2795ED6F-CC56-4A5C-8D5D-AFB7EA5C81C4}|LinearLinkedList\\LinearLinkedList.csproj|solutionrelative:linearlinkedlist\\linearll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2795ED6F-CC56-4A5C-8D5D-AFB7EA5C81C4}|LinearLinkedList\\LinearLinkedList.csproj|e:\\linq  notes\\dsa by me in c#\\3. linked list\\1. linearll\\linearlinkedlist\\linearlinkedlist\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2795ED6F-CC56-4A5C-8D5D-AFB7EA5C81C4}|LinearLinkedList\\LinearLinkedList.csproj|e:\\linq  notes\\dsa by me in c#\\3. linked list\\1. linearll\\1.linearlinkedlist\\linearlinkedlist\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2795ED6F-CC56-4A5C-8D5D-AFB7EA5C81C4}|LinearLinkedList\\LinearLinkedList.csproj|solutionrelative:linearlinkedlist\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2795ED6F-CC56-4A5C-8D5D-AFB7EA5C81C4}|LinearLinkedList\\LinearLinkedList.csproj|e:\\linq  notes\\dsa by me in c#\\3. linked list\\1. linearll\\linearlinkedlist\\linearlinkedlist\\node.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2795ED6F-CC56-4A5C-8D5D-AFB7EA5C81C4}|LinearLinkedList\\LinearLinkedList.csproj|e:\\linq  notes\\dsa by me in c#\\3. linked list\\1. linearll\\1.linearlinkedlist\\linearlinkedlist\\node.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2795ED6F-CC56-4A5C-8D5D-AFB7EA5C81C4}|LinearLinkedList\\LinearLinkedList.csproj|solutionrelative:linearlinkedlist\\node.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -44,11 +44,11 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Program.cs",
-              "DocumentMoniker": "E:\\linq  notes\\DSA by me in c#\\3. Linked List\\1. LinearLL\\LinearLinkedList\\LinearLinkedList\\Program.cs",
+              "DocumentMoniker": "E:\\linq  notes\\DSA by me in c#\\3. Linked List\\1. LinearLL\\1.LinearLinkedList\\LinearLinkedList\\Program.cs",
               "RelativeDocumentMoniker": "LinearLinkedList\\Program.cs",
-              "ToolTip": "E:\\linq  notes\\DSA by me in c#\\3. Linked List\\1. LinearLL\\LinearLinkedList\\LinearLinkedList\\Program.cs",
+              "ToolTip": "E:\\linq  notes\\DSA by me in c#\\3. Linked List\\1. LinearLL\\1.LinearLinkedList\\LinearLinkedList\\Program.cs",
               "RelativeToolTip": "LinearLinkedList\\Program.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAkAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-14T12:54:37.938Z",
               "EditorCaption": ""
@@ -57,24 +57,23 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "Node.cs",
-              "DocumentMoniker": "E:\\linq  notes\\DSA by me in c#\\3. Linked List\\1. LinearLL\\LinearLinkedList\\LinearLinkedList\\Node.cs",
+              "DocumentMoniker": "E:\\linq  notes\\DSA by me in c#\\3. Linked List\\1. LinearLL\\1.LinearLinkedList\\LinearLinkedList\\Node.cs",
               "RelativeDocumentMoniker": "LinearLinkedList\\Node.cs",
-              "ToolTip": "E:\\linq  notes\\DSA by me in c#\\3. Linked List\\1. LinearLL\\LinearLinkedList\\LinearLinkedList\\Node.cs",
+              "ToolTip": "E:\\linq  notes\\DSA by me in c#\\3. Linked List\\1. LinearLL\\1.LinearLinkedList\\LinearLinkedList\\Node.cs",
               "RelativeToolTip": "LinearLinkedList\\Node.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-14T12:54:33.835Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-14T12:54:33.835Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "LinearLL.cs",
-              "DocumentMoniker": "E:\\linq  notes\\DSA by me in c#\\3. Linked List\\1. LinearLL\\LinearLinkedList\\LinearLinkedList\\LinearLL.cs",
+              "DocumentMoniker": "E:\\linq  notes\\DSA by me in c#\\3. Linked List\\1. LinearLL\\1.LinearLinkedList\\LinearLinkedList\\LinearLL.cs",
               "RelativeDocumentMoniker": "LinearLinkedList\\LinearLL.cs",
-              "ToolTip": "E:\\linq  notes\\DSA by me in c#\\3. Linked List\\1. LinearLL\\LinearLinkedList\\LinearLinkedList\\LinearLL.cs",
+              "ToolTip": "E:\\linq  notes\\DSA by me in c#\\3. Linked List\\1. LinearLL\\1.LinearLinkedList\\LinearLinkedList\\LinearLL.cs",
               "RelativeToolTip": "LinearLinkedList\\LinearLL.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-10T13:04:10.26Z",
               "EditorCaption": ""
