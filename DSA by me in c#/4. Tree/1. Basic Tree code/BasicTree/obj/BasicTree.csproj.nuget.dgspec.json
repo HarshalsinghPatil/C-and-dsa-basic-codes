@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\My git code\\MY dotnet notes and codes\\C-and-dsa-basic-codes\\DSA by me in c#\\3. Linked List\\2. Circular LL\\SinglyCircularLinkedList\\SinglyCircularLinkedList.csproj": {}
+    "E:\\My git code\\MY dotnet notes and codes\\C-and-dsa-basic-codes\\DSA by me in c#\\4. Tree\\1. Basic Tree code\\BasicTree\\BasicTree.csproj": {}
   },
   "projects": {
-    "E:\\My git code\\MY dotnet notes and codes\\C-and-dsa-basic-codes\\DSA by me in c#\\3. Linked List\\2. Circular LL\\SinglyCircularLinkedList\\SinglyCircularLinkedList.csproj": {
+    "E:\\My git code\\MY dotnet notes and codes\\C-and-dsa-basic-codes\\DSA by me in c#\\4. Tree\\1. Basic Tree code\\BasicTree\\BasicTree.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\My git code\\MY dotnet notes and codes\\C-and-dsa-basic-codes\\DSA by me in c#\\3. Linked List\\2. Circular LL\\SinglyCircularLinkedList\\SinglyCircularLinkedList.csproj",
-        "projectName": "SinglyCircularLinkedList",
-        "projectPath": "E:\\My git code\\MY dotnet notes and codes\\C-and-dsa-basic-codes\\DSA by me in c#\\3. Linked List\\2. Circular LL\\SinglyCircularLinkedList\\SinglyCircularLinkedList.csproj",
+        "projectUniqueName": "E:\\My git code\\MY dotnet notes and codes\\C-and-dsa-basic-codes\\DSA by me in c#\\4. Tree\\1. Basic Tree code\\BasicTree\\BasicTree.csproj",
+        "projectName": "BasicTree",
+        "projectPath": "E:\\My git code\\MY dotnet notes and codes\\C-and-dsa-basic-codes\\DSA by me in c#\\4. Tree\\1. Basic Tree code\\BasicTree\\BasicTree.csproj",
         "packagesPath": "C:\\Users\\harshalsingh.patil\\.nuget\\packages\\",
-        "outputPath": "E:\\My git code\\MY dotnet notes and codes\\C-and-dsa-basic-codes\\DSA by me in c#\\3. Linked List\\2. Circular LL\\SinglyCircularLinkedList\\obj\\",
+        "outputPath": "E:\\My git code\\MY dotnet notes and codes\\C-and-dsa-basic-codes\\DSA by me in c#\\4. Tree\\1. Basic Tree code\\BasicTree\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\harshalsingh.patil\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -67,6 +67,10 @@ namespace LinearLinkedList
 
         public void DeleteRight()
         {
+            /* 
+                Generally in amar panchal codes t1 and t2 are used but for my convenience
+                I kept t1 = temp and left = t2
+            */
             left = temp = root;
             if(temp == null)
             {
