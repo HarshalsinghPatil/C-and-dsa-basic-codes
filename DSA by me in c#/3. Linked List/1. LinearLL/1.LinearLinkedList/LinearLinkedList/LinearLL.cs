@@ -184,43 +184,75 @@ namespace LinearLinkedList
 
         public void DeleteAfter(int key)
         {
-            int position = 0;
-
             if (root == null)
             {
-                newNode = root;
+                Console.WriteLine("List is empty");
             }
             else
             {
-                temp = left = root;
-                while (temp != null && temp.Data == key)
+                temp = root;
+                // Find the node with the specified key
+                while (temp != null && temp.Data != key)
                 {
-                    left = temp;
                     temp = temp.Next;
-                    position++;
                 }
+
                 if (temp == null)
                 {
-                    Console.WriteLine("Key not found ");
+                    Console.WriteLine("Key not found");
+                }
+                else if (temp.Next == null)
+                {
+                    Console.WriteLine("No node exists after the key node");
                 }
                 else
                 {
-                    if (temp == root)//at start
-                    {
-                        root = null;
-                    }
-                    else if (temp.Next == null)//at end 
-                    {
-                        left.Next = null;
-                    }
-                    else //in between 
-                    {
-
-                        left.Next = temp.Next;
-                    }
+                    // Delete the node after the key node
+                    Node nodeToDelete = temp.Next;
+                    temp.Next = nodeToDelete.Next;
+                    Console.WriteLine("Node after key " + key + " deleted, which had data: " + nodeToDelete.Data);
                 }
             }
         }
+
+
+        public void DeleteKeyBased(int key)
+        {
+            if (root == null)
+            {
+                Console.WriteLine("List is empty");
+            }
+            else if (root.Data == key) // If the node to be deleted is the root node
+            {
+                Console.WriteLine("Node with key " + key + " deleted (was root)");
+                root = root.Next; // Move the root to the next node
+            }
+            else
+            {
+                // Initialize temp to traverse the list and left to keep track of the previous node
+                temp = root;
+                Node left = null;
+
+                // Traverse the list to find the node with the specified key
+                while (temp != null && temp.Data != key)
+                {
+                    left = temp;       // Save current node as previous node
+                    temp = temp.Next;  // Move to the next node
+                }
+
+                if (temp == null) // Key was not found
+                {
+                    Console.WriteLine("Key not found in the list");
+                }
+                else // Key is found, delete the node
+                {
+                    left.Next = temp.Next;
+                    Console.WriteLine("Node with key " + key + " deleted");
+                }
+            }
+        }
+
+
         
     }
 }
