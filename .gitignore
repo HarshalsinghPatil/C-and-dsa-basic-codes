@@ -1,0 +1,129 @@
+# Ignore build directories
+**/bin/
+**/obj/
+**/build/
+**/out/
+
+# Ignore .NET Core-specific temporary and user files
+project.lock.json
+project.fragment.lock.json
+*.pidb
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignore NuGet package directories
+**/packages/
+**/.vs
+*.nupkg
+*.snupkg
+**./vs
+
+
+# Ignore compiled DLLs and executables
+*.dll
+*.exe
+*.pdb
+*.mdb
+
+# Do not ignore solution and project files
+!*.sln
+!*.csproj
+!*.props
+!*.targets
+
+# Ignore logs and debug output
+*.log
+*.debug
+*.trace
+*.tmp
+
+# Ignore Java-specific files
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+
+# Ignore Maven/Gradle build directories
+.mvn/
+target/
+.gradle/
+build/
+
+# Ignore Java IDE-specific files (IntelliJ IDEA, Eclipse, NetBeans)
+.idea/
+*.iws
+*.ipr
+*.iml
+.classpath
+.project
+.settings/
+.nb-gradle/
+nbbuild/
+dist/
+nbproject/private/
+.nbproject/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Ignore logs
+*.log
+*.log.*
+
+# Ignore temporary and swap files
+*.swp
+*.swo
+*.tmp
+
+# Ignore editor/IDE-specific files
+.vscode/
+*.code-workspace
+*.bak
+*.orig
+*.rej
+
+# Ignore lock files
+package-lock.json
+yarn.lock
+
+# Ignore generated docs and coverage reports
+doc/api/
+doc/output/
+coverage/
+test-output/
+
+# Ignore miscellaneous
+*.~*
+*.orig
+*.rej
+*.diff
+
+# Ignore Node.js files (if any JavaScript is used)
+node_modules/
+
+# Ignore archives
+*.zip
+*.tar
+*.gz
+*.7z
+
+# Ignore backups
+*.bak
+*.old
+*.bkp
+*.backup
+
+# Ignore runtime-specific files
+.env
+.env.local
+.env.*.local
+.envrc
+*.env
+
+
