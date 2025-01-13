@@ -55,6 +55,13 @@ class Program
             list.DeleteAfter(20);
             list.PrintNodes();
             Console.WriteLine();
+
+            // Deleting a node with a specific key
+            Console.WriteLine("Deleting a node with key 20:");
+            list.DeleteKeyBased(30);
+            list.PrintNodes();
+            Console.WriteLine();
+
         }
     }
 

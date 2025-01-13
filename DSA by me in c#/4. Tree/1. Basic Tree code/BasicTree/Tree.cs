@@ -16,29 +16,28 @@ public class Tree
     //why we are recieving two parameters: 
 
     //tree.Insert(tree.Root, new Node(value));
-    public void Insert(TreeNode r, TreeNode n)
+    public void Insert(TreeNode rt , TreeNode newNode)
     {
-
 
         if (root != null)
         {
-            root = n;
+            root = newNode;
         }
         else//if we already have root 
         {
-            if (n.Data < r.Data)//compare the data inside of the nodes if less -> go to left
+            if (newNode.Data < rt.Data)//compare the data inside of the nodes if less -> go to left
             {
-                if (r.Left == null)
-                    r.Left = n;
-                else
-                    Insert(r.Left, n);
+                if (rt.Left == null)//if null ==save as node
+                    rt.Left = newNode;
+                else// left is not null then shift to left again == recursion
+                    Insert(rt.Left, newNode);
             }
             else//if data is more in new Node than in root then go to right
             {
-                if (r.Right == null)
-                    r.Right = n;
+                if (rt.Right == null)
+                    rt.Right = newNode;
                 else
-                    Insert(r.Right, n);
+                    Insert(rt.Right, newNode);
 
             }
         }
@@ -61,9 +60,9 @@ public class Tree
 
     public void InOrder(TreeNode r)
     {
-        if (r != null)
+        if ( r != null)
         {
-            InOrder(r.Left);          // L: Visit the left subtree
+            InOrder( r.Left);          // L: Visit the left subtree
             Console.WriteLine(r.Data); // V: Visit the current node
             InOrder(r.Right);          // R: Visit the right subtree
         }
@@ -99,24 +98,186 @@ public class Tree
             return root;
         }
 
-    public int LeafCount(TreeNode r, int counter)
-    {
-        
-        return counter;
-    }
-
-    public int Count(TreeNode r, int counter)
-    {
-
-        return counter;
-    }
-
-    public void Search(int key)
-        { 
-    
+        public int Count(TreeNode r, int counter)
+        {
+            if (r != null)
+            {
+                counter = Count(r.Left, counter);
+                counter++;
+                counter = Count(r.Right, counter);
+            }
+            return counter;
         }
 
-        public void ShowAllNodes()
+        public int LeafCount(TreeNode r, int counter)
+    {
+        if(r != null)
+        {
+            counter = LeafCount(r.Left, counter);//recursively check untill leaf node in Left
+            
+            //Counter will increase only if the above node is leafNode(i.e.Left and right both sides are null)
+            if(r.Left == null && r.Right == null)
+            {
+                counter++;
+            }
+
+            counter = LeafCount(r.Right, counter);
+        }
+        return counter;
+    }
+
+
+
+    public void Search(int key)
+    {
+        if (root == null)
+        {
+            Console.WriteLine("Empty Tree");
+        }
+        else
+        {
+            TreeNode t = root;
+            while (t != null && t.Data != key)
+            {
+                if (key < t.Data)
+                    t = t.Left;
+                else
+                    t = t.Right;
+            }
+
+            if (t != null)
+                Console.WriteLine("Found");
+            else
+                Console.WriteLine("Not Found");
+        }
+    }
+
+    public TreeNode Deletion(int key)
+    {
+        TreeNode p, r, t, c = null;
+        if (root == null)
+        {
+            Console.WriteLine("Empty Tree");
+            return null;
+        }
+        else
+        {
+            r = root;
+            p = r;
+
+            while (r != null && r.Data != key)
+            {
+                p = r;
+                if (key < r.Data)
+                    r = r.Left;
+                else
+                    r = r.Right;
+            }
+
+            if (r == null)
+            {
+                Console.WriteLine("Not Found");
+                return null;
+            }
+            else
+            {
+                // Case 1: No children
+                if (r.Left == null && r.Right == null)
+                {
+                    if (root == r)
+                    {
+                        root = null;
+                        return r;
+                    }
+                    else
+                    {
+                        if (p.Left == r)
+                            p.Left = null;
+                        else
+                            p.Right = null;
+                        return r;
+                    }
+                }
+
+                // Case 2: Only right child
+                if (r.Left == null && r.Right != null)
+                {
+                    if (r == Root)
+                    {
+                        root = root.Right;
+                        return r;
+                    }
+                    else
+                    {
+                        if (p.Right == r)
+                            p.Right = r.Right;
+                        else
+                            p.Left = r.Right;
+                        return r;
+                    }
+                }
+
+                // Case 2: Only left child
+                if (r.Left != null && r.Right == null)
+                {
+                    if (r == root)
+                    {
+                        root = root.Left;
+                        return r;
+                    }
+                    else
+                    {
+                        if (p.Left == r)
+                            p.Left = r.Left;
+                        else
+                            p.Right = r.Left;
+                        return r;
+                    }
+                }
+
+                // Case 3: Two children
+                if (r.Left != null && r.Right != null)
+                {
+                    if (r == root)
+                    {
+                        c = root;
+                        r = r.Right;
+                        t = r;
+                        while (r.Left != null)
+                        {
+                            t = r;
+                            r = r.Left;
+                        }
+                        t.Left = r.Right;
+                        r.Left = root.Left;
+                        r.Right = root.Right;
+                        root = r;
+                    }
+                    else
+                    {
+                        c = r;
+                        r = r.Right;
+                        t = r;
+                        while (r.Left != null)
+                        {
+                            t = r;
+                            r = r.Left;
+                        }
+                        t.Left = r.Right;
+                        r.Left = c.Left;
+                        r.Right = c.Right;
+                        if (p.Left == c)
+                            p.Left = r;
+                        else
+                            p.Right = r;
+                    }
+                }
+            }
+        }
+        return c;
+    }
+
+    public void ShowAllNodes()
         {
 
         }
