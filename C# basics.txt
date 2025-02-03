@@ -1,6 +1,7 @@
--------------------------------------------
-Some basic understanding of c# concepts
--------------------------------------------
+
+======================================================================================================================
+B2B : Back 2 basics => It is made as comprehensive not to be beginner friendly
+======================================================================================================================
 # Variables
 =============
 Variable Types: C# is a statically typed language, so you must declare the type of variable
@@ -9,6 +10,34 @@ Naming Conventions: Variable names should be meaningful and follow C# naming con
 (e.g., camelCase for local variables).
 Scope: The scope of a variable is defined by where it is declared. Variables can be declared
  at class level (fields) or inside methods (local variables).
+
+
+- Datatypes 
+================
+    - f - for float eg. myFloat = 1.2345f (range 10^-45)
+    - for double eg. No need to write any suffix (range 10 ^ -340)
+    - m - for decimal eg. myDecimal = 1.2345m(range 10^-28)
+
+Loop: 
+=====
+- we use for loop when we know there are fix number of iterations. Also while using loop initialize 
+the variable inside of the loop otherwise it will 	cause the infinite loop.
+
+Try-catch-finally:
+==================
+- finally statement is always run/executed (whether we execute try block with no exception or with exception).
+But finally will not run if exception is unhandled e.g.	
+	- if we catch exception then finally will get executed
+	- if we handle specific exception and we got the different exception at the
+     runtime then our code will be exited and finally will not be executed
+	 e.g. 
+	 we used catch block to handle the arithmetic exception but at runtime 
+	 runtime we got null exception then our program will be terminated without
+	 executing finally block.
+
+======================================================================================================================================
+-> Initialization and defination of variables 
+======================================================================================================================================
 
 using System;
 
@@ -20,103 +49,173 @@ class Program
         double height;
         height = 5.5; 
 
-	// Declaration and Initialization at same time 
+	    // Declaration and Initialization at same time 
         int age = 25;
-        string name = "Alice";
+        string name = "Harshal";
 
 
-
-        // Output the values
-        Console.WriteLine($"Name: {name}, Age: {age}, Height: {height}");
+        // Output the values (i.e. print on console)
+        Console.WriteLine($"My name is {name} \n height is {height} \n age is {age}");
     }
 }
+
+======================================================================================================================
+=> Diff ways to write  console.writeLine 
+======================================================================================================================
+using System;
+
+class Program {
+    
+     public static void Main(String[] args){
+
+        //========= way 0 : just write string inside double quotes=====
+        Console.WriteLine("Hello Harshal"); 
+
+        //========= way 1 : using co-ordinates 0,1,2 etc ============
+        int a = 1;
+        int b = 2;
+        Console.WriteLine("Values of a is  {0} and b is {1}",a,b);
+
+        //======== way 2 : by string concatenation  ===================
+        string name = "Harshal";
+        Console.WriteLine("My name is :"+ name );
+        
+        //======== way 3: using $ before string =================
+        string msg = "I am harshal";
+        Console.WriteLine($"Hello, {msg}");  
+
+     }
+}
+
+=====================================================================================================================================
+                                     # CLASS #
+======================================================================================================================================
+Calling function in same class : 
+--------------------------------
+    we can do it in two ways ->
+	1. Create an object and then using that object call the method
+	2. Static Method 
+======================================================================================================================================
+using System;
+
+class Program {
+    
+    public void function1()
+    {
+        Console.WriteLine("This function is called in same class with class object");
+    }
+
+    public static void function2()
+    {
+        Console.WriteLine("This is static function called within same class without object" );
+    }
+
+    public static void Main(String[] args)
+    {
+        Console.WriteLine("Two way to call function in same class");
+
+        //=========== way 1 : using object of class================
+
+        Program pg = new Program();
+        pg.function1();
+
+        //=========== way 2 :  make function static ================
+        function2();
+
+    }
+}
+
+======================================================================================================================================
+
+--------------------------------------------------------------------------------------------------------------------------------------
+# function
+--------------------------------------------------------------------------------------------------------------------------------------
+
+===================================================================================================================
+function 
+- with passing no parameters and with passing parameters 
+- With return type
+===================================================================================================================
 
 using System;
-public class Hello {
-    public static void Main(string [] args){
-        Console.WriteLine("hello world !1");
-        
-        int age ;
-        double height;
-         age = 28 ;
-         height = 6.1;
-         
-         string name = "Harshal";
-         
-         Console.WriteLine($"My name is {name} \n height is {height} \n age is {age}");
-        
+
+class Program {
+    
+   //================ No retun type ========================= 
+    void Show1(){
+        Console.WriteLine("Non parameter funtion called");
     }
+
+    //parameterised function 
+    void Show2(int a, int b){
+        Console.WriteLine("Values passed {0} and {1}",a,b);
+    }
+    
+
+    //================ with return type ===================    
+    string Show3(string msg){
+        Console.WriteLine("msg is :"+ msg);
+        return msg;
+    }
+    
+     public static void Main(String[] args){
+        
+        Program pg = new Program();
+
+        pg.Show1();
+        pg.Show2(1,2);
+
+
+        string msg = pg.Show3("I am harshal");
+        Console.WriteLine($"Hello, {msg}");       
+     }
 }
 
-- Datatypes 
-================
-    - f - for float eg. myFloat = 1.2345f (range 10^-45)
-    - for double eg. No need to write any suffix (range 10 ^ -340)
-    - m - for decimal eg. myDecimal = 1.2345m(range 10^-28)
+===================================================================================================================
+function parameters passed by -
+1. Pass by value : Don't change original value
+-----------------
+2. Pass by ref : changes actual value like pointers 
+----------------
+3."out" Parameter : 
+-------------------
+	     - reference-type, not require to initialize variable before passing
+	     - We must use out keyword to pass argument as out-type
+	     - It is useful when we want a function to return multiple values.
 
-- we use for loop when we know there are fix number of iterations. 
-- In case of exception...... try-catch-finally
-	- if we catch exception then finally will get executed
-	- if we hadle specific exception and we got the different exception at the
-     runtime then our code will be exited and finally will not be executed
-	 e.g. 
-	 we used catch block to handle the arithmatic exception but at runtime 
-	 runtime we got null exception then our program will be terminated without
-	 executing finally block.
+===================================================================================================================
 
--- In same class if we have to call the function then we can do it in two ways 
-	1. static method 
-	2. Create an object and then call the this method without declaring it static
 
----------------
-# function
----------------
 using System;
 
 public class Program
 {
-    void Show() //Non-parameterised function
-    {
-        Console.WriteLine("This is the Non-parameterised function");
-    }
-    
-    void Show2(string msg) //Parameterised function
-    {
-        Console.WriteLine("Hello "+ msg);
-    }
-    
-    string Show3(string msg) //Parameterised function with the return type 
-    {
-       Console.WriteLine("Mgs inside Show3 function: " + msg);
-       return msg;
-    }
+        //========= 1. Pass by value  ===========================
+        void Show4(int val)
+        {
+            val *= val;  
+            Console.WriteLine("Value inside the show4 function "+val);  
+        }
 
-    void Show4(int val)//pass by value
-    {
-	val *= val; // Manipulating value  
-        Console.WriteLine("Value inside the show4 function "+val);  
-    }
+        //========= 2. Pass by ref ===========================
+        public void Show5(ref int val)  
+        {  
+                val *= val;  
+                Console.WriteLine("Value inside the show5 function "+val);  
+            
+        }
 
- 
-    public void Show5(ref int val) // pass by ref 
-    {  
-             val *= val; // Manipulating value  
-            Console.WriteLine("Value inside the show5 function "+val);  
-           
-    }
-
-    Kim : Static keyword - in same class we are calling show6 function 
-    without object.
-
-    	public static void Show6(out int val) // Out parameter  
+	    //============ 3.1 How to use out variable =================
+    	public void Show6(out int val)  
     	{  
             int square = 5;  
             val = square;  
             val *= val; // Manipulating value  
     	} 
 
-    	// To return multiple values
-        public static  void Show7 (out int a, out int b) 
+    	
+	    //==== 3.2 How to return multiple values using out parameter ===========
+        public void Show7 (out int a, out int b) 
         {  
             int square = 5;  
             a = square;  
@@ -130,49 +229,49 @@ public class Program
     {
          Program pg = new Program();
          
-         pg.Show();
-         pg.Show2("Harshal");
-         string msg = pg.Show3("Harshal lets check");
-         Console.WriteLine("Hi " + msg);
-
-	//Lets check what is pass by value and pass by reference
-
 	    int val = 50;  
-	    // 1. Pass by value 
-             // Creating Object 
-	    Console.WriteLine("Value before calling the show4 "+val);  
-            pg.Show4(val); // Calling Function by passing value            
+        
+         //========= 1. Pass by value  ===========================
+	    
+	        Console.WriteLine("Value before calling the show4 "+val);  
+
+            pg.Show4(val); // Calling Function by passing value      
+
             Console.WriteLine("Value after calling the show4 " + val); //value doesn't change 
  
-	    // 2. Pass by reference
+         //========= 2. Pass by ref ===========================
 
-            Console.WriteLine("Value before calling the show5 "+val);  
+            Console.WriteLine("Value before calling the show5 "+val);
+
             pg.Show5(ref val); // Calling Function by passing reference            
+
             Console.WriteLine("Value after calling the show5 " + val);// value changes  
 
-	    
-	    /* 3."out" Parameter : 
-            -------------------
-	     - reference-type, not require to initialize variable before passing
-	     - We must use out keyword to pass argument as out-type
-	     - It is useful when we want a function to return multiple values.
-         */
+	    //============ 3. Using out variable =================
 
-            Console.WriteLine("Value before passing out variable " + val);  
-            Show6(out val); // Passing out argument  
+	    //============ 3.1 How to use out variable =================
+
+            Console.WriteLine("Value before passing out variable " + val); 
+            
+            pg.Show6(out val);   
+
             Console.WriteLine("Value after recieving the out variable " + val); 
 
-            // To function has to return multiple values with void return type
-             int val2 = 50, val3 = 100;  
-             
-            Console.WriteLine("Value before passing \n val1 = " + val2+" \n val2 = "+val3);  
-            Show7(out val1, out val2); //Passing out argument  
-            Console.WriteLine("Value after passing \n val1 = " + val2 + " \n val2 = " + val3);   
+	    //============ 3.2 How to return multiple values using out parameter =================
+            int val2 = 50, val3 = 100;  
+
+            Console.WriteLine("Value before passing out var\n val1 = " + val2+" \n val2 = "+val3);  
+
+            pg.Show7(out val2, out val3); 
+
+            Console.WriteLine("Value after passing out var \n val1 = " + val2 + " \n val2 = " + val3);   
 	    
     }
 }
 
-==============================================================================================================
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+================================================== # Arrays #===============================================================================================
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -------------
 C# Arrays
@@ -203,14 +302,15 @@ There are 3 types of arrays in C# programming:
 --------------------------------
 put square bracket after datatype like below :
 
-    1. Saperately declare and define arrray
+    1. Saperately declare and define array
     ----------------------------------------------
-        // Declaration
-        int[] myArray; 
+        // Declaration and definition 
 
-        // Defination
+        int[] myArray;
         myArray = new int[5]; // Definition with a size of 5
+
         // or
+
         myArray = new int[] { 1, 2, 3, 4, 5 }; // Definition with initial values
 
         class Array 
@@ -221,7 +321,7 @@ put square bracket after datatype like below :
                 int[] myArray;
                 myArray = new int[5];
                 Console.WriteLine("Length of Array: " + myArray.Length);
-                Console.WriteLine("Length of Array: {0} " , myArray.Length);
+                Console.WriteLine("Length of Array: {0} ", myArray.Length);
                 Console.WriteLine("Size is fixed? " + myArray.IsFixedSize);
                 
                 // Declare and initialise array
@@ -323,9 +423,8 @@ put square bracket after datatype like below :
                         index++;
                     }
 
-
-    }
-}
+    		}
+	}
 
 
     using System;
