@@ -302,26 +302,38 @@ There are 3 types of arrays in C# programming:
 --------------------------------
 put square bracket after datatype like below :
 
-    1. Saperately declare and define array
+    1.a> Saperately declare and assign size
     ----------------------------------------------
-        // Declaration and definition 
-
         int[] myArray;
         myArray = new int[5]; // Definition with a size of 5
 
-        // or
+    1.b> Declaration and assign size at same time
+    -------------------------------------------------
+        int[] myArray = new int[5]; // Creates an array of integers with a size of 5
 
-        myArray = new int[] { 1, 2, 3, 4, 5 }; // Definition with initial values
+2. Inline Initialization
+----------------------------------
+        //2.a> Initializes with specific values without specifying size
+        ----------------------------------------------------------------
+        int[] myArray = new int[] { 1, 2, 3, 4, 5 }; 
 
+        //2.b> Also we can omit the new int[] part: Shorter syntax for inline initialization
+        -------------------------------------------------------------------------------------
+        int[] myArray = { 1, 2, 3, 4, 5 }; 
+
+3. Implicitly Typed Array
+----------------------------------
+        var myArray = new[] { 1, 2, 3, 4, 5 }; // Compiler infers the type (int array)
+
+        // How to write array (printing array next program)
         class Array 
         {
             public static void Main(string [] args)
             {
-                // Declare and assign size
+                // Declare and assign size saperately
                 int[] myArray;
                 myArray = new int[5];
                 Console.WriteLine("Length of Array: " + myArray.Length);
-                Console.WriteLine("Length of Array: {0} ", myArray.Length);
                 Console.WriteLine("Size is fixed? " + myArray.IsFixedSize);
                 
                 // Declare and initialise array
@@ -330,26 +342,11 @@ put square bracket after datatype like below :
                 Console.WriteLine("Size is fixed? " + myArray1.IsFixedSize);
 
                 // Implicitly typed array
-                var myArray2 = new[] {"one", "tow", "three"};
+                var myArray2 = new[] {"one", "two", "three"};
                 Console.WriteLine("Size of array: "+ myArray2.Length);
                 
             }
         }
-
-
-    2. Declaration and Initialization at same time
-    -------------------------------------------------
-    int[] myArray = new int[5]; // Creates an array of integers with a size of 5
-
-
-    3. Inline Initialization
-    ----------------------------------
-    int[] myArray = new int[] { 1, 2, 3, 4, 5 }; // Initializes with specific values without specifying size
-
-    4. Implicitly Typed Array
-    ----------------------------------
-    var myArray = new[] { 1, 2, 3, 4, 5 }; // Compiler infers the type (int array)
-
           
         Properties of the Arrays:
         ------------------------
@@ -367,12 +364,81 @@ put square bracket after datatype like below :
         4. Sort(Array)
         5. ToString()
 
+============> Main Questioh here is how to initialise these arrays ? ========================
+
+        1. Assign Values Individually by Index
+        ------------------------------------------
+        Assign values to each element using its index (0-based):
+
+        myArray[0] = 10;
+        myArray[1] = 20;
+        myArray[2] = 30;
+        myArray[3] = 40;
+        myArray[4] = 50;
+
+        2. Use a Loop to Assign Values
+        -------------------------------
+        Use a loop (e.g., for, while, or foreach) to assign values programmatically:
+
+        for (int i = 0; i < myArray.Length; i++)
+        {
+            myArray[i] = i * 10; // Example: assigns 0, 10, 20, 30, 40
+        }
+
+        3. Assign Values Using Array Initialization
+        -------------------------------------------
+        Reassign the array with a new set of values using inline initialization:
+
+        myArray = new int[] { 1, 2, 3, 4, 5 }; // Reassigns the array with new values
+
+        4. Use Array.Copy or Array.CopyTo
+        ----------------------------------
+        4.1> Copy values from another array into myArray:
+        ==================================================
+        // Copies values from sourceArray to myArray
+        int[] sourceArray = { 5, 10, 15, 20, 25 };
+        Array.Copy(sourceArray, myArray, sourceArray.Length); 
+
+        4.2> Alternatively, using CopyTo:
+        ==================================
+        // Copies values from sourceArray to myArray starting at index 0
+        sourceArray.CopyTo(myArray, 0); 
+
+
+        5. Use Array.Fill (C# 8.0 and later)
+        -----------------------------------------
+        Fill the entire array with a specific value:
+
+        Array.Fill(myArray, 7); // Fills the array with the value 7: [7, 7, 7, 7, 7]
+
+        6.Use LINQ to Assign Values
+        -------------------------------
+        Use LINQ methods to generate or manipulate values for the array:
+
+        using System.Linq;
+
+        myArray = Enumerable.Range(1, 5).ToArray(); // Assigns [1, 2, 3, 4, 5]
+
+        7. Use Array.Clear to Reset Values
+        -----------------------------------
+        Reset all values in the array to their default (0 for int):
+
+        Array.Clear(myArray, 0, myArray.Length); // Resets all elements to 0
+
+        8. Use Buffer.BlockCopy for Byte-Level Copying
+        ------------------------------------------------
+        If working with arrays of primitive types (e.g., int), use Buffer.BlockCopy to copy values from another array:
+
+        int[] sourceArray = { 100, 200, 300, 400, 500 };
+        Buffer.BlockCopy(sourceArray, 0, myArray, 0, sourceArray.Length * sizeof(int));
+=============================================================================================================
+
 ==================== Array declaration assigning the values ===================
         class Program {
         public static void Main(string[] args)
         {
             ====  way 1 : declare and assign values saperately
-                        
+                    int[] myArr ;    
                     myArr = new int[5];
                 
                     
@@ -483,10 +549,10 @@ put square bracket after datatype like below :
             printArray(arr2);
             
             minValueInArray(arr1);
-        minValueInArray(arr2);
+            minValueInArray(arr2);
 
-        maxValueInArray(arr1);
-        maxValueInArray(arr2);
+            maxValueInArray(arr1);
+            maxValueInArray(arr2);
             
         }
     }
@@ -612,9 +678,6 @@ public class HelloWorld
 }
 
 
-
-
-
     #  Params
     ------------
     - used to specify a parameter that takes variable number of arguments
@@ -668,9 +731,9 @@ In C#, string is keyword which is an alias for System.String class. That is why 
 
 
 ====================================================================================================
-                        Object oriented programming
+                                Object oriented programming
 ====================================================================================================
-- Note you can't declare class in a namespace private 
+- Note you can't declare class in a private namespace  
 
 - Basic example of a class 
 
@@ -688,8 +751,7 @@ public class Employee {
     
     public void Display()
     {
-        Console.WriteLine(Id+" "+Name+
-        ""+salary);
+        Console.WriteLine(Id+" "+Name+""+salary);
     }
 }
 
@@ -833,9 +895,9 @@ public class HelloWorld
 Q. why destructors are not needed in c# ?
 => destructors are not required in C#. The .NET garbage collector effectively
  manages memory, and the IDisposable interface provides a more controlled way
-  to release unmanaged resources when necessary. Destructors should be used 
-  sparingly and only when working with unmanaged resources that need to be 
-  released explicitly.
+ to release unmanaged resources when necessary. Destructors should be used 
+ sparingly and only when working with unmanaged resources that need to be 
+ released explicitly.
 
 
 Boxing and unboxing
@@ -875,7 +937,8 @@ using System;
     {  
         public int accno;   
         public String name;  
-        public static float rateOfInterest=8.8f;  
+        public static float rateOfInterest=8.8f; 
+
         public Account(int accno, String name)  
         {  
             this.accno = accno;  
@@ -1033,13 +1096,15 @@ using System;
 
 using System;  
    public class Animal  
-    {  
+   {  
        public void eat() { Console.WriteLine("Eating..."); }  
    }  
+
    public class Dog: Animal  
    {  
        public void bark() { Console.WriteLine("Barking..."); }  
    }  
+
    class TestInheritance2{  
        public static void Main(string[] args)  
         {  
@@ -1048,6 +1113,625 @@ using System;
             d1.bark();  
         }  
     }  
+
+==============================================================================================================================
+					                                # SOLID PRINCIPLES #
+==============================================================================================================================
+Single Responsibility Principle (SRP) of the SOLID principles in C# using an example involving Animal, Bird, and Dog.
+
+What is the Single Responsibility Principle (SRP)?
+The SRP states that a class should have only one reason to change, meaning it should have only one responsibility. If a class has 
+multiple responsibilities, it becomes harder to maintain, test, and understand.
+
+Example: Animal, Bird, and Dog
+Let’s say we have a base class Animal and two derived classes Bird and Dog. Each class should have a single responsibility.
+
+------------------------------------ Violation of SRP : WRONG CODE --------------------------------------------------------
+Here’s an example where SRP is violated:
+
+class Animal
+{
+    public string Name { get; set; }
+
+    public void Eat()
+    {
+        Console.WriteLine($"{Name} is eating.");
+    }
+
+    public void Fly()
+    {
+        Console.WriteLine($"{Name} is flying.");
+    }
+
+    public void Bark()
+    {
+        Console.WriteLine($"{Name} is barking.");
+    }
+}
+-----------------------------------------------------------------------------------------------------------------------------------
+Problems with this design:
+
+The Animal class has multiple responsibilities: eating, flying, and barking.
+
+Not all animals can fly or bark. For example, a Dog cannot fly, and a Bird cannot bark.
+
+If we need to change the behavior of flying or barking, we have to modify the Animal class, which violates SRP.
+
+Refactoring to Follow SRP
+To adhere to SRP, we should split the responsibilities into separate classes.
+
+-------------------------------------------- Right code ----------------------------------------
+// Base class with a single responsibility
+class Animal
+{
+    public string Name { get; set; }
+
+    public void Eat()
+    {
+        Console.WriteLine($"{Name} is eating.");
+    }
+}
+
+// Derived class for Birds with flying responsibility
+class Bird : Animal
+{
+    public void Fly()
+    {
+        Console.WriteLine($"{Name} is flying.");
+    }
+}
+
+// Derived class for Dogs with barking responsibility
+class Dog : Animal
+{
+    public void Bark()
+    {
+        Console.WriteLine($"{Name} is barking.");
+    }
+}
+Usage Example
+csharp
+Copy
+class Program
+{
+    static void Main(string[] args)
+    {
+        Bird sparrow = new Bird { Name = "Sparrow" };
+        sparrow.Eat(); // Sparrow is eating.
+        sparrow.Fly(); // Sparrow is flying.
+
+        Dog labrador = new Dog { Name = "Labrador" };
+        labrador.Eat(); // Labrador is eating.
+        labrador.Bark(); // Labrador is barking.
+    }
+}
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Why is this Better?
+Single Responsibility: Each class has only one responsibility.
+
+Animal handles eating.
+
+Bird handles flying.
+
+Dog handles barking.
+
+Easier Maintenance: If the behavior of flying or barking needs to change, we only modify the respective class.
+
+Reusability: The Animal class can be reused for other animals without carrying unnecessary responsibilities.
+
+Key Takeaways
+SRP ensures that a class has only one reason to change.
+
+Split responsibilities into separate classes to make the code more modular, maintainable, and scalable.
+
+In the example, Animal, Bird, and Dog each have a single responsibility, adhering to SRP.
+
+Let me know if you'd like to explore the other SOLID principles! 😊
+
+
+=============================================================================================================
+					# SOLID PRINCIPLE #(older chat gpt explaination)
+=============================================================================================================
+
+==================================== 1. Single Responsibility Principle =============================================
+The Single Responsibility Principle (SRP) is one of the five SOLID principles of object-oriented design.
+SRP states that a class should have only one reason to change, meaning it should have only one job or 
+responsibility.
+
+
+Example: Animal, Bird, and Dog
+Let’s say we have a base class Animal and two derived classes Bird and Dog. Each class should have a single responsibility.
+
+------------------------------------ Violation of SRP : WRONG CODE --------------------------------------------------------
+Here’s an example where SRP is violated:
+
+class Animal
+{
+    public string Name { get; set; }
+
+    public void Eat()
+    {
+        Console.WriteLine($"{Name} is eating.");
+    }
+
+    public void Fly()
+    {
+        Console.WriteLine($"{Name} is flying.");
+    }
+
+    public void Bark()
+    {
+        Console.WriteLine($"{Name} is barking.");
+    }
+}
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
+¢ LivingAnimal: This class represents any living animal. Its responsibility might be general
+
+attributes or behaviors that all animals share.
+
+© Bird: This class represents birds and inherits from LivingAnimal. It should have responsibilities
+
+specific to birds.
+
+¢ Dog: This class represents dogs and also inherits from LivingAnimal. It should have
+
+responsibilities specific to dogs.
+
+-------------------------------------------- Right code ----------------------------------------
+
+    public class LivingAnimal
+    {
+        public string Name { get; set;}
+
+        public int Age { get; set;}
+
+        public void Eat()
+        {
+            Console .WriteLine($"{Name} is eating.");
+        }
+
+        public void Sleep()
+        {
+            Console .WriteLine($"{Name} is sleeping.");
+        }
+    }
+
+    public class Bird : LivingAnimal
+    {
+        public void Fly()
+        {
+            Console .WriteLine($"{Name} is flying.");
+        }
+
+        public void LayEggs()
+        {
+
+        Console .WriteLine($"{Name} is laying an egg.");
+        }
+    }
+
+    public class Dog : LivingAnimal
+    {
+        public void Bark()
+        {
+            Console .WriteLine($"{Name} is barking.");
+        }
+
+        public void Fetch() 
+        {
+            Console .WriteLine($"{Name} is laying an egg.");
+        }
+    }
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Bird sparrow = new Bird { Name = "Sparrow" };
+            sparrow.Eat(); // Sparrow is eating.
+            sparrow.Fly(); // Sparrow is flying.
+
+            Dog labrador = new Dog { Name = "Labrador" };
+            labrador.Eat(); // Labrador is eating.
+            labrador.Bark(); // Labrador is barking.
+        }
+    }
+-------------------------------------------- Right code ----------------------------------------
+
+Explanation
+1. LivingAnimal Class:
+
+- Responsibility: Defines general attributes and behaviors common to all living animals, such
+as eating and sleeping.
+
+- Reason to Change: If there are changes in the general behavior or attributes of living
+animals.
+
+2. Bird Class:
+
+- Responsibility: Defines behaviors specific to birds, such as flying and laying eggs.
+
+- Reason to Change: If there are changes in behaviors or attributes specific to birds.
+
+3. Dog Class:
+
+- Responsibility: Defines behaviors specific to dogs, such as barking and fetching.
+- Reason to Change: If there are changes in behaviors or attributes specific to dogs.
+
+Each class has a single responsibility and therefore a single reason to change. This adheres to the
+Single Responsibility Principle, ensuring that our design is modular, maintainable, and easy to
+understand.
+==================================== 1. Single Responsibility Principle =======================================================
+
+
+
+============================================ 2. Open/close Principle ================================================================
+
+with same example explain open close principle
+
+The Open/Closed Principle (OCP) is another of the SOLID principles, stating that software entities
+(classes, modules, functions, etc.) should be open for extension but closed for modification. This
+means that the behavior of a module can be extended without modifying its source code.
+
+Using the same example of living animals, birds, and dogs, let's illustrate the Open/Closed Principle
+
+Conceptual Explanation
+- LivingAnimal: This base class defines common attributes and methods for all animals.
+
+- Bird and Dog: These subclasses extend the behavior of 'LivingAnimal' without modifying the 'LivingAnimal' class itself.
+
+
+System;
+
+public abstract class LivingAnimal
+{
+        public string Name { get; set;}
+
+        public int Age { get; set;}
+
+        public void Eat()
+        {
+
+            Console .WriteLine($"{Name} is eating.");
+        }
+
+        public void Sleep()
+        {
+
+            Console .WriteLine($"{Name} is sleeping.");
+        }
+
+        public abstract void PerformSpecialAction();
+}
+
+public class Bird : LivingAnimal
+{
+
+    public override void PerformSpecialAction()
+    {
+        Fly();
+        LayEgg();
+    }
+
+    public void Fly()
+    {
+        Console .WriteLine($"{Name} is flying.");
+    }
+
+    public void LayEggs()
+    {
+        Console .WriteLine($"{Name} is laying an egg.");
+    }
+}
+
+public class Dog : LivingAnimal
+{
+
+    public override void PerformSpecialAction()
+    {
+        Bark();
+        Fetch();
+    }
+
+    public void Bark()
+    {
+        Console .WriteLine($"{Name} is barking.");
+    }
+
+    public void Fetch() 
+    {
+        Console .WriteLine($"{Name} is laying an egg.");
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        //substitution : use parent class to initialize child class
+        LivingAnimal myBird = new Bird() { Name = "Parrot" };
+        LivingAnimal myDog = new Dog() { Name = "Rex" };
+
+        //Both instances are treated as LivingAnimal
+        MakeAnimalEatAndSleep(myBird) ;
+        MakeAnimalEatAndSleep(myDog) ;
+    }
+
+    public static void MakeAnimalEatAndSleep(LivingAnimal animal)
+    {
+        animal.Eat();
+        animal.Sleep();
+        animal.PerformSpecialAction();
+    }
+}	
+
+
+Explanation
+1. LivingAnimal Class:
+
+- Methods: `Eat` and `sleep` are common to all animals.
+
+¢ Abstract Method: `performspecialaction` is introduced as an abstract method, allowing
+subclasses to implement their specific actions without modifying the base class.
+
+2. Bird Class:
+
+e Extension: Inherits from `LivingAnimal` and implements the `PerformSpecialAction`
+method to include behaviors like `Fly` and `LayEgg`.
+
+3. Dog Class:
+
+- Extension: Inherits from `LivingAnimal` and implements the `PerformSpecialAction`
+method to include behaviors like `Bark` and `Fetch`.
+
+4. Program Class:
+- Demonstrates the Open/Closed Principle by creating instances of `Bird` and `Dog` and treating them as `LivingAnimal`.
+- The `MakeAnimalPerformActions` method calls the common methods `Eat` and `Sleep`, as well as the `PerformSpecialAction` method, which is specific to each subclass.
+
+Ensuring OCP
+
+- Extension without Modification: The `LivingAnimal` class is closed for modification because its code does not change when new types of animals are added. Instead, it is extended by creating new subclasses (like `Bird` and `Dog`) that implement or override methods.
+
+- Behavior Extension: New behaviors specific to birds and dogs are added by creating new subclasses, adhering to the Open/Closed Principle. The base class remains unchanged, ensuring stability and reducing the risk of introducing bugs.
+
+By adhering to the Open/Closed Principle, our design allows for easy extension of functionality(adding new types of animals with their specific behaviors) without altering existing code, making the system more maintainable and scalable.
+
+============================================ 2. Open/close Principle ================================================================
+
+
+=================================== 3. Liscov's substitution principle ===========================================================
+
+Liskov Substitution Principle (LSP)
+-------------------------------------
+
+Liskov Substitution Principle (LSP) is another of the SOLID principles, stating that objects of a
+superclass should be replaceable with objects of a subclass without affecting the correctness of the
+program. In other words, subclasses should be substitutable for their base classes.
+
+Conceptual Explanation:
+
+To demonstrate LSP with living animals, birds, and dogs, we ensure that any instance of a subclass
+(e.g., Bird or Dog) can replace an instance of the base class (LivingAnimal) without altering the
+desirable properties of the program (correctness, task completion, etc.).
+
+public class LivingAnimal
+{
+    public string Name { get; set;}
+
+    public int Age { get; set;}
+
+    public virtual void Eat()
+    {
+        Console .WriteLine($"{Name} is eating.");
+    }
+
+    public virtual void Sleep()
+    {
+        Console .WriteLine($"{Name} is sleeping.");
+    }
+}
+
+public class Bird : LivingAnimal
+{
+    public void Fly()
+    {
+        Console .WriteLine($"{Name} is flying.");
+    }
+
+    public void LayEggs()
+    {
+        Console .WriteLine($"{Name} is laying an egg.");
+    }
+}
+
+public class Dog : LivingAnimal
+{
+    public void Bark()
+    {
+        Console .WriteLine($"{Name} is barking.");
+    }
+    public void Fetch() 
+    {
+        Console .WriteLine($"{Name} is laying an egg.");
+    }
+}
+
+public class Program
+{
+
+    public static void Main()
+    {
+        //substitution : use parent class to initialize child class
+        LivingAnimal myBird = new Bird() { Name = "Parrot" };
+        LivingAnimal myDog = new Dog() { Name = "Rex" };
+
+        MakeAnimalEatAndSleep(myBird) ;
+        MakeAnimalEatAndSleep(myDog) ;
+    }
+
+    public static void MakeAnimalEatAndSleep(LivingAnimal animal)
+    {
+        animal.Eat();
+
+        animal.Sleep();
+    }
+}	
+
+Explanation
+1. LivingAnimal Class:
+---------------------
+- Methods: `Eat` and `Sleep` are common to all animals and are marked as `virtual` to
+allow overriding in subclasses if needed.
+2. Bird Class:
+----------------
+- Inherits from `LivingAnimal`.
+- Adds specific methods `F1y` and `LayEgg` which are behaviors specific to birds.
+
+3. Dog Class:
+--------------
+ Inherits from `LivingAnimal`.
+- Adds specific methods `Bark` and `Fetch` which are behaviors specific to dogs.
+
+4. Program Class:
+-----------------
+- Demonstrates LSP by creating instances of 'Bird’ and `Dog` and treating them as
+`LivingAnimal`.
+
+- The `MakeAnimalEatAndSleep` method accepts a `LivingAnimal` object and calls the `Eat`
+and `Sleep` methods.
+- When `Bird` and `Dog` instances are passed to this method, they behave correctly as
+`LivingAnimal` objects, fulfilling LSP.
+
+Ensuring LSP
+==============
+¢ Correctness: Both `Bird` and `Dog` instances can replace `LivingAnimal` instances without
+affecting the program's correctness. They both implement the `Eat` and `Sleep` methods as
+expected.
+
+¢ Behavior: Subclasses (`Bird` and `Dog`) do not alter the expected behavior of the base class
+(`LivingAnimal`). They extend it with additional functionalities while maintaining the base class's
+interface.
+
+By adhering to LSP, our design ensures that subclasses can be used interchangeably with their base
+class without introducing errors, making our code more robust and flexible. 
+
+=================================== 3. Liscov's substitution principle ===========================================================
+
+
+
+
+
+
+
+=================================================================================================================================
+LINQ 
+=================================================================================================================================
+1. Arithmetical functions  and Position functions:
+--------------------------------------------------
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        List<int> list = new List<int> {1,2,3,4,5,6,7,8,9,10};
+        var max = list.Max();
+        var min = list.Min();
+        var Count = list.Count();
+        var Sum = list.Sum();
+        var avg = list.Average();
+        Console.WriteLine("Max: " + max +" Min: " +min +" Count: " +Count +" Sum: " +Sum + "Average: "+ avg);
+        int getAvg = Sum/Count;
+	Console.WriteLine("Average: " + getAvg);
+
+		//========== Positional =============
+		int first = list.First();
+		int last = list.Last();
+		int secondPosition = list.ElementAt(1);
+		Console.WriteLine($"first = {first}, last = {last} , at second position = {secondPosition}");
+		//=========== Position or default ====================
+		=> here FirstOrDefault, LastOrDefault,ElementAtOrDefault, SingleOrDefault()
+		int firstOrDefault = numbers.FirstOrDefault();
+		Console.WriteLine("FirstOrDefault: " + firstOrDefault); // Output: FirstOrDefault: 1 and if array is empty o/p will be Default(0)
+
+		SingleOrDefault()=> //Single: the dataset must have only one element or else it give exception. 
+
+----------------------------------------------------------------------
+Partition operator (take/skip first 100 or give letter start with "u"
+----------------------------------------------------------------------
+string[] countries = {  "US", "UK", "India", "Russia", "China", "Australia", "Argentina" };
+
+//Take first 3 countries =>  IEnumerable<string> result = countries.Take(3); 
+ 
+// Skip 3 countries => IEnumerable<string> result = countries.Skip(3);             
+		
+// Take countries starting with "u" => IEnumerable<string> result = countries.TakeWhile(x => x.StartsWith("U"));
+		      
+
+		
+		    
+
+
+				
+    }
+}
+============================ Data storage structure of operations like searching , sorting , filtering ===============================
+Summary of Significance and Usage:
+=======================================================================================================================================
+Type	   |  Significance	                        | Usage Need
+=======================================================================================================================================
+Array	   |  Fixed-size, efficient access by index.	| When you have a known, unchanging number of elements.
+=======================================================================================================================================
+List	   |  Dynamic-size, provides methods to add,    | When the number of elements can change and you need list-specific operations.
+           |  remove, and manipulate elements.	        |
+=======================================================================================================================================
+Dictionary | Key-value pairs, fast lookups by           | When you need to associate unique keys with values for quick lookup.
+           |  unique keys.	                        |
+=======================================================================================================================================
+
+Summery 
+==================
+        => Arrays are best for scenarios where you need fast access by index and have a fixed number of elements. They are also good 
+        for sorting operations.
+        => Lists are best for scenarios where you need dynamic resizing, frequent insertions and deletions, and operations like 
+        filtering and sorting.
+        => Dictionaries are best for scenarios where you need fast lookups by key and want to associate unique keys with values.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

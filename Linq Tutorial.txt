@@ -31,8 +31,38 @@ Linq Syntax
 =======================
 Program 1
 =======================
+=========================== How to write  LINQ =====================================
+//import statement
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-Now we will see How to write Linq in different syntax
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        List<int> arr= new List<int> {1,2,3,4,5,6,7,8,9,10};
+        ============= Query Syntax =======================
+        var queryRes = from obj in arr
+                        where obj>2
+                        select obj;
+                        
+        foreach(int res in queryRes){
+            Console.WriteLine(res);
+        }
+	
+        Console.WriteLine("method Query");
+
+	============ Method Syntax ========================
+        var methodRes = arr.Where(obj => obj >2);
+        foreach(int res in methodRes){
+            Console.WriteLine(res);
+        }
+    }
+}
+=========================== How to write  LINQ =====================================
+
+Now we will see How to write Linq in different syntax in detail
 
 namespace LinqSample1
 {
@@ -45,19 +75,20 @@ namespace LinqSample1
 
 	        Console.WriteLine("-- Query Syntax---");
 
-                //2. Query
+             //2. Query
             var querySyntax = from obj in list
                               where obj > 2
                               select obj;
-		    // ====== OR ==============
+
+	    // ============= OR ==============
             Note : here var == IEnumerable<int> (take datatype of IEnumerable like below)
 
-                /*	IEnumerable<int> querySyntax = from obj in list
-                                        where obj > 2
-                                        select obj;    */
+            IEnumerable<int> querySyntax = from obj in list
+                                           where obj > 2
+                                           select obj;    
 
  
-                    //3. Execution
+            //3. Execution
             foreach(var item in querySyntax)
             {
                 Console.WriteLine(item);
@@ -70,16 +101,17 @@ namespace LinqSample1
             foreach (var item in MethodSyntax)
             {
                 Console.WriteLine(item);
-	        }
+	    }
 
             //======================================================================================
             //kim: we don't use foreach where we are querying for the maximum and minimum single value	
 
-		    Console.WriteLine("--Combinedly use Syntax---");
+	    Console.WriteLine("--Combinedly use Syntax---");
+
             var MixedSyntax = (from obj in list
                                select obj).Max();
             
-                Console.WriteLine("Maximum Value" + MixedSyntax);
+           	Console.WriteLine("Maximum Value" + MixedSyntax);
           		
         }
     }
@@ -88,7 +120,7 @@ namespace LinqSample1
 ==========================================================================================
 
 ==============================
-Program 2 : Arithmatical 
+Program 2 : Arithmetical 
 ==============================
 
 namespace LinqSample1
@@ -103,45 +135,36 @@ namespace LinqSample1
 
             //========================== Arithmatics things ================
 
-                    int Max = list.Max();
-                    Console.WriteLine($"Max value : {Max}");
-
-                    int Min = list.Min();
-                    Console.WriteLine($"Min value : {Min}");
-
-                    int Sum = list.Sum();
-                    Console.WriteLine($"sum of list : {Sum}");
+                    var max = list.Max();
+                    var min = list.Min();
+                    var Count = list.Count();
+                    var Sum = list.Sum();
+                    Console.WriteLine("Max: " + max +" Min: " + min +" Count: " + Count +" Sum: " + Sum);
 
                     double average = list.Average();
                     Console.WriteLine("Average: " + average);
 
-                    int Count = list.Count();
-                    Console.WriteLine($"Total count of list : {Count}");
-
-
-                    === Use of Aggregate ===
-                    double sum1 = list.Aggregate((a, b) => a + b);
-                    Console.WriteLine($"sum of list : {sum1}");
-                    double average = sum1 / list.Count;
-                    Console.WriteLine($"avg of list : {average}");
-
+                    ======== Manually taking avg =================
+                    int getAvg = Sum/Count;
+                    Console.WriteLine("Average: " + getAvg);
 
                     ===========Aggregate function ===================
                     can be used for 
-                    1. Perform mathematical operation(sum, avg, multiplication , div etc)
+                    1. Perform mathematical operation(sum, avg, multiplication , div etc) on all terms of list
+                    ------------------------------------------------------------------------------------------
                     double sum = list.Aggregate((a, b) => (a + b));
 
                     2. to concat the strings :
-                    string[] charlist = { "a", "b", "c", "d" };  
-            
+                    ---------------------------
+                    string[] charlist = { "a", "b", "c", "d" };              
                     var concat = charlist.Aggregate((a, b) => a + ',' + b);  
-		
+
         }
     }
 }
-===========================================================
-Program 3 : Element operators(i.e. Position check )
-===========================================================
+                        ===========================================================
+                        Program 3 : Element operators(i.e. Position check )
+                        ===========================================================
 Type 1: Position : it will provide value at that position
 Type 2 : PositionOrDefault: here it will check for the value at the specific position and if it 
 don't find it then it will give the default datatype e.g.for int default value is zero(0)
@@ -197,7 +220,7 @@ namespace LinqSample1
 
 		// Element at : give element at xyz position in an array or dataset
 		int elementAtOrDefault = numbers.ElementAtOrDefault(10);
-                Console.WriteLine("ElementAtOrDefault: " + elementAtOrDefault); // Output: ElementAtOrDefault: 0
+        Console.WriteLine("ElementAtOrDefault: " + elementAtOrDefault); // Output: ElementAtOrDefault: 0
 	
 		************ this is extra feature *****************
 
@@ -225,7 +248,7 @@ namespace LinqSample1
 		  string[] countries = {  "US", "UK", "India", "Russia", "China", "Australia", "Argentina"  };  
 		
 		//Take first 3 countries  
-            IEnumerable<string> result = countries.Take(3);  
+            	IEnumerable<string> result = countries.Take(3);  
              
 		
 		// Take countries starting with "u"
@@ -234,7 +257,7 @@ namespace LinqSample1
 		// Skip 3 countries
 		    IEnumerable<string> result = countries.Skip(3);
 
-        //then finally print the list using foreach
+        	//then finally print the list using foreach
 		    foreach (string s in result){  Console.WriteLine(s);    }
                 
         }
@@ -306,7 +329,7 @@ Not Ideal For:
 
 Summary of Significance and Usage:
 =======================================================================================================================================
-Type	   |  Significance	                            | Usage Need
+Type	   |  Significance	                        | Usage Need
 =======================================================================================================================================
 Array	   |  Fixed-size, efficient access by index.	| When you have a known, unchanging number of elements.
 =======================================================================================================================================
@@ -314,7 +337,7 @@ List	   |  Dynamic-size, provides methods to add,    | When the number of elemen
            |  remove, and manipulate elements.	        |
 =======================================================================================================================================
 Dictionary | Key-value pairs, fast lookups by           | When you need to associate unique keys with values for quick lookup.
-           |  unique keys.	                            |
+           |  unique keys.	                        |
 =======================================================================================================================================
 
 Summery 
@@ -334,70 +357,127 @@ namespace LinqSample1
         {
 		  string[] countries = {  "US", "UK", "India", "Russia", "China", "Australia", "Argentina"  };  
 		
-		//1. countries.ToList() convert the collection of data into the list.  
+		//1. ToList() : convert the collection of data into the list
+.  
             	List<string> result = countries.ToList();  
-		
-		//2. countries.ToArray() is used to convert the collection of data into the form of array  
-            string[] countryarray = countries.ToArray();  
+		foreach (string s in result){  Console.WriteLine(s); }
+		------------------------------------------------------------------------------------------------
+		//2. ToArray():- is used to convert the collection of data into the form of array  
+-------------------------------------------------------------------------------------------------------------------------------------------------------	2.1. 2.1 To copy array :
+===============
+- why we have not directly copied like => string[] copiedArray = countries;
+- because array is reference type and if we change value of copied array then value of original countries array will also change 
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+        	    	string[] copiedArray = countries.ToArray();  
+			copiedArray[0] = "X";
 
-		//then finally print the list using foreach
-		 foreach (string s in result){  Console.WriteLine(s);    }
-                
+			Console.WriteLine("Original Array: " + string.Join(", ", countries));
+        		Console.WriteLine("Copied Array: " + string.Join(", ", copiedArray));
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+		    	2.2  Convert List to Array:
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+		 
+                	List<string> countries = new List<string> { "US", "UK", "India", "Russia" };
 
-		//3. create an objEmployee of the class Employee and create a list of Employee  
+        		// Convert List to Array
+        		string[] countryArray = countries.ToArray();
 
-                List<Employees> objEmployee = new List<Employees>()
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+		    	2.3  Convert LINQ result to Array: sort even numbers from array
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+                    int[] numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+                    // Get even numbers as an array
+                    int[] evenNumbers = numbers.Where(n => n % 2 == 0).ToArray();
+
+                    Console.WriteLine("Even numbers: " + string.Join(", ", evenNumbers));
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+		        //3. create an objEmployee of the class Employee and create a list of Employee  
+
+                using System;
+                using System.Collections.Generic;
+                using System.Linq;
+
+                public class Employee
                 {
-                    new Employees(){ Name="Akshay Tyagi", Department="IT", Country="India"},
-                    new Employees(){ Name="Ajay Tyagi", Department="IT", Country="India"},
-                    new Employees(){ Name="Vaishali Tyagi", Department="Marketing", Country="Australia"},
-                    new Employees(){ Name="Arpita Rai", Department="HR", Country="China"},
-                    new Employees(){ Name="Shubham Ratogi", Department="Sales", Country="USA"},
-                    new Employees(){ Name="Himanshu Tyagi", Department="Operations", Country="Canada"}
-                };
+                    public string Name { get; set; }
+                    public string Department { get; set; }
+                    public string Country { get; set; }
 
-            //objEmployee.ToLookup() method is used to print the value of the data in the pair/collection of items.  
-            
-                    var Emp = objEmployee.ToLookup(x => x.Department);
-                    Console.WriteLine("Grouping Employees by Department");
-                    Console.WriteLine("---------------------------------");
+                    public Employee(string name, string dept, string country)
+                    {
+                        Name = name;
+                        Department = dept;
+                        Country = country;
+                    }
+                }
 
-                        foreach (var KeyValurPair in Emp)
+                public class HelloWorld
+                {
+                    public static void Main(string[] args)
+                    {
+                        List<Employee> objEmployee = new List<Employee>()
                         {
-                            Console.WriteLine(KeyValurPair.Key);
-                            // Lookup employees by Department  
-                            foreach (var item in Emp[KeyValurPair.Key])
+                            new Employee("Akshay Tyagi", "IT", "India"),
+                            new Employee("Ajay Tyagi", "IT", "India"),
+                            new Employee("Vaishali Tyagi", "Marketing", "Australia"),
+                            new Employee("Arpita Rai", "HR", "China"),
+                            new Employee("Shubham Ratogi", "Sales", "USA"),
+                            new Employee("Himanshu Tyagi", "Operations", "Canada")
+                        };
+
+                        // Using ToLookup() to group employees by Department
+                        var Emp = objEmployee.ToLookup(x => x.Department);
+                        Console.WriteLine("Grouping Employees by Department");
+                        Console.WriteLine("---------------------------------");
+
+                        foreach (var KeyValuePair in Emp)
+                        {
+                            Console.WriteLine(KeyValuePair.Key);
+                            foreach (var item in KeyValuePair)
                             {
                                 Console.WriteLine("\t" + item.Name + "\t" + item.Department + "\t" + item.Country);
                             }
-                        }  
-
-		//4. we are converting the ArrayList object to String type of object(e.g. Here we have the array list of 
-            strings  so we have converted it to the list of the "strings" to perform the list operations)
-
-                     //create an object named 'obj' of ArrayList   
-                        ArrayList obj = new ArrayList();
-
-                    //assign the values to the object 'obj'   
-                        obj.Add("USA");  
-            
-                        obj.Add("Australia");  
-            
-                        obj.Add("UK");  
-            
-                        obj.Add("India");
+                        }
+                    }
+                }
 
 
-                    //Here we are converting the ArrayList object to String type of object and store the result in 'result'  
-                        IEnumerable<string> result = obj.Cast<string>();  
+ --------------------------------------------------------------------------------------------------------------------------------------------------------            
+        //4. Arraylist :
+		ArrayList is a non-generic collection in C# that can store elements of any data type (object type internally). 
+		It was commonly used before generic collections (List<T>, etc.) 
+				
+		Since ArrayList stores items as object type, the Cast<string>() method is used to convert the ArrayList elements into an 				IEnumerable<string> collection.
+
+		Cast<string>() ensures that each element in the ArrayList is treated as a string, allowing us to perform type-safe operations on the result.
 
 
-                    //Now with the help of foreach loop we will print the value of result  
-                        foreach (var item in result)  
-                        {  
-                            Console.WriteLine(item);  
-                        }  
+                            
+                                ArrayList obj = new ArrayList();
 
+                            
+                                obj.Add("USA");  
+                    
+                                obj.Add("Australia");  
+                    
+                                obj.Add("UK");  
+                    
+                                obj.Add("India");
+
+
+                             
+                                IEnumerable<string> result = obj.Cast<string>();  //Arraylist is not type safe => type cast
+
+
+                            
+                                foreach (var item in result)  
+                                {  
+                                    Console.WriteLine(item);  
+                                }  
+
+ --------------------------------------------------------------------------------------------------------------------------------------------------------            
 
         //5. TypeOf() operator: we have list which has many types of elements e.g. string , int etc and we 
             want only the list of the string elements then we can use TypeOf() operator
@@ -449,14 +529,17 @@ namespace LinqSample1
         }
     }
 }
+Note : Difference between GroupBy() vs ToLookup() in C# (Short Notes)
+=======================================================================
+ToLookup() : Immediate Execution | Cached, meaning it stores results for repeated access | Returns an empty lookup if the source is null
+GroupBy() : Lazy Execution | Iterated multiple times, but each time recomputes the grouping | Throws exception if the source is null
 
-==========================================================================================================
+===================================================================================================================
 Program 6 : GroupBy() ( e.g. we have list of students then we can get list of students according to 
             to the location )
             SequenceEqual()  is used to compare whether two sequences (typically IEnumerable<T> collections) 
             contain the same elements in the same order.
-==========================================================================================================
-
+===================================================================================================================
 
 namespace LinqSample1
 {
@@ -467,11 +550,11 @@ namespace LinqSample1
             //Create an object 'objStudent' of the list of the student  
             List<Student> objStudent = new List<Student>  ()  
             {  
-            new Student() { Name = "Ak Tyagi", Gender = "Male",Location="Chennai" },  
-            new Student() { Name = "Rohini", Gender = "Female", Location="Chennai" },  
-            new Student() { Name = "Praveen", Gender = "Male",Location="Bangalore" },  
-            new Student() { Name = "Sateesh", Gender = "Male", Location ="Vizag"},  
-            new Student() { Name = "Madhav", Gender = "Male", Location="Nagpur"}  
+                new Student() { Name = "Ak Tyagi", Gender = "Male", Location="Chennai" },  
+                new Student() { Name = "Rohini", Gender = "Female", Location="Chennai" },  
+                new Student() { Name = "Praveen", Gender = "Male", Location="Bangalore" },  
+                new Student() { Name = "Sateesh", Gender = "Male", Location ="Vizag"},  
+                new Student() { Name = "Madhav", Gender = "Male", Location="Nagpur"}  
             };  
 
             // here with the help of GrouBy we will fetch the student on the base of location  
@@ -481,12 +564,14 @@ namespace LinqSample1
                      // WriteLine() function here count the number of student  
                         Console.WriteLine(sitem.Key, sitem.Count());  
                         Console.WriteLine();  
-                foreach (var stud in sitem)  
-                {  
-                    //show the information of the student on the base of the location  
-                    Console.WriteLine(stud.Name + "\t" + stud.Location);  
-                } 
-
+                        foreach (var stud in sitem)  
+                        {  
+                            //show the information of the student on the base of the location  
+                            Console.WriteLine(stud.Name + "\t" + stud.Location);  
+                        } 
+                }
+                
+                //========= SequenceEqual () ====================================================
 
                 int[] numbers1 = { 1, 2, 3, 4, 5 };
                 int[] numbers2 = { 1, 2, 3, 4, 5 };
@@ -497,25 +582,27 @@ namespace LinqSample1
 
             }
         }
-    }
-    class Student  
-    {  
-        public string Name { get; set; }  
-        public string Gender { get; set; }  
-        public string Location { get; set; }  
-    }  
+        class Student  
+        {  
+            public string Name { get; set; }  
+            public string Gender { get; set; }  
+            public string Location { get; set; }  
+        }  
 }
 
-==========================================================================================================
+
+============================================================================================================================================================
 Program 7 : Joins (Inner join, group join , left outer join, cross join)
-==========================================================================================================
-                                            : Theory Joins :
-                                            =============== 
-    In LINQ, you can use several types of joins to combine data from different sequences (collections). The main types of joins available in LINQ are:
+============================================================================================================================================================
+                                                            : Theory Joins :
+                                                            ================ 
+In LINQ, you can use several types of joins to combine data from different sequences (collections). The main types of joins available in LINQ are:
 
+Left : Driver table  e.g Department table 
+Right : Driven table e.g.  Employee table
 
-
-Left Outer Join: Includes all elements from the first (left) sequence and the matched elements from the second (right) sequence. If there is no match, the result will contain the element from the left sequence with a default value for the right sequence.
+Left Outer Join: Includes all elements from the first (left) sequence and the matched elements from the second (right) sequence. If there is no match, 
+the result will contain the element from the left sequence with a default value for the right sequence.
 
 
 Dept table 
