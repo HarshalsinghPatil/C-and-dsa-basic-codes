@@ -1,0 +1,433 @@
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+================================================== # Arrays #===============================================================================================
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-------------
+C# Arrays
+-------------
+- Like other programming languages, array in C# is a group of similar types of elements 
+that have contiguous memory location. We can store only fixed set of elements in C# array. 
+- In C#, array is an object of base type System.Array. 
+- In C#, array index starts from 0.
+
+    Lets below discuss the array signature , how to initialise the array , and important 
+    array methods and properties which are important to use the arrays.
+
+        C# Array class Signature:
+        ----------------------------
+        [SerializableAttribute]  
+        [ComVisibleAttribute(true)]  
+        public abstract class Array : ICloneable, IList, ICollection, IEnumerable, IStructuralComparable, IStructuralEquatable 
+
+
+C# Array Types
+---------------
+There are 3 types of arrays in C# programming:
+    1. Single Dimensional Array
+    2. Multidimensional Array
+    3. Jagged Array
+
+1. C# Single Dimensional Array : 
+--------------------------------
+put square bracket after datatype like below :
+
+    1.a> Saperately declare and assign size
+    ----------------------------------------------
+        int[] myArray;
+        myArray = new int[5]; // Definition with a size of 5
+
+    1.b> Declaration and assign size at same time
+    -------------------------------------------------
+        int[] myArray = new int[5]; // Creates an array of integers with a size of 5
+
+2. Inline Initialization
+----------------------------------
+        //2.a> Initializes with specific values without specifying size
+        ----------------------------------------------------------------
+        int[] myArray = new int[] { 1, 2, 3, 4, 5 }; 
+
+        //2.b> Also we can omit the new int[] part: Shorter syntax for inline initialization
+        -------------------------------------------------------------------------------------
+        int[] myArray = { 1, 2, 3, 4, 5 }; 
+
+3. Implicitly Typed Array
+----------------------------------
+        var myArray = new[] { 1, 2, 3, 4, 5 }; // Compiler infers the type (int array)
+
+        // How to write array (printing array next program)
+        class Array 
+        {
+            public static void Main(string [] args)
+            {
+                // Declare and assign size saperately
+                int[] myArray;
+                myArray = new int[5];
+                Console.WriteLine("Length of Array: " + myArray.Length);
+                Console.WriteLine("Size is fixed? " + myArray.IsFixedSize);
+                
+                // Declare and initialise array
+                int[] myArray1 = new int[] { 1, 2, 3, 4, 5 };
+                Console.WriteLine("Size of array: "+ myArray1.Length);
+                Console.WriteLine("Size is fixed? " + myArray1.IsFixedSize);
+
+                // Implicitly typed array
+                var myArray2 = new[] {"one", "two", "three"};
+                Console.WriteLine("Size of array: "+ myArray2.Length);
+                
+            }
+        }
+          
+        Properties of the Arrays:
+        ------------------------
+		1. Length (i.e. size of array) 
+		2. IsFixedSize(kim: The size of array is always fixed but this property usefull for other data structures) 
+		3. Rank(i.e. Dimension of array 2D,3D)
+
+            Note: this are not only used for array but also for other collections/data structures.
+
+        Some useful Methods of Array:
+        ------------------------------ 
+        1. Copy(Array,Array,Int32)
+        2. IndexOf(Array,Object)
+        3. Reverse(Array)
+        4. Sort(Array)
+        5. ToString()
+
+============> Main Questioh here is how to initialise these arrays ? ========================
+
+        1. Assign Values Individually by Index
+        ------------------------------------------
+        Assign values to each element using its index (0-based):
+
+        myArray[0] = 10;
+        myArray[1] = 20;
+        myArray[2] = 30;
+        myArray[3] = 40;
+        myArray[4] = 50;
+
+        2. Use a Loop to Assign Values
+        -------------------------------
+        Use a loop (e.g., for, while, or foreach) to assign values programmatically:
+
+        for (int i = 0; i < myArray.Length; i++)
+        {
+            myArray[i] = i * 10; // Example: assigns 0, 10, 20, 30, 40
+        }
+
+        3. Assign Values Using Array Initialization
+        -------------------------------------------
+        Reassign the array with a new set of values using inline initialization:
+
+        myArray = new int[] { 1, 2, 3, 4, 5 }; // Reassigns the array with new values
+
+        4. Use Array.Copy or Array.CopyTo
+        ----------------------------------
+        4.1> Copy values from another array into myArray:
+        ==================================================
+        // Copies values from sourceArray to myArray
+        int[] sourceArray = { 5, 10, 15, 20, 25 };
+        Array.Copy(sourceArray, myArray, sourceArray.Length); 
+
+        4.2> Alternatively, using CopyTo:
+        ==================================
+        // Copies values from sourceArray to myArray starting at index 0
+        sourceArray.CopyTo(myArray, 0); 
+
+
+        5. Use Array.Fill (C# 8.0 and later)
+        -----------------------------------------
+        Fill the entire array with a specific value:
+
+        Array.Fill(myArray, 7); // Fills the array with the value 7: [7, 7, 7, 7, 7]
+
+        6.Use LINQ to Assign Values
+        -------------------------------
+        Use LINQ methods to generate or manipulate values for the array:
+
+        using System.Linq;
+
+        myArray = Enumerable.Range(1, 5).ToArray(); // Assigns [1, 2, 3, 4, 5]
+
+        7. Use Array.Clear to Reset Values
+        -----------------------------------
+        Reset all values in the array to their default (0 for int):
+
+        Array.Clear(myArray, 0, myArray.Length); // Resets all elements to 0
+
+        8. Use Buffer.BlockCopy for Byte-Level Copying
+        ------------------------------------------------
+        If working with arrays of primitive types (e.g., int), use Buffer.BlockCopy to copy values from another array:
+
+        int[] sourceArray = { 100, 200, 300, 400, 500 };
+        Buffer.BlockCopy(sourceArray, 0, myArray, 0, sourceArray.Length * sizeof(int));
+=============================================================================================================
+
+==================== Array declaration assigning the values ===================
+        class Program {
+        public static void Main(string[] args)
+        {
+            ====  way 1 : declare and assign values saperately
+                    int[] myArr ;    
+                    myArr = new int[5];
+                
+                    
+                    Console.WriteLine("Size of array 1 : "+ myArr.Length);
+                
+                    myArr[0] = 10;
+                    myArr[1] =  20;
+                    myArr[2] = 30;
+                    myArr[3] = 40;
+                    myArr[4] = 50;
+                    
+                    int count = 0;
+
+                    for(int i = 0 ; i< myArr.Length; i++)
+                    {
+                        int num = myArr[i];
+                        
+                        Console.WriteLine($"Value at index [{count}] is : " + num );
+                        ++count;
+                    }
+
+        ========================== OOOOOOOOOOORRRRRRRRRRRRRRRR ====================================
+
+                    // way 2.1 : same time declare and define them below both methods are ok 
+                    i.e.with giving size of array and second one without array size
+                    
+                    int[] arr = new int[5] {1,2,3,4,5};//with size
+                    int[] arr = new int[] {1,2,3,4,5};
+
+                    //way 2.2 : first declare and then define 
+                    int[] arr ;
+                    arr = new int[] {1,2,3,4,5};
+
+                    //=== With foreach Loop =======
+                    int index = 0;
+                    foreach (int val in arr)
+                    {
+                        Console.WriteLine($"The element at arr[{index}] : is {val}");
+                        index++;
+                    }
+                    
+                    //=== With simple for =======
+                    index = 0;
+                    for(int i = 0; i<arr.Length ; i++)
+                    {
+                        int val = arr[i];
+                        Console.WriteLine($"The element at arr[{index}] : is {val}");
+                        index++;
+                    }
+
+    		}
+	}
+
+
+    using System;
+
+    public class Program
+    {
+        
+        //here you can't call method in same class without using static keyword
+        static void printArray(int[] arr)
+        {  
+            Console.WriteLine("Elements in this array are : ");
+            for(int i= 0 ; i<arr.Length; i++)
+            {
+                Console.WriteLine(arr[i]);
+            }
+        }
+
+        //Kim : here arr.Length is property and not method don't use the round bracket here
+        static void maxValueInArray(int[] arr)
+        {
+            int max = arr[0];
+            
+            for(int i = 0; i< arr.Length; i++)
+            {
+                if(max<arr[i])
+                {
+                    max = arr[i];
+                }
+            }
+            
+            Console.WriteLine("The max number here is :" + max);
+        }
+        
+        static void minValueInArray(int[] arr)
+        {
+            int min = arr[0];
+            
+            for( int i = 0 ; i< arr.Length ; i++)
+            {
+                if(min> arr[i])
+                {
+                    min = arr[i];
+                }
+            }
+            
+            Console.WriteLine("The min number here is :" + min);
+            
+        }
+        
+        public static void Main(string[] args)
+        {
+            int[] arr1 = {25, 10, 20, 15, 40, 50};
+            int[] arr2 = {12, 23, 44, 11, 54 };
+            
+            printArray(arr1);
+            printArray(arr2);
+            
+            minValueInArray(arr1);
+            minValueInArray(arr2);
+
+            maxValueInArray(arr1);
+            maxValueInArray(arr2);
+            
+        }
+    }
+
+
+# Multi-dimensional Array :
+------------------------------
+To create multidimensional array, we need to use comma inside the square brackets like below 
+
+int[,] arr=new int[3,3];//declaration of 2D array  
+int[,,] arr=new int[3,3,3];//declaration of 3D array 
+
+2D Array:
+----------
+
+class Program {
+	public static void Main(string [] args)
+	{
+		int[,] arr = new int[3,3];
+		
+		arr[0,1] = 10;
+		arr[1,2] = 20;
+		arr[2,0] = 30;
+
+		for(int i = 0 ; i<3 ; i++)
+		{
+			for(int j= 0; j<3 ; j++)
+			{
+				Console.Write(arr[i,j]+ "\t" );
+			}
+			Console.WriteLine( );
+		}
+	}
+}
+
+3D Array:
+----------
+using System;
+
+public class Program
+{
+    public static void Main()
+    {
+        // Define and initialize a 3D array
+        int[,,] arr = new int[2, 3, 4]
+        {
+            {
+                { 1, 2, 3, 4 },
+                { 5, 6, 7, 8 },
+                { 9, 10, 11, 12 }
+            },
+            {
+                { 13, 14, 15, 16 },
+                { 17, 18, 19, 20 },
+                { 21, 22, 23, 24 }
+            }
+        };
+
+        // Iterate over the 3D array and print its elements
+        for (int i = 0; i < arr.GetLength(0); i++) //first dimension (depth)
+        {
+            Console.WriteLine($"Layer {i}:");
+            for (int j = 0; j < arr.GetLength(1); j++) // second dimension (rows)
+            {
+                for (int k = 0; k < arr.GetLength(2); k++) 
+                {
+                    Console.Write(arr[i, j, k] + "\t"); 
+                }
+                Console.WriteLine(); // Move to the next line after each row
+            }
+            Console.WriteLine(); 
+        }
+    }
+}
+
+
+
+C# Jagged Arrays
+-------------------
+
+In C#, jagged array is also known as "array of arrays" because its elements are arrays. The element size of jagged array can be different.
+
+Declaration of Jagged array :-
+---------------------------
+Let's see an example to declare jagged array that has two elements.
+int[][] arr = new int[2][]; 
+
+ 
+Initialization of Jagged array
+----------------------------------
+Let's see an example to initialize jagged array. The size of elements can be different.
+arr[0] = new int[4];  
+arr[1] = new int[6];  
+
+Initialization and filling elements in Jagged array
+---------------------------------------------------------
+Let's see an example to initialize and fill elements in jagged array
+arr[0] = new int[4] { 11, 21, 56, 78 };         
+arr[1] = new int[6] { 42, 61, 37, 41, 59, 63 };  
+
+Here, size of elements in jagged array is optional. So, you can write above code as given below:
+arr[0] = new int[] { 11, 21, 56, 78 };         
+arr[1] = new int[] { 42, 61, 37, 41, 59, 63 };  
+
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        int[][] arr = new int[2][];
+        arr[0] = new int[] {1,2,3,4,5,6};
+        arr[1] =  new int[] {7,5,9,8,1,4};
+        
+        for(int i = 0; i<arr.Length; i++) 
+        {
+            for(int j = 0; j< arr[i].Length; j++)
+            {
+                Console.Write(arr[i][j] + "\t");
+            }
+            Console.WriteLine();
+        }
+    }
+}
+
+
+    #  Params
+    ------------
+    - used to specify a parameter that takes variable number of arguments
+    - useful when we don't know the number of arguments prior
+    - one params keyword is allowed & no additional parameter is permitted after
+     params keyword in a function declaration
+
+    class Program {
+    
+            public static void PassMultipleValues (params object[] items)
+            {
+                for (int i = 0; i < items.Length; i++)  
+                {  
+                    Console.WriteLine(items[i]);  
+                } 
+            }
+            
+            public static void Main(String [] args)
+            {
+                PassMultipleValues("harshal", 100, "Ramakrishnan Ayyer","Ramesh",101, 20.50,"Peter", 'A');
+                
+            }
+    }
+

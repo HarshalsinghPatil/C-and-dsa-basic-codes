@@ -635,6 +635,7 @@ var result = from d in Dept
                  EmployeeName = e.Name,  
                  DepartmentName = d.DepName  
              };
+
 ==================================
 EmployeeName | DepartmentName
 ==================================
@@ -644,7 +645,8 @@ Charlie      | IT
 Dave         | Finance
 ==================================
 
-2. Group Join: Groups the elements of the sequences based on matching keys and produces a sequence of groups. Each group consists of a key and a collection of elements that match that key.
+2. Group Join: Groups the elements of the sequences based on matching keys and produces a sequence of groups. 
+Each group consists of a key and a collection of elements that match that key.
 
 Query Syntax:
 
@@ -655,7 +657,8 @@ var result = from d in Dept
                  DepartmentName = d.DepName,
                  Employees = empGroup
              };
-Result:
+
+Result :-
 
 ===================================
 DepartmentName | Employees
@@ -676,7 +679,8 @@ No Employee  | Marketing
 ===================================
 
 
-3. Left Outer Join: Includes all elements from the first (left) sequence and the matched elements from the second (right) sequence. If there is no match, the result will contain the element from the left sequence with a default value for the right sequence.
+3. Left Outer Join: Includes all elements from the first (left) sequence and the matched elements from the second (right) sequence.
+ If there is no match, the result will contain the element from the left sequence with a default value for the right sequence.
 
 Query Syntax:
 
@@ -699,7 +703,8 @@ Dave         | Finance
 No Employee  | Marketing
 =======================================
 
-4. Cross Join: Produces the Cartesian product of two sequences, meaning every element of the first sequence is paired with every element of the second sequence. This is done using the SelectMany method in LINQ.
+4. Cross Join: Produces the Cartesian product of two sequences, meaning every element of the first sequence is paired with every element of the second sequence.
+ This is done using the SelectMany method in LINQ.
 
 Query Syntax:
 
@@ -1042,14 +1047,17 @@ Uniqueness of Elements:
 
 Sets: Ensure each element is unique. When you add an element that already exists, it doesn't add a duplicate.
 Lists: Can contain duplicate elements. Each element is accessed by its index.
+
 Operations Based on Set Theory:
 
 Sets: Naturally support operations like union, intersection, difference (except in programming terms), and testing for membership efficiently.
 Lists: Typically used for sequential access and operations like sorting, appending, and slicing.
+
 Performance Considerations:
 
 Sets: Often optimized for membership testing and uniqueness checks, making them suitable for scenarios where you need to quickly determine if an element exists or maintain a collection of unique items.
 Lists: Useful for scenarios where the order of elements matters or where you frequently access elements by their index.
+
 Use Case Specificity:
 
 Sets: Ideal when dealing with collections that should not contain duplicates or when you need to perform operations that are based on mathematical set operations.
