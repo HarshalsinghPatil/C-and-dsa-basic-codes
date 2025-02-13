@@ -1,0 +1,1034 @@
+==============================================================================================================================
+					                                # SOLID PRINCIPLES #
+==============================================================================================================================
+Single Responsibility Principle (SRP) of the SOLID principles in C# using an example involving Animal, Bird, and Dog.
+
+What is the Single Responsibility Principle (SRP)?
+The SRP states that a class should have only one reason to change, meaning it should have only one responsibility. If a class has 
+multiple responsibilities, it becomes harder to maintain, test, and understand.
+
+Example: Animal, Bird, and Dog
+Let’s say we have a base class Animal and two derived classes Bird and Dog. Each class should have a single responsibility.
+
+------------------------------------ Violation of SRP : WRONG CODE --------------------------------------------------------
+Here’s an example where SRP is violated:
+
+class Animal
+{
+    public string Name { get; set; }
+
+    public void Eat()
+    {
+        Console.WriteLine($"{Name} is eating.");
+    }
+
+    public void Fly()
+    {
+        Console.WriteLine($"{Name} is flying.");
+    }
+
+    public void Bark()
+    {
+        Console.WriteLine($"{Name} is barking.");
+    }
+}
+-----------------------------------------------------------------------------------------------------------------------------------
+Problems with this design:
+
+The Animal class has multiple responsibilities: eating, flying, and barking.
+
+Not all animals can fly or bark. For example, a Dog cannot fly, and a Bird cannot bark.
+
+If we need to change the behavior of flying or barking, we have to modify the Animal class, which violates SRP.
+
+Refactoring to Follow SRP
+To adhere to SRP, we should split the responsibilities into separate classes.
+
+-------------------------------------------- Right code ----------------------------------------
+// Base class with a single responsibility
+class Animal
+{
+    public string Name { get; set; }
+
+    public void Eat()
+    {
+        Console.WriteLine($"{Name} is eating.");
+    }
+}
+
+// Derived class for Birds with flying responsibility
+class Bird : Animal
+{
+    public void Fly()
+    {
+        Console.WriteLine($"{Name} is flying.");
+    }
+}
+
+// Derived class for Dogs with barking responsibility
+class Dog : Animal
+{
+    public void Bark()
+    {
+        Console.WriteLine($"{Name} is barking.");
+    }
+}
+Usage Example
+csharp
+Copy
+class Program
+{
+    static void Main(string[] args)
+    {
+        Bird sparrow = new Bird { Name = "Sparrow" };
+        sparrow.Eat(); // Sparrow is eating.
+        sparrow.Fly(); // Sparrow is flying.
+
+        Dog labrador = new Dog { Name = "Labrador" };
+        labrador.Eat(); // Labrador is eating.
+        labrador.Bark(); // Labrador is barking.
+    }
+}
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Why is this Better?
+Single Responsibility: Each class has only one responsibility.
+
+Animal handles eating.
+
+Bird handles flying.
+
+Dog handles barking.
+
+Easier Maintenance: If the behavior of flying or barking needs to change, we only modify the respective class.
+
+Reusability: The Animal class can be reused for other animals without carrying unnecessary responsibilities.
+
+Key Takeaways
+SRP ensures that a class has only one reason to change.
+
+Split responsibilities into separate classes to make the code more modular, maintainable, and scalable.
+
+In the example, Animal, Bird, and Dog each have a single responsibility, adhering to SRP.
+
+Let me know if you'd like to explore the other SOLID principles! 😊
+
+
+=============================================================================================================
+					# SOLID PRINCIPLE #(older chat gpt explaination)
+=============================================================================================================
+
+==================================== 1. Single Responsibility Principle =============================================
+The Single Responsibility Principle (SRP) is one of the five SOLID principles of object-oriented design.
+SRP states that a class should have only one reason to change, meaning it should have only one job or 
+responsibility.
+
+
+Example: Animal, Bird, and Dog
+Let’s say we have a base class Animal and two derived classes Bird and Dog. Each class should have a single responsibility.
+
+------------------------------------ Violation of SRP : WRONG CODE --------------------------------------------------------
+Here’s an example where SRP is violated:
+
+class Animal
+{
+    public string Name { get; set; }
+
+    public void Eat()
+    {
+        Console.WriteLine($"{Name} is eating.");
+    }
+
+    public void Fly()
+    {
+        Console.WriteLine($"{Name} is flying.");
+    }
+
+    public void Bark()
+    {
+        Console.WriteLine($"{Name} is barking.");
+    }
+}
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
+¢ LivingAnimal: This class represents any living animal. Its responsibility might be general
+
+attributes or behaviors that all animals share.
+
+© Bird: This class represents birds and inherits from LivingAnimal. It should have responsibilities
+
+specific to birds.
+
+¢ Dog: This class represents dogs and also inherits from LivingAnimal. It should have
+
+responsibilities specific to dogs.
+
+-------------------------------------------- Right code ----------------------------------------
+
+    public class LivingAnimal
+    {
+        public string Name { get; set;}
+
+        public int Age { get; set;}
+
+        public void Eat()
+        {
+            Console .WriteLine($"{Name} is eating.");
+        }
+
+        public void Sleep()
+        {
+            Console .WriteLine($"{Name} is sleeping.");
+        }
+    }
+
+    public class Bird : LivingAnimal
+    {
+        public void Fly()
+        {
+            Console .WriteLine($"{Name} is flying.");
+        }
+
+        public void LayEggs()
+        {
+
+        Console .WriteLine($"{Name} is laying an egg.");
+        }
+    }
+
+    public class Dog : LivingAnimal
+    {
+        public void Bark()
+        {
+            Console .WriteLine($"{Name} is barking.");
+        }
+
+        public void Fetch() 
+        {
+            Console .WriteLine($"{Name} is laying an egg.");
+        }
+    }
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Bird sparrow = new Bird { Name = "Sparrow" };
+            sparrow.Eat(); // Sparrow is eating.
+            sparrow.Fly(); // Sparrow is flying.
+
+            Dog labrador = new Dog { Name = "Labrador" };
+            labrador.Eat(); // Labrador is eating.
+            labrador.Bark(); // Labrador is barking.
+        }
+    }
+-------------------------------------------- Right code ----------------------------------------
+
+Explanation
+1. LivingAnimal Class:
+
+- Responsibility: Defines general attributes and behaviors common to all living animals, such
+as eating and sleeping.
+
+- Reason to Change: If there are changes in the general behavior or attributes of living
+animals.
+
+2. Bird Class:
+
+- Responsibility: Defines behaviors specific to birds, such as flying and laying eggs.
+
+- Reason to Change: If there are changes in behaviors or attributes specific to birds.
+
+3. Dog Class:
+
+- Responsibility: Defines behaviors specific to dogs, such as barking and fetching.
+- Reason to Change: If there are changes in behaviors or attributes specific to dogs.
+
+Each class has a single responsibility and therefore a single reason to change. This adheres to the
+Single Responsibility Principle, ensuring that our design is modular, maintainable, and easy to
+understand.
+==================================== 1. Single Responsibility Principle =======================================================
+
+
+
+============================================ 2. Open/close Principle ================================================================
+
+with same example explain open close principle
+
+The Open/Closed Principle (OCP) is another of the SOLID principles, stating that software entities
+(classes, modules, functions, etc.) should be open for extension but closed for modification. This
+means that the behavior of a module can be extended without modifying its source code.
+
+Using the same example of living animals, birds, and dogs, let's illustrate the Open/Closed Principle
+
+Conceptual Explanation
+- LivingAnimal: This base class defines common attributes and methods for all animals.
+
+- Bird and Dog: These subclasses extend the behavior of 'LivingAnimal' without modifying the 'LivingAnimal' class itself.
+
+
+System;
+
+public abstract class LivingAnimal
+{
+        public string Name { get; set;}
+
+        public int Age { get; set;}
+
+        public void Eat()
+        {
+
+            Console .WriteLine($"{Name} is eating.");
+        }
+
+        public void Sleep()
+        {
+
+            Console .WriteLine($"{Name} is sleeping.");
+        }
+
+        public abstract void PerformSpecialAction();
+}
+
+public class Bird : LivingAnimal
+{
+
+    public override void PerformSpecialAction()
+    {
+        Fly();
+        LayEgg();
+    }
+
+    public void Fly()
+    {
+        Console .WriteLine($"{Name} is flying.");
+    }
+
+    public void LayEggs()
+    {
+        Console .WriteLine($"{Name} is laying an egg.");
+    }
+}
+
+public class Dog : LivingAnimal
+{
+
+    public override void PerformSpecialAction()
+    {
+        Bark();
+        Fetch();
+    }
+
+    public void Bark()
+    {
+        Console .WriteLine($"{Name} is barking.");
+    }
+
+    public void Fetch() 
+    {
+        Console .WriteLine($"{Name} is laying an egg.");
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        //substitution : use parent class to initialize child class
+        LivingAnimal myBird = new Bird() { Name = "Parrot" };
+        LivingAnimal myDog = new Dog() { Name = "Rex" };
+
+        //Both instances are treated as LivingAnimal
+        MakeAnimalEatAndSleep(myBird) ;
+        MakeAnimalEatAndSleep(myDog) ;
+    }
+
+    public static void MakeAnimalEatAndSleep(LivingAnimal animal)
+    {
+        animal.Eat();
+        animal.Sleep();
+        animal.PerformSpecialAction();
+    }
+}	
+
+
+Explanation
+1. LivingAnimal Class:
+
+- Methods: `Eat` and `sleep` are common to all animals.
+
+¢ Abstract Method: `performspecialaction` is introduced as an abstract method, allowing
+subclasses to implement their specific actions without modifying the base class.
+
+2. Bird Class:
+
+e Extension: Inherits from `LivingAnimal` and implements the `PerformSpecialAction`
+method to include behaviors like `Fly` and `LayEgg`.
+
+3. Dog Class:
+
+- Extension: Inherits from `LivingAnimal` and implements the `PerformSpecialAction`
+method to include behaviors like `Bark` and `Fetch`.
+
+4. Program Class:
+- Demonstrates the Open/Closed Principle by creating instances of `Bird` and `Dog` and treating them as `LivingAnimal`.
+- The `MakeAnimalPerformActions` method calls the common methods `Eat` and `Sleep`, as well as the `PerformSpecialAction` method, which is specific to each subclass.
+
+Ensuring OCP
+
+- Extension without Modification: The `LivingAnimal` class is closed for modification because its code does not change when new types of animals are added. Instead, it is extended by creating new subclasses (like `Bird` and `Dog`) that implement or override methods.
+
+- Behavior Extension: New behaviors specific to birds and dogs are added by creating new subclasses, adhering to the Open/Closed Principle. The base class remains unchanged, ensuring stability and reducing the risk of introducing bugs.
+
+By adhering to the Open/Closed Principle, our design allows for easy extension of functionality(adding new types of animals with their specific behaviors) without altering existing code, making the system more maintainable and scalable.
+
+============================================ 2. Open/close Principle ================================================================
+
+
+=================================== 3. Liscov's substitution principle ===========================================================
+
+Liskov Substitution Principle (LSP)
+-------------------------------------
+
+Liskov Substitution Principle (LSP) is another of the SOLID principles, stating that objects of a
+superclass should be replaceable with objects of a subclass without affecting the correctness of the
+program. In other words, subclasses should be substitutable for their base classes.
+
+Conceptual Explanation:
+
+To demonstrate LSP with living animals, birds, and dogs, we ensure that any instance of a subclass
+(e.g., Bird or Dog) can replace an instance of the base class (LivingAnimal) without altering the
+desirable properties of the program (correctness, task completion, etc.).
+
+public class LivingAnimal
+{
+    public string Name { get; set;}
+
+    public int Age { get; set;}
+
+    public virtual void Eat()
+    {
+        Console .WriteLine($"{Name} is eating.");
+    }
+
+    public virtual void Sleep()
+    {
+        Console .WriteLine($"{Name} is sleeping.");
+    }
+}
+
+public class Bird : LivingAnimal
+{
+    public void Fly()
+    {
+        Console .WriteLine($"{Name} is flying.");
+    }
+
+    public void LayEggs()
+    {
+        Console .WriteLine($"{Name} is laying an egg.");
+    }
+}
+
+public class Dog : LivingAnimal
+{
+    public void Bark()
+    {
+        Console .WriteLine($"{Name} is barking.");
+    }
+    public void Fetch() 
+    {
+        Console .WriteLine($"{Name} is laying an egg.");
+    }
+}
+
+public class Program
+{
+
+    public static void Main()
+    {
+        //substitution : use parent class to initialize child class
+        LivingAnimal myBird = new Bird() { Name = "Parrot" };
+        LivingAnimal myDog = new Dog() { Name = "Rex" };
+
+        MakeAnimalEatAndSleep(myBird) ;
+        MakeAnimalEatAndSleep(myDog) ;
+    }
+
+    public static void MakeAnimalEatAndSleep(LivingAnimal animal)
+    {
+        animal.Eat();
+
+        animal.Sleep();
+    }
+}	
+
+Explanation
+1. LivingAnimal Class:
+---------------------
+- Methods: `Eat` and `Sleep` are common to all animals and are marked as `virtual` to
+allow overriding in subclasses if needed.
+2. Bird Class:
+----------------
+- Inherits from `LivingAnimal`.
+- Adds specific methods `F1y` and `LayEgg` which are behaviors specific to birds.
+
+3. Dog Class:
+--------------
+ Inherits from `LivingAnimal`.
+- Adds specific methods `Bark` and `Fetch` which are behaviors specific to dogs.
+
+4. Program Class:
+-----------------
+- Demonstrates LSP by creating instances of 'Bird’ and `Dog` and treating them as
+`LivingAnimal`.
+
+- The `MakeAnimalEatAndSleep` method accepts a `LivingAnimal` object and calls the `Eat`
+and `Sleep` methods.
+- When `Bird` and `Dog` instances are passed to this method, they behave correctly as
+`LivingAnimal` objects, fulfilling LSP.
+
+Ensuring LSP
+==============
+¢ Correctness: Both `Bird` and `Dog` instances can replace `LivingAnimal` instances without
+affecting the program's correctness. They both implement the `Eat` and `Sleep` methods as
+expected.
+
+¢ Behavior: Subclasses (`Bird` and `Dog`) do not alter the expected behavior of the base class
+(`LivingAnimal`). They extend it with additional functionalities while maintaining the base class's
+interface.
+
+By adhering to LSP, our design ensures that subclasses can be used interchangeably with their base
+class without introducing errors, making our code more robust and flexible. 
+
+=================================== 3. Liscov's substitution principle ===========================================================
+
+
+======================================== 4. Interface segregation method =========================================================
+
+===============================================================  PART - I  ==================================================================
+The Interface Segregation Principle (ISP) is one of the SOLID principles of object-oriented design. It states that no client should be forced to depend on methods it does not use. In other words, interfaces should be small, specific, and focused on a single responsibility, rather than being large and monolithic.
+
+Example with Animals: Dog and Bird
+Let’s say we have an application that deals with animals like Dog and Bird. Initially, we might think of creating a single interface like this:
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+public interface IAnimal
+{
+    void Eat();
+    void Sleep();
+    void Fly(); // Not all animals can fly
+    void Bark(); // Not all animals can bark
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Here, the IAnimal interface has methods like Fly() and Bark(), which are not applicable to all animals. For example:
+
+A Dog can Bark but cannot Fly.
+
+A Bird can Fly but cannot Bark.
+
+This violates the Interface Segregation Principle because classes implementing IAnimal are forced to implement methods they don’t need.
+
+Refactoring Using ISP
+To adhere to the Interface Segregation Principle, we should break the IAnimal interface into smaller, more specific interfaces:
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+public interface IAnimal
+{
+    void Eat();
+    void Sleep();
+}
+
+public interface IFlyable
+{
+    void Fly();
+}
+
+public interface IBarkable
+{
+    void Bark();
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Now, we can implement these interfaces in our classes:
+------------------------------------------------------------------------------------------------------------------------------------------------------
+public class Dog : IAnimal, IBarkable
+{
+    public void Eat()
+    {
+        Console.WriteLine("Dog is eating.");
+    }
+
+    public void Sleep()
+    {
+        Console.WriteLine("Dog is sleeping.");
+    }
+
+    public void Bark()
+    {
+        Console.WriteLine("Dog is barking.");
+    }
+}
+
+public class Bird : IAnimal, IFlyable
+{
+    public void Eat()
+    {
+        Console.WriteLine("Bird is eating.");
+    }
+
+    public void Sleep()
+    {
+        Console.WriteLine("Bird is sleeping.");
+    }
+
+    public void Fly()
+    {
+        Console.WriteLine("Bird is flying.");
+    }
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Benefits of ISP
+No Unnecessary Methods: Classes only implement the methods they need. For example, Dog doesn’t need to implement Fly(), and Bird doesn’t need to implement Bark().
+
+Better Maintainability: Smaller interfaces are easier to understand, maintain, and extend.
+
+Reduced Coupling: Clients depend only on the methods they use, reducing the risk of unintended side effects.
+
+Usage Example
+------------------------------------------------------------------------------------------------------------------------------------------------------
+class Program
+{
+    static void Main(string[] args)
+    {
+        Dog dog = new Dog();
+        dog.Eat();
+        dog.Sleep();
+        dog.Bark();
+
+        Bird bird = new Bird();
+        bird.Eat();
+        bird.Sleep();
+        bird.Fly();
+    }
+}
+Output:
+Dog is eating.
+Dog is sleeping.
+Dog is barking.
+Bird is eating.
+Bird is sleeping.
+Bird is flying.
+Key Takeaway
+------------------------------------------------------------------------------------------------------------------------------------------------------
+By segregating interfaces into smaller, more specific ones, we ensure that classes only implement the methods they actually need. This makes the code more modular, flexible, and easier to maintain.
+
+
+===============================================================  PART - II  ==================================================================
+Que>     ok tell me some practical implementation and why we have not created this methods inside child class itself  and instead of it made interface for bark and fly separately?
+==========================================================================================================================================================
+Great question! Let’s dive deeper into the practical implementation of the Interface Segregation Principle (ISP) and why we create separate interfaces for behaviors like Bark and Fly instead of just implementing them directly in the child classes.
+
+Practical Implementation of ISP
+Scenario: A Zoo Management System
+Imagine you’re building a system to manage animals in a zoo. You have different types of animals, and each animal has specific behaviors. Some animals can fly, some can bark, some can swim, etc. Using ISP, you can design your system to be flexible and scalable.
+
+Why Not Just Implement Methods in Child Classes?
+At first glance, it might seem simpler to just implement the Bark and Fly methods directly in the Dog and Bird classes, like this:
+------------------------------------------------------------------------------------------------------------------------------------------------------
+public class Dog
+{
+    public void Eat() { Console.WriteLine("Dog is eating."); }
+    public void Sleep() { Console.WriteLine("Dog is sleeping."); }
+    public void Bark() { Console.WriteLine("Dog is barking."); }
+}
+
+public class Bird
+{
+    public void Eat() { Console.WriteLine("Bird is eating."); }
+    public void Sleep() { Console.WriteLine("Bird is sleeping."); }
+    public void Fly() { Console.WriteLine("Bird is flying."); }
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------
+While this works, it has some drawbacks:
+
+Code Duplication: If you have multiple animals that can bark (e.g., Dog, Wolf, Fox), you’ll end up duplicating the Bark method in each class.
+
+Tight Coupling: If you want to change the behavior of Bark or Fly, you’ll need to modify every class that implements it.
+
+Lack of Flexibility: You can’t easily extend the system to support new behaviors or animals without modifying existing classes.
+
+Why Use Separate Interfaces?
+By creating separate interfaces like IBarkable and IFlyable, you gain several advantages:
+
+1. Reusability
+If multiple animals can bark (e.g., Dog, Wolf, Fox), they can all implement the IBarkable interface without duplicating code.
+
+Similarly, if multiple animals can fly (e.g., Bird, Bat, Butterfly), they can implement the IFlyable interface.
+
+2. Flexibility
+You can easily add new behaviors (e.g., ISwimmable for animals that can swim) without modifying existing classes.
+
+You can mix and match behaviors for different animals. For example, a Duck can implement both IFlyable and ISwimmable.
+
+3. Maintainability
+Changes to a specific behavior (e.g., how Bark works) only need to be made in one place (the class implementing IBarkable).
+
+You avoid tightly coupling unrelated behaviors.
+
+4. Polymorphism
+You can treat all IBarkable or IFlyable objects uniformly. For example:
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+List<IBarkable> barkingAnimals = new List<IBarkable> { new Dog(), new Wolf() };
+foreach (var animal in barkingAnimals)
+{
+    animal.Bark();
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Practical Example: Extending the Zoo System
+Let’s extend the zoo system to demonstrate the benefits of ISP.
+
+Step 1: Define Interfaces
+------------------------------------------------------------------------------------------------------------------------------------------------------
+public interface IAnimal
+{
+    void Eat();
+    void Sleep();
+}
+
+public interface IBarkable
+{
+    void Bark();
+}
+
+public interface IFlyable
+{
+    void Fly();
+}
+
+public interface ISwimmable
+{
+    void Swim();
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 2: Implement Classes
+------------------------------------------------------------------------------------------------------------------------------------------------------
+public class Dog : IAnimal, IBarkable
+{
+    public void Eat() { Console.WriteLine("Dog is eating."); }
+    public void Sleep() { Console.WriteLine("Dog is sleeping."); }
+    public void Bark() { Console.WriteLine("Dog is barking."); }
+}
+
+public class Bird : IAnimal, IFlyable
+{
+    public void Eat() { Console.WriteLine("Bird is eating."); }
+    public void Sleep() { Console.WriteLine("Bird is sleeping."); }
+    public void Fly() { Console.WriteLine("Bird is flying."); }
+}
+
+public class Duck : IAnimal, IFlyable, ISwimmable
+{
+    public void Eat() { Console.WriteLine("Duck is eating."); }
+    public void Sleep() { Console.WriteLine("Duck is sleeping."); }
+    public void Fly() { Console.WriteLine("Duck is flying."); }
+    public void Swim() { Console.WriteLine("Duck is swimming."); }
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 3: Use the System
+------------------------------------------------------------------------------------------------------------------------------------------------------
+class Program
+{
+    static void Main(string[] args)
+    {
+        List<IAnimal> animals = new List<IAnimal> { new Dog(), new Bird(), new Duck() };
+
+        foreach (var animal in animals)
+        {
+            animal.Eat();
+            animal.Sleep();
+
+            if (animal is IBarkable barkable)
+                barkable.Bark();
+
+            if (animal is IFlyable flyable)
+                flyable.Fly();
+
+            if (animal is ISwimmable swimmable)
+                swimmable.Swim();
+
+            Console.WriteLine();
+        }
+    }
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Output:
+
+Dog is eating.
+Dog is sleeping.
+Dog is barking.
+
+Bird is eating.
+Bird is sleeping.
+Bird is flying.
+
+Duck is eating.
+Duck is sleeping.
+Duck is flying.
+Duck is swimming.
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Key Takeaways
+Separation of Concerns: By separating behaviors into interfaces, you ensure that each class only implements what it needs.
+
+Scalability: Adding new behaviors or animals becomes much easier without modifying existing code.
+
+Reusability: Common behaviors (like Bark or Fly) can be reused across multiple classes.
+
+Polymorphism: You can treat objects based on their behaviors (e.g., all IBarkable animals can bark).
+
+In summary, using separate interfaces for behaviors like Bark and Fly adheres to the Interface Segregation Principle and results in a cleaner, more maintainable, and scalable design.
+
+======================================== 4. Interface segregation method ==========================================================
+
+========================================== 5. Dependency inversion =================================================================
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+ What is a Dependency?
+A dependency is when one part of your code relies on another part to function.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Step 1: Before Dependency Injection (Tightly Coupled Code)
+--------------------------------------------------------------
+	Here car class creates object of engine inside of car class. And engine is also a hardcoded class.
+
+🚗 Initial Code Without Dependency Injection
+--------------------------------------------------------------------------------------------------------------------
+public class Engine
+{
+    public void Start()
+    {
+        Console.WriteLine("Petrol Engine started!");
+    }
+}
+
+public class Car
+{
+    private Engine _engine = new Engine(); // Car is tightly coupled to Engine
+
+    public void StartCar()
+    {
+        _engine.Start();
+    }
+}
+
+// car and engine are not saperable /tightly coupled i.e. human body and heart
+Car myCar = new Car();
+myCar.StartCar();
+
+--------------------------------------------------------------------------------------------------------------------
+🔴 Problems with this approach:
+
+Car is tightly coupled to Engine. It always uses Engine and cannot use ElectricEngine without modifying Car.
+
+If we need a different type of engine (e.g., ElectricEngine), we must change the Car class code.
+Not flexible and hard to test.
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Step 2: Applying Dependency Injection (Loosely Coupled Code)
+Instead of creating the Engine object inside Car, we pass it from the outside.
+
+🚗 Code After Dependency Injection
+------------------------------------------------------------------------------------------------
+public class Engine
+{
+    public void Start()
+    {
+        Console.WriteLine("Petrol Engine started!");
+    }
+}
+
+public class Car
+{
+    private readonly Engine _engine;  // Dependency is passed from outside
+
+    public Car(Engine engine)  // Constructor Injection
+    {
+        _engine = engine;
+    }
+
+    public void StartCar()
+    {
+        _engine.Start();
+    }
+}
+
+// Here car and engine NOT tightly bound i.e. human and his shoes (sports, formal, sneakers etc)
+
+Engine myEngine = new Engine(); // Creating the engine separately
+
+Car myCar = new Car(myEngine);  // Injecting engine into Car
+
+myCar.StartCar();
+--------------------------------------------------------------------------------------------------
+✅ Advantages of Dependency Injection
+Loosely Coupled: Car does not create Engine by itself.
+Flexible: We can now pass any engine we want.
+Easier to Test: We can create mock objects in testing.
+Better Maintainability: If we want to change Engine, we don’t have to modify Car.
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Step 3: Making Car Work with Electric Engine
+Now, let’s replace Engine with ElectricEngine.
+But to do that, we need a common interface so Car can work with any engine type.
+
+🚗 Final Code: Using an Interface for Any Engine
+---------------------------------------------------
+// Step 1: Create an abstraction (interface)
+public interface IEngine
+{
+    void Start();
+}
+
+// Step 2: Implement the interface in different engine types(in future we can also add Hydrogen Engine)
+public class PetrolEngine : IEngine
+{
+    public void Start()
+    {
+        Console.WriteLine("Petrol Engine started!");
+    }
+}
+
+public class DieselEngine : IEngine
+{
+    public void Start()
+    {
+        Console.WriteLine("Diesel Engine started!");
+    }
+}
+
+
+public class ElectricEngine : IEngine
+{
+    public void Start()
+    {
+        Console.WriteLine("Electric Engine started!");
+    }
+}
+
+// Step 3: Car class now depends on the abstraction (IEngine)
+public class Car
+{
+    private readonly IEngine _engine;
+
+    public Car(IEngine engine)  // Injecting dependency via abstraction
+    {
+        _engine = engine;
+    }
+
+    public void StartCar()
+    {
+        _engine.Start();
+    }
+}
+
+// Step 4: Usage
+
+IEngine petrolEngine = new PetrolEngine();
+Car petrolCar = new Car(petrolEngine);
+petrolCar.StartCar();  // Output: Petrol Engine started!
+
+IEngine electricEngine = new ElectricEngine();
+Car electricCar = new Car(electricEngine);
+electricCar.StartCar();  // Output: Electric Engine started!
+--------------------------------------------------------------------------------------------------------------
+🚀 Why This is the Best Approach?
+✅ Car doesn't care which engine it gets; it just calls .Start().
+✅ If we want a HydrogenEngine in the future, we just create a new class implementing IEngine, and Car will work with it without modification.
+✅ Dependency Inversion Principle: High-level Car class doesn’t depend on low-level Engine but on an abstraction (IEngine).
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+🎯 Final Summary
+Before Dependency Injection: Car directly creates Engine, making it hard to modify.
+After Dependency Injection: Car receives Engine from the outside, making it flexible.
+Using Interface (IEngine): Now Car works with any engine type without modifying its code.
+This follows the Dependency Inversion Principle and makes the system scalable and maintainable.
+
+--------------------------------------------------------- PART - II : USE IN REAL PROJECT ---------------------------------------------------------------
+🔹 5. Dependency Injection Containers (DI Containers) in ASP.NET Core
+===================================================================
+In ASP.NET Core, we use Dependency Injection Containers to automatically inject dependencies.
+
+Steps: 
+1️⃣ Register services in the DI container (Program.cs).
+2️⃣ ASP.NET Core will automatically inject dependencies wherever needed.
+
+✅ Step 1: Register Dependencies in DI Container
+Modify Program.cs:
+------------------------------------------------------------------------------------
+var builder = WebApplication.CreateBuilder(args);
+
+// Register services
+builder.Services.AddScoped<IEngine, PetrolEngine>(); // PetrolEngine as default
+builder.Services.AddScoped<Car>(); // Register Car
+
+var app = builder.Build();
+--------------------------------------------------------------------------------------
+✅ Step 2: Inject Dependencies into Controller
+Now, in an ASP.NET Core Controller, we can directly use Dependency Injection.
+--------------------------------------------------------------------------------------
+[ApiController]
+[Route("[controller]")]
+public class CarController : ControllerBase
+{
+    private readonly Car _car;
+
+    public CarController(Car car) // DI injects Car with IEngine automatically
+    {
+        _car = car;
+    }
+
+    [HttpGet]
+    public string Start()
+    {
+        _car.StartCar();
+        return "Car started successfully!";
+    }
+}
+--------------------------------------------------------------------------------------------------------------------
+✅ What’s Happening Here?
+
+ASP.NET Core automatically injects Car into the controller.
+Since Car depends on IEngine, the DI container injects PetrolEngine by default.
+If we want to change to ElectricEngine, we just modify DI registration, not the Car class!
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+🔹 6. Changing Engine Type in ASP.NET Core (Without Modifying Code)
+------------------------------------------------------------------------
+Now, if we want to switch from PetrolEngine to ElectricEngine, we don’t touch the Car class!
+We simply modify the DI registration in Program.cs:
+
+----------------------------------------------------------------------------------------------
+
+builder.Services.AddScoped<IEngine, ElectricEngine>(); // Switching to ElectricEngine
+🚀 Now all injected Car instances will use ElectricEngine instead of PetrolEngine!
+
+----------------------------------------------------------------------------------------------
+🎯 Final Summary
+
+Concept			Before DI (Tightly Coupled)		After DI (Loose Coupling)
+Dependency Injection	Classes create their own dependencies	Dependencies are injected from outside
+Flexibility		Hard to change dependencies		Easily switch dependencies (e.g., PetrolEngine → ElectricEngine)
+Unit Testing		Hard to mock dependencies		Easily mock dependencies for testing
+ASP.NET Core DI		Manually create dependencies		DI Container automatically injects dependencies
+
+🔹 Conclusion
+✅ Dependency Injection helps in making the code more modular, testable, and maintainable.
+✅ DI Containers in ASP.NET Core handle dependency management automatically, reducing boilerplate code.
+✅ We can easily switch implementations (PetrolEngine → ElectricEngine) without modifying the Car class.
+
+💡 Next Steps:
+Do you want a real-world ASP.NET Core app example implementing Dependency Injection in a complete project? 😊
+
+========================================== 5. Dependency inversion =================================================================

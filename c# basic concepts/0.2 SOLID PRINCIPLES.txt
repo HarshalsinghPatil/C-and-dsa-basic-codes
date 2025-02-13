@@ -1,0 +1,424 @@
+===========================================================================================================================================================
+							# SOLID PRINCIPLES FROM DEEPSEEK #
+===========================================================================================================================================================
++++++++++++++++++++++++++++++++++++++++++++++++++++++++ # 5. DEPENDENCY INVERSION PRINCIPLE # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Summary:
+========
+The Dependency Inversion Principle (DIP) is one of the SOLID principles. It states:
+1. High-level modules (e.g., Car) should not depend on low-level modules (e.g., PetrolEngine). 
+Both should depend on abstractions (e.g., IEngine).
+2. Abstractions(e.g.IEngine) should not depend on details[e.g. car or engines(petrol,diesel,electric)].
+Instead Details should depend on abstractions.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Let’s use a Car and Engine example to explain Dependency Injection (DI) and the Dependency Inversion Principle (DIP) in the simplest way possible. We’ll make it beginner-friendly and easy to understand.
+
+Scenario: Car and Engine
+Imagine you’re building a system for cars. A car needs an engine to run. There are different types of engines:
+
+Petrol Engine
+
+Electric Engine
+
+Hydrogen Engine (in the future)
+
+We want our Car class to work with any type of engine without needing to change the Car class itself. This is where Dependency Injection and Dependency Inversion come into play.
+
+I. What is Dependency?
+=======================
+A dependency is when one class needs another class to work. For example:
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+public class PetrolEngine
+{
+    public void Start()
+    {
+        Console.WriteLine("Petrol Engine started.");
+    }
+}
+
+public class Car
+{
+    private PetrolEngine _engine = new PetrolEngine(); // Dependency
+
+    public void StartCar()
+    {
+        _engine.Start();
+        Console.WriteLine("Car is moving.");
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+Here, the Car class depends on the PetrolEngine class. This is a tight coupling because Car is directly creating an instance of PetrolEngine.
+
+II]. Problems with Tight Coupling :
+===================================
+Inflexible: If you want to use an ElectricEngine instead of a PetrolEngine, you’ll need to rewrite the Car class.
+
+Hard to Test: If PetrolEngine has complex logic (e.g., connecting to a real engine), testing Car becomes difficult.
+
+Violates Open/Closed Principle: The Car class is not open for extension (e.g., adding new engines) without modifying it.
+
+III]. What is Dependency Injection (DI)?
+=========================================
+Dependency Injection (DI) is a technique where dependencies are provided to a class from the outside, rather than the class creating them itself. This makes the class more flexible and easier to test.
+
+How Does Dependency Injection Work?
+Instead of creating the dependency inside the class, you pass it through the constructor, a method, or a property.
+
+Example of Dependency Injection
+Let’s refactor the Car class to use dependency injection:
+
+Step 1: Define an Interface
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+public interface IEngine
+{
+    void Start();
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 2: Implement the Interface
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+public class PetrolEngine : IEngine
+{
+    public void Start()
+    {
+        Console.WriteLine("Petrol Engine started.");
+    }
+}
+
+public class ElectricEngine : IEngine
+{
+    public void Start()
+    {
+        Console.WriteLine("Electric Engine started.");
+    }
+}
+
+public class HydrogenEngine : IEngine
+{
+    public void Start()
+    {
+        Console.WriteLine("Hydrogen Engine started.");
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 3: Inject the Dependency
+---------------------------------------------------------------------------------------------------------------------------------------------------------public class Car
+{
+    private readonly IEngine _engine;
+
+    // Dependency is injected via constructor
+    public Car(IEngine engine)
+    {
+        _engine = engine;
+    }
+
+    public void StartCar()
+    {
+        _engine.Start();
+        Console.WriteLine("Car is moving.");
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 4: Use the Classes
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+class Program
+{
+    static void Main(string[] args)
+    {
+        IEngine petrolEngine = new PetrolEngine();
+        IEngine electricEngine = new ElectricEngine();
+        IEngine hydrogenEngine = new HydrogenEngine();
+
+        Car petrolCar = new Car(petrolEngine);
+        petrolCar.StartCar();
+
+        Car electricCar = new Car(electricEngine);
+        electricCar.StartCar();
+
+        Car hydrogenCar = new Car(hydrogenEngine);
+        hydrogenCar.StartCar();
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+Output:
+
+Petrol Engine started.
+Car is moving.
+Electric Engine started.
+Car is moving.
+Hydrogen Engine started.
+Car is moving.
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+Advantages of Dependency Injection
+Flexibility: You can easily switch between different engines (e.g., PetrolEngine, ElectricEngine, HydrogenEngine) without modifying the Car class.
+
+Testability: You can test the Car class by injecting a mock IEngine.
+
+Single Responsibility: The Car class is no longer responsible for creating its engine.
+
+IV]. What is Dependency Inversion Principle (DIP)?
+=================================================
+The Dependency Inversion Principle (DIP) is one of the SOLID principles. It states:
+
+High-level modules (e.g., Car) should not depend on low-level modules (e.g., PetrolEngine). Both should depend on abstractions (e.g., IEngine).
+
+Abstractions should not depend on details. Details should depend on abstractions.
+
+In simpler terms:
+
+Classes should depend on interfaces or abstract classes, not on concrete implementations.
+
+This makes the system more flexible and decoupled.
+
+Example of Dependency Inversion
+Let’s revisit the Car example to see how DIP applies.
+
+Without DIP
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+public class Car
+{
+    private PetrolEngine _engine = new PetrolEngine(); // Depends on a concrete class
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+Here, Car (a high-level module) depends directly on PetrolEngine (a low-level module). This violates DIP.
+
+With DIP
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+public class Car
+{
+    private readonly IEngine _engine; // Depends on an abstraction
+
+    public Car(IEngine engine)
+    {
+        _engine = engine;
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+Now, Car depends on the IEngine interface (an abstraction), not on a concrete class like PetrolEngine. This adheres to DIP.
+
+Benefits of Dependency Inversion
+Decoupling: High-level and low-level modules are decoupled, making the system easier to modify and extend.
+
+Reusability: Abstractions can be reused across different parts of the system.
+
+Testability: You can easily test high-level modules by injecting mock dependencies.
+
+Real-World Analogy
+Think of a USB port:
+
+The USB port is an abstraction (interface).
+
+The USB device (e.g., mouse, keyboard, pen drive) is a concrete implementation.
+
+Any computer (high-level module) that depends on the USB port (abstraction) can work with any USB device (concrete implementation).
+
+This is how DIP works: high-level modules depend on abstractions, not on concrete implementations.
+
+Summary
+Dependency: A class relying on another class to perform its work.
+
+Dependency Injection: Passing dependencies into a class from the outside (via constructor, method, or property).
+
+Dependency Inversion Principle: High-level modules should depend on abstractions, not on concrete implementations.
+
+By following these principles, you create a system that is flexible, maintainable, and easy to test. Let me know if you need further clarification! 😊
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 3. LISCOV's SUBSTYITUTION PRINCIPLE ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Summary
+Liskov Substitution Principle : Subclasses should be able to replace their base class without breaking the program.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Absolutely! Let’s dive into the Liskov Substitution Principle (LSP) using the same Car and Engine example. I’ll explain it in simple terms and show how it connects to what we’ve already learned about Dependency Injection and Dependency Inversion.
+
+What is the Liskov Substitution Principle (LSP)?
+The Liskov Substitution Principle (LSP) is one of the SOLID principles. It states:
+
+"Objects of a superclass should be replaceable with objects of a subclass without affecting the correctness of the program."
+
+In simpler terms:
+
+If you have a base class (or interface), any derived class (or implementation) should be able to replace the base class without breaking the program.
+
+Why is LSP Important?
+LSP ensures that:
+
+Subclasses behave correctly: A subclass should not break the expectations set by the base class.
+
+Code reusability: You can safely use subclasses wherever the base class is expected.
+
+Maintainability: You can add new subclasses without modifying existing code.
+
+LSP in the Car and Engine Example
+Let’s revisit our Car and Engine example to understand LSP.
+
+Step 1: Define the Base Interface
+We already have the IEngine interface:
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+public interface IEngine
+{
+    void Start();
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 2: Implement the Interface
+We have three types of engines:
+
+PetrolEngine
+
+ElectricEngine
+
+HydrogenEngine
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+public class PetrolEngine : IEngine
+{
+    public void Start()
+    {
+        Console.WriteLine("Petrol Engine started.");
+    }
+}
+
+public class ElectricEngine : IEngine
+{
+    public void Start()
+    {
+        Console.WriteLine("Electric Engine started.");
+    }
+}
+
+public class HydrogenEngine : IEngine
+{
+    public void Start()
+    {
+        Console.WriteLine("Hydrogen Engine started.");
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 3: Use the Engines in the Car
+The Car class depends on the IEngine interface:
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+public class Car
+{
+    private readonly IEngine _engine;
+
+    public Car(IEngine engine)
+    {
+        _engine = engine;
+    }
+
+    public void StartCar()
+    {
+        _engine.Start();
+        Console.WriteLine("Car is moving.");
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+How Does LSP Apply Here?
+The Liskov Substitution Principle says that any implementation of IEngine (e.g., PetrolEngine, ElectricEngine, HydrogenEngine) should be able to replace IEngine without breaking the Car class.
+
+Let’s test this:
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+class Program
+{
+    static void Main(string[] args)
+    {
+        IEngine petrolEngine = new PetrolEngine();
+        IEngine electricEngine = new ElectricEngine();
+        IEngine hydrogenEngine = new HydrogenEngine();
+
+        Car petrolCar = new Car(petrolEngine);
+        petrolCar.StartCar();
+
+        Car electricCar = new Car(electricEngine);
+        electricCar.StartCar();
+
+        Car hydrogenCar = new Car(hydrogenEngine);
+        hydrogenCar.StartCar();
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Output:
+
+Copy
+Petrol Engine started.
+Car is moving.
+Electric Engine started.
+Car is moving.
+Hydrogen Engine started.
+Car is moving.
+Key Point: LSP in Action
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Here’s how LSP is being followed:
+
+The Car class depends on the IEngine interface (abstraction).
+
+Any implementation of IEngine (e.g., PetrolEngine, ElectricEngine, HydrogenEngine) can be substituted for IEngine without breaking the Car class.
+
+The Car class doesn’t care which engine is being used, as long as it follows the IEngine contract (i.e., it has a Start method).
+
+What Happens if LSP is Violated?
+Let’s say we add a new engine type, BrokenEngine, that doesn’t follow the IEngine contract:
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+public class BrokenEngine : IEngine
+{
+    public void Start()
+    {
+        throw new Exception("Engine failed to start!"); // Breaks the contract
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+If we use BrokenEngine in the Car class:
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+IEngine brokenEngine = new BrokenEngine();
+Car brokenCar = new Car(brokenEngine);
+brokenCar.StartCar(); // Throws an exception
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+This violates LSP because BrokenEngine cannot substitute IEngine without breaking the program.
+
+How to Follow LSP?
+To follow LSP:
+
+Ensure subclasses adhere to the contract: Subclasses must fulfill the expectations set by the base class or interface.
+
+Avoid overriding methods in a way that breaks functionality: Subclasses should not change the behavior of methods in a way that violates the base class’s contract.
+
+Use abstractions: Depend on abstractions (interfaces or base classes) rather than concrete implementations.
+
+Real-World Analogy
+Think of a power socket:
+
+The socket is like the base class or interface (IEngine).
+
+The plug is like the subclass or implementation (PetrolEngine, ElectricEngine, etc.).
+
+Any plug that fits the socket should work without causing issues. If a plug doesn’t work, it violates the "contract" of the socket.
+
+This is how LSP works: subclasses should seamlessly replace the base class without causing problems.
+
+Summary
+Liskov Substitution Principle (LSP): Subclasses should be able to replace their base class without breaking the program.
+
+Why LSP Matters: It ensures that subclasses behave correctly and makes the system more maintainable and extensible.
+
+How to Follow LSP:
+
+Subclasses must adhere to the contract of the base class or interface.
+
+Avoid breaking the expected behavior of methods.
+
+By following LSP, you ensure that your system is robust, flexible, and easy to extend. Let me know if you need further clarification! 😊
+
+
+
+
+
+
+
