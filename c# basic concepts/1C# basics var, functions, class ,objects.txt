@@ -363,7 +363,7 @@ public class HelloWorld
 - while creating object/instance Static constructor called only once 
 and that is when the class is load for the first time.
 - It is used to initialize the static fields of the class.
-- No matter how many objects of class are created but static contructor
+- No matter how many objects of class are created but static constructor
 called only once.
 
 using System;
@@ -371,14 +371,26 @@ public class Employee {
     public int Id ;
     public string Name ;
     public double salary;
+    private static int count;
+
+    public Employee(int id, string name, double sal)
+    {
+        Id = id;
+        Name = name;
+	salary = sal;
+        ++count;
+    }
 
     static Employee()//kim : we can't apply "public" to static modifier
     {
         Console.WriteLine("Static constructor invoked ");
     } 
 
-    public Employee()
+
+	// parameter less constructor
+    public Employee() : this(0, 40,100000)
     {
+	//Though we have not written count in this c'tor still we will get count because of "this" keyword
         Console.WriteLine("Default constructor invoked ");
     }
     
@@ -392,6 +404,7 @@ public class HelloWorld
        Employee e0 = new Employee();
        Employee e1 = new Employee();
        Employee e2 = new Employee();
+       Employee e3 = new Employee(186, Harshal, 48000);
     }
 }
 
@@ -416,7 +429,6 @@ public class Employee {
         Id = e.Id;
         Name = e.Name ;
         Console.WriteLine($"CC : Id and Name is : {Id} and {Name} ");
-        
     }
 }
 
@@ -484,13 +496,16 @@ using System;
             this.accno = accno;  
             this.name = name;  
         }  
+
+	
           
         public void display()  
         {  
             Console.WriteLine(accno + " " + name + " " + rateOfInterest);  
         }  
-   }  
-   class TestAccount{  
+    }  
+
+    class TestAccount{  
        public static void Main(string[] args)  
         {  
             Account a1 = new Account(101, "Sonoo");  
