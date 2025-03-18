@@ -190,11 +190,18 @@ values
 ----------------------------===
 select * from Employees;
 
-1.4. Delete single record : 
+1.4 Update records 
+--------------------------
+UPDATE Employees
+SET salary = 65000
+WHERE id = 101;
+
+
+1.5. Delete single record : 
 ===========================
 delete from employee where id = 100;
 
-1.5. Delete Multiple Records 
+1.6. Delete Multiple Records 
 ==========================
 i]  DELETE FROM EMPLOYEES;
 II] TRUNCATE TABLE EMPLOYEES; -- It also resets indexes
@@ -206,5 +213,41 @@ II] TRUNCATE TABLE EMPLOYEES; -- It also resets indexes
 -------------------------------------------
 SELECT * FROM Employees 
 where department IN ('IT', 'HR');
+
+2.2> Find employees whose name starts with 'J'
+------------------------------------------------
+SELECT * FROM Employees
+WHERE name LIKE 'J%';
+
+
+2.3> Get employees with salary between 50K and 80K
+------------------------------------------------------
+select * from employees 
+where salary between 50000 and 80000;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
