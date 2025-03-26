@@ -27,21 +27,135 @@ There are 3 types of arrays in C# programming:
     2. Multidimensional Array
     3. Jagged Array
 
+
+
+=====================================================================================================================================================
+using System;
+
+public class Program
+{
+    public static void Main(string [] args)
+    {
+       int[] myArr = {1,2,4,3,5};
+       
+       
+          for(int index = 0; index < myArr.Length; index++)
+          {
+              Console.WriteLine($"The element at index {index} is arr[{index}]");
+          }
+          
+        int count = 0;
+        foreach(int ele in myArr){
+            Console.WriteLine($"The element at the position {count} is {ele}");
+            count++;
+        }
+      
+    }
+}
+=============================-====== All theorotical concepts covered in one program =====================================================
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine("------ ARRAY INITIALIZATION & PRINTING ------");
+
+        // 1. Declare and assign values using index
+        int[] arr1 = new int[5]; // [0, 0, 0, 0, 0]
+        for (int i = 0; i < arr1.Length; i++)
+        {
+            arr1[i] = (i + 1) * 10; // [10, 20, 30, 40, 50]
+        }
+
+        Console.WriteLine("arr1 values:");
+        PrintArray(arr1);
+
+        // 2. Inline initialization
+        int[] arr2 = new int[] { 5, 4, 3, 2, 1 };
+        Console.WriteLine("\narr2 values:");
+        PrintArray(arr2);
+
+        // 3. Copy using Array.Copy
+        int[] copiedArr = new int[5];
+        Array.Copy(arr1, copiedArr, arr1.Length);
+        Console.WriteLine("\nCopied arr1 into copiedArr:");
+        PrintArray(copiedArr);
+
+        // 4. Copy using CopyTo
+        int[] copyToArr = new int[5];
+        arr2.CopyTo(copyToArr, 0);
+        Console.WriteLine("\nCopied arr2 into copyToArr:");
+        PrintArray(copyToArr);
+
+        // 5. Fill array using Array.Fill (C# 8.0+)
+        int[] filledArr = new int[5];
+        Array.Fill(filledArr, 7); // [7, 7, 7, 7, 7]
+        Console.WriteLine("\nfilledArr filled with 7:");
+        PrintArray(filledArr);
+
+        // 6. Using LINQ to generate array
+        int[] linqArr = Enumerable.Range(1, 5).ToArray(); // [1, 2, 3, 4, 5]
+        Console.WriteLine("\nLINQ-generated array:");
+        PrintArray(linqArr);
+
+        // 7. Using Array.Clear to reset
+        Array.Clear(copyToArr, 0, copyToArr.Length); // all 0
+        Console.WriteLine("\ncopyToArr after clearing:");
+        PrintArray(copyToArr);
+
+        // 8. Sort and Reverse
+        Array.Sort(arr2); // [1, 2, 3, 4, 5]
+        Console.WriteLine("\narr2 after sorting:");
+        PrintArray(arr2);
+
+        Array.Reverse(arr2); // [5, 4, 3, 2, 1]
+        Console.WriteLine("\narr2 after reversing:");
+        PrintArray(arr2);
+
+        // 9. Using Buffer.BlockCopy (advanced)
+        int[] sourceBuffer = { 100, 200, 300, 400, 500 };
+        int[] bufferCopy = new int[5];
+        Buffer.BlockCopy(sourceBuffer, 0, bufferCopy, 0, sourceBuffer.Length * sizeof(int));
+        Console.WriteLine("\nBuffer.BlockCopy result:");
+        PrintArray(bufferCopy);
+
+        // 10. Check Array Properties
+        Console.WriteLine("\nArray Properties for arr1:");
+        Console.WriteLine($"Length: {arr1.Length}");
+        Console.WriteLine("Size is fixed? " + arr1.IsFixedSize);
+        Console.WriteLine($"Rank (dimensions): {arr1.Rank}");
+
+        Console.WriteLine("\n===== END OF ARRAY DEMO =====");
+    }
+
+    static void PrintArray(int[] arr)
+    {
+        for (int i = 0; i < arr.Length; i++)
+        {
+            Console.WriteLine($"Index {i} → {arr[i]}");
+        }
+    }
+}
+=============================-====== All theorotical concepts covered in one program =====================================================
 1. C# Single Dimensional Array : 
 --------------------------------
 put square bracket after datatype like below :
 
-    1.a> Saperately declare and assign size
-    ----------------------------------------------
+    	1.a> Saperately declare and assign size
+    	----------------------------------------------
         int[] myArray;
         myArray = new int[5]; // Definition with a size of 5
 
-    1.b> Declaration and assign size at same time
-    -------------------------------------------------
+    	1.b> Declaration and assign size at same time
+    	-------------------------------------------------
         int[] myArray = new int[5]; // Creates an array of integers with a size of 5
 
-2. Inline Initialization
-----------------------------------
+	2. Inline Initialization
+	----------------------------------
         //2.a> Initializes with specific values without specifying size
         ----------------------------------------------------------------
         int[] myArray = new int[] { 1, 2, 3, 4, 5 }; 
@@ -50,32 +164,11 @@ put square bracket after datatype like below :
         -------------------------------------------------------------------------------------
         int[] myArray = { 1, 2, 3, 4, 5 }; 
 
-3. Implicitly Typed Array
-----------------------------------
+	3. Implicitly Typed Array
+	----------------------------------
         var myArray = new[] { 1, 2, 3, 4, 5 }; // Compiler infers the type (int array)
 
-        // How to write array (printing array next program)
-        class Array 
-        {
-            public static void Main(string [] args)
-            {
-                // Declare and assign size saperately
-                int[] myArray;
-                myArray = new int[5];
-                Console.WriteLine("Length of Array: " + myArray.Length);
-                Console.WriteLine("Size is fixed? " + myArray.IsFixedSize);
-                
-                // Declare and initialise array
-                int[] myArray1 = new int[] { 1, 2, 3, 4, 5 };
-                Console.WriteLine("Size of array: "+ myArray1.Length);
-                Console.WriteLine("Size is fixed? " + myArray1.IsFixedSize);
 
-                // Implicitly typed array
-                var myArray2 = new[] {"one", "two", "three"};
-                Console.WriteLine("Size of array: "+ myArray2.Length);
-                
-            }
-        }
           
         Properties of the Arrays:
         ------------------------
@@ -119,6 +212,7 @@ put square bracket after datatype like below :
         Reassign the array with a new set of values using inline initialization:
 
         myArray = new int[] { 1, 2, 3, 4, 5 }; // Reassigns the array with new values
+
 
         4. Use Array.Copy or Array.CopyTo
         ----------------------------------
@@ -166,7 +260,7 @@ put square bracket after datatype like below :
         class Program {
         public static void Main(string[] args)
         {
-            ====  way 1 : declare and assign values saperately
+             ====  way 1 : declare and assign values saperately
                     int[] myArr ;    
                     myArr = new int[5];
                 
@@ -189,7 +283,7 @@ put square bracket after datatype like below :
                         ++count;
                     }
 
-        ========================== OOOOOOOOOOORRRRRRRRRRRRRRRR ====================================
+        	====================== OOOOOOOOOOORRRRRRRRRRRRRRRR ====================================
 
                     // way 2.1 : same time declare and define them below both methods are ok 
                     i.e.with giving size of array and second one without array size
