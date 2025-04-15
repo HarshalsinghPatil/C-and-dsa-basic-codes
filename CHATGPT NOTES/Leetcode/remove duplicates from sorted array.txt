@@ -1,0 +1,122 @@
+// Remove duplicates from sorted array 
+
+using System;
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        
+        int[] num = {1,1,2,3,3,4,5,6,7,8,8,8,9};
+-- ap1
+        int[] num2 = new int[num.Length];
+        int insertPos = 0;
+        num2[insertPos]= num[0];
+        for(int i = 0; i<num.Length ;i++)
+	{
+            if(num2[insertPos]!=num[i])
+            {
+                insertPos++;
+                num2[insertPos]=num[i];
+		//num2[++insertPos] = num[i];
+            }
+        }
+        
+
+
+        for(int i= 0;i < num.Length ; i++)
+        {
+            Console.WriteLine($"The element at index {i} is {num2[i]}");
+        }   
+
+-- ap2 : hashset
+	        HashSet<int> set = new HashSet<int>(num);
+
+        int index = 0;
+        foreach(var val in set)
+        {
+            Console.WriteLine($"The element at index {index++} is {val}");
+        }
+
+-- ap3 : linq
+	var unique = num.Distinct().ToArray();
+
+        for(int i = 0; i < unique.Length; i++)
+        {
+            Console.WriteLine($"The element at index {i} is {unique[i]}");
+        }
+
+    
+    }
+}
+
+//merge two sorted 
+using System;
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+
+--- MY == FAILS WHEN SIZE OF TOW ARRAYS DIFF
+        int[] a1 = {1,2,3};
+	int[] a2 = {4,5,6};
+
+	int[] a3 = new int[a1.Length + a2.Length];
+	int next = 0 ;
+	int prev = a3.Length -1;
+	
+	for(int i = 0, j = a2.Length-1; i<a1.Length|| j>=0;i++ , j--)
+	{
+		a3[next++] = a1[i];
+		a3[prev--] = a2[j];
+	}
+
+	for(int i = 0 ; i< a3.Length; i++)
+	{
+		Console.WriteLine($"The element at index {i} is {a3[i]}");
+	}
+
+--- AP2
+
+	int[] a1 = {1, 2, 3,8};
+int[] a2 = {4, 5, 6};
+
+int[] result = new int[a1.Length + a2.Length];
+int i = 0, j = 0, k = 0;
+
+while (i < a1.Length && j < a2.Length)
+{
+    if (a1[i] < a2[j])
+        result[k++] = a1[i++];
+    else
+        result[k++] = a2[j++];
+}
+
+while (i < a1.Length) result[k++] = a1[i++];
+while (j < a2.Length) result[k++] = a2[j++];
+
+foreach (int n in result)
+    Console.WriteLine(n);
+
+
+-- AP3 LIST 
+List<int> merged = new List<int>();
+merged.AddRange(a1);
+merged.AddRange(a2);
+merged.Sort();
+
+foreach (var num in merged)
+    Console.WriteLine(num);
+
+-- ap4
+
+int[] merged = a1.Concat(a2).OrderBy(x => x).ToArray();
+foreach (var n in merged)
+    Console.WriteLine(n);
+
+
+
+    }
+}
+

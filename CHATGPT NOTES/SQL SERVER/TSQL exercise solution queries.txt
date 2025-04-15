@@ -1,0 +1,71 @@
+TSQL exercise solution queries : 
+================================
+
+Lesson 1 : 
+----------
+
+Try these on your own to strengthen your skills:
+
+1. Select only the employees whose Salary is greater than 50000.
+2. Update the Department of 'Robert Brown' to Marketing.
+3. Delete employees whose Age is greater than 30.
+4. Sort employees in descending order of Age.
+5. Retrieve employees whose names start with 'J'.
+
+select * from employees 
+where salary> 50000;
+
+update employees 
+set Department = "Marketing"
+where firstName = 'Robert' and Lastname = 'Brown'
+
+delete from employees 
+where age> 30
+
+select * om employees 
+order by age desc;
+
+select * from employees 
+where firstname like "j%";
+
+Lesson 2 :
+----------
+
+ Practice Questions
+1. Write a query using INNER JOIN to get employee names and their department names.
+2. Modify your query to use a LEFT JOIN instead.
+3. Find the total number of employees using COUNT().
+4. Find the highest DepartmentID using MAX().
+5. Use SUM() to add up all DepartmentIDs.
+
+select e.firstname , d.departmentname
+from employees e
+inner join departments d on e.departmentid = d.departmentId;
+
+select e.firstname , d.departmentname
+from employees e
+left join departments d on e.departmentid = d.departmentId;
+
+select Count(*) as TotalEmployees
+from employees;
+
+select max(departmentId) as MaxDeptId from departments;
+
+select sum(departmentid) as sumOfallIds from departments;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

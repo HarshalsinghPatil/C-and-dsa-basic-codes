@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace ConsoleApp1
 {
         public class SimpleStack
-        {// if you want to use public modefier for methods then you need to define class public 
-
+        {
+            // if you want to use public modefier for methods then you need to define class public 
             int[] stack;
             int maxSize;
             int top;
