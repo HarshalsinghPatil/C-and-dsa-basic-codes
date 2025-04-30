@@ -1,0 +1,14 @@
+1. Python for AI/LM Basics
+https://chatgpt.com/c/680f24f0-c5f0-800b-bb0f-9a3f92a15fe0
+
+2. Leetcode problem solving 
+https://chatgpt.com/share/68122588-b6ec-800b-bc6d-0c40c3c431f4
+
+3. ReactJS interview guide
+https://chatgpt.com/share/67fe4116-48e8-800b-99e7-69ff7c6efba3
+
+4. Comprehensive LINQ Course
+https://chatgpt.com/share/6812267e-b90c-800b-808a-699c13091c27
+
+5. TSQL course
+https://chatgpt.com/share/67dbe995-f458-800b-bb0b-c593deb6e3b5
