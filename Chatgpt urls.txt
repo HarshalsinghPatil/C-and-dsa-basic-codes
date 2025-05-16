@@ -13,5 +13,8 @@ https://chatgpt.com/share/6812267e-b90c-800b-808a-699c13091c27
 5. TSQL course
 https://chatgpt.com/share/67dbe995-f458-800b-bb0b-c593deb6e3b5
 
-6. Quick list of linq 
-https://chatgpt.com/share/6826a991-e6a4-8003-8a67-c5252268ae74
+6. Python quick revision notes : 
+https://chatgpt.com/canvas/shared/6819c50f196081919fc7594f53183358
+
+7. Sql full force : 
+https://chatgpt.com/share/682736a1-df30-800b-ab8b-532f3e3917af
