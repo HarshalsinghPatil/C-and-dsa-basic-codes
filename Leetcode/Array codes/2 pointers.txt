@@ -1,0 +1,137 @@
+using System;
+using System.Collections.Generic;
+
+public class Program 
+{
+    //1.
+    public static int[] ReverseArray(int[] arr)
+    {
+        int left = 0 , right = arr.Length -1 ;
+        while(left<right)
+        {
+            (arr[left],arr[right])=(arr[right],arr[left]);
+            left++;
+            right--;
+        }
+        return arr;
+    }
+    //2.
+    public static int[] ZeroesAtEnd (int[] arr)
+    {
+        int[] newArr = new int[arr.Length]; 
+        int newLength = 0;
+        for(int i = 0 ; i < arr.Length; i++)
+            if(arr[i] != 0)
+                newArr[newLength++] = arr[i];
+
+        for(int i = newLength; i< newArr.Length ; i++)
+            newArr[i] = 0;
+        
+        return newArr;
+    }
+    
+    // 3. sorting array : bubble sort
+    public static void BubbleSort(int[] arr)
+    {
+        for (int i = 0; i < arr.Length - 1; i++)
+        {
+            for (int j = 0; j < arr.Length - i - 1; j++)
+            {
+                if (arr[j] > arr[j + 1])
+                {
+                    // Swap arr[j] and arr[j+1]
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+
+    //4. remove duplicates from sorted arrays and return final index of original input like below 
+    /*
+        Input: nums = [1,1,2]
+        Output: 2, nums = [1,2,_]
+        
+        Input: nums = [0,0,1,1,1,2,2,3,3,4]
+        Output: 5, nums = [0,1,2,3,4,_,_,_,_,_]
+    */
+
+
+    public int RemoveDuplicates(int[] nums) 
+    {
+        int left = 0 ;
+        for(int right = 1 ; right < nums.Length; right++)
+        {
+            if(nums[right] != nums[left])
+            {
+                left++;
+                nums[left] = nums[right];
+            }
+        }
+        return left + 1;
+    }
+
+    // remove duplicates from unsorted array
+    public int RemoveDuplicates(int[] nums)
+    {
+        if (nums.Length == 0) return 0;
+    
+        int left = 0;
+    
+        for (int right = 1; right < nums.Length; right++)
+        {
+            bool isDuplicate = false;
+    
+            // Check if nums[right] already exists from index 0 to left
+            for (int i = 0; i <= left; i++)
+            {
+                if (nums[right] == nums[i])
+                {
+                    isDuplicate = true;
+                    break;
+                }
+            }
+    
+            if (!isDuplicate)
+            {
+                left++;
+                nums[left] = nums[right];
+            }
+        }
+    
+        return left + 1; // Number of unique elements
+    }
+    
+    
+    
+    public static void Main(string[] args)
+    {   
+            //1. reverse arrays:
+            int[] input = {1,2,3,4,5};
+            int[] reversed = ReverseArray(input);
+            Console.WriteLine("Reversed Array is : ");
+            foreach(int n in reversed)
+                Console.Write(n + " ");
+
+            //2. move zeroes to end 
+            int[] ip = {0,1,0,3,1};
+            int[] sortedZero = ZeroesAtEnd(ip);
+            Console.WriteLine("Move Zeroes to End : ");
+            foreach(int n in sortedZero)
+                Console.Write(n + " ");
+        
+            //3. Bubble sort
+            int[] arr = {1, 0, 0, 5, 0, 3, 0};
+
+            // Call sorting method
+            BubbleSort(arr); // or SelectionSort(arr);
+
+            Console.WriteLine("Sorted array:");
+            foreach (int num in arr)
+            {
+                Console.Write(num + " ");
+            }
+    }
+}

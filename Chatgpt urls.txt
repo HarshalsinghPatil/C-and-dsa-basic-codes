@@ -18,3 +18,12 @@ https://chatgpt.com/canvas/shared/6819c50f196081919fc7594f53183358
 
 7. Sql full force : 
 https://chatgpt.com/share/682736a1-df30-800b-ab8b-532f3e3917af
+
+8. SDE 1 : Tree and graph tutorial from leetcode point of view
+https://chatgpt.com/share/6829d034-2788-8003-8333-5f6b2205dde7
+
+9. leetcode phase 2
+https://chatgpt.com/share/682a2a66-607c-8003-b25e-274d14007a3b
+
+10. Leetcode 20 amz tagged
+https://chatgpt.com/share/682aa9b8-f170-8003-8534-26a431048064

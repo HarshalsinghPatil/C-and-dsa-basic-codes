@@ -1,0 +1,166 @@
+🔥 Day-by-Day 7-Day Amazon OA Prep Plan
+All problems are from LeetCode.
+
+🗓️ Day 1: HashMap + Array Basics (2.5–3 hrs)
+🔹 Time Split:
+
+1 hr: Problem Solving
+
+1 hr: Debugging & edge cases
+
+30 min: Review + notes
+
+📘 Topics:
+Frequency map
+
+Prefix sum
+ 
+Classic hashmap problems
+
+🧩 Problems:
+Two Sum – Easy
+
+Subarray Sum Equals K – Medium
+
+Longest Substring Without Repeating Characters – Medium
+
+🗓️ Day 2: Sliding Window + Two Pointers (3 hrs)
+🔹 Time Split:
+
+30 min: Watch Neetcode sliding window video
+
+2 hrs: 3 problems
+
+30 min: Review
+
+📘 Topics:
+Shrinking/growing window
+
+Left/right pointers
+
+🧩 Problems:
+Longest Repeating Character Replacement – Medium
+
+Minimum Window Substring – Hard (focus on understanding, not solving fully)
+
+Container With Most Water – Medium
+
+🗓️ Day 3: Arrays + Prefix/Suffix + Sorting Tricks
+🔹 Time Split:
+
+1.5 hrs: Solving
+
+30 min: Neetcode explanation
+
+1 hr: Debug variations
+
+📘 Topics:
+Sorting
+
+Prefix trick
+
+Edge conditions
+
+🧩 Problems:
+Product of Array Except Self – Medium
+
+Merge Intervals – Medium
+
+Majority Element II – Medium
+
+🗓️ Day 4: Recursion + Backtracking (3 hrs)
+🔹 Time Split:
+
+1 hr: Understanding backtracking
+
+2 hrs: 3 problems
+
+📘 Topics:
+Subsets
+
+Permutations
+
+Recursion tracing
+
+🧩 Problems:
+Subsets – Medium
+
+Permutations – Medium
+
+Combination Sum – Medium
+
+🗓️ Day 5: Mock OA + Review (3 hrs)
+🔹 Simulate real OA environment: 90 minutes for 2 problems
+
+Use Amazon-tagged problems:
+Amazon Interview Questions
+Choose 2 medium-hard problems at random (or try this combo):
+
+K Closest Points to Origin – Medium
+
+3Sum – Medium
+
+🧠 After test:
+
+Review what you did wrong
+
+Note where time went
+
+Identify slowdowns
+
+🗓️ Day 6: Trees + Stack + Edge Case Handling
+🔹 Time Split:
+
+30 min: Tree traversals
+
+2 hrs: Practice
+
+30 min: Debug + learn from top solution
+
+📘 Topics:
+Tree DFS
+
+Stack/monotonic stack
+
+🧩 Problems:
+Binary Tree Inorder Traversal – Easy
+
+Validate Binary Search Tree – Medium
+
+Daily Temperatures – Medium
+
+🗓️ Day 7: Review + Light Mock + Debugging
+🔹 Time Split:
+
+90 min: Take another 2-problem mock
+
+1 hr: Review old mistakes
+
+30 min: Practice debugging
+
+Good Mock Problems:
+LRU Cache – Medium
+
+Find All Anagrams in a String – Medium
+
+🎁 Bonus: 5 Must-Know Amazon Leadership Principle STAR Questions
+Prepare short (2–3 min) STAR-format answers for these:
+
+Tell me about a time you took ownership of a failing project.
+
+Tell me about a time you made a mistake and how you handled it.
+
+How did you resolve a conflict with a teammate?
+
+Tell me a time you had to deliver something with little time.
+
+Tell me a time when you simplified a process or code.
+
+✅ Summary Sheet (What to Master)
+Topic	Time Total	Source
+Arrays + Strings	2 days	LC 75 / Neetcode
+Sliding Window	1 day	Neetcode playlist
+Hashing + Prefix	1 day	LC 75
+Recursion/Backtracking	1 day	Neetcode / LC
+Mock + Review	2 days	LeetCode company tag
+
