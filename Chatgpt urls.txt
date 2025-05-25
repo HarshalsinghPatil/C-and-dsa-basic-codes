@@ -35,3 +35,7 @@ blind 75  in c#
 https://chatgpt.com/share/682c04b5-0d20-8003-9fa9-e5517fc19e88
 
 https://www.assessmentcentrehq.com/amazon-assessment-test/
+
+
+# 50 queries for interview and sql server from Basics
+https://chatgpt.com/share/68335e4d-26b8-8003-901f-935d8d1983a1
