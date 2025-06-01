@@ -1,0 +1,119 @@
+============ Theory Questions ================================
+----------------- omni wise ---------------------------
+-> Diff between .net and .net core 
+-> web services vs web API 
+-> Do you have idea about Dependency injection
+-> Web.config file do u have web.config file in .net core web api App ?
+-> show me in writing  how u will handle a specific exception and normal exception?
+-> what is diff between implementation inheritance and interface inheritance ?
+
+------------------------ money honey -------------------------
+-> how many types of constructors in c#
+_> types of access modifiers
+-> what are bad effect of boxing and unboxing if we do it ? 
+->  managed and unmanaged code 
+-> remove duplicates using query
+
+------------------------ Deloitte -----------------------------------------------
+- .net and .net core web api
+- oops 
+- what is runtime polymorphism ? overloading and overriding?
+- diff between abstraction and encapsulation?
+- abstract class vs interface 
+
+==========================================================================================================================
+==========================================================================================================================
+==========================================================================================================================
+==========================================================================================================================
+==========================================================================================================================
+                    ====================== Plain react interview Theory ===========================
+==========================================================================================================================
+==========================================================================================================================
+==========================================================================================================================
+==========================================================================================================================
+==========================================================================================================================
+1. What is react ?
+
+2. what is diff between - class and functional component ?
+
+3. What are hooks in react ? 
+- can we use them in class components ? 
+- what is the need of the hooks ?
+- give me some examples of hooks ? 
+- can we have custom hooks? 
+- how to create custom hooks or why do we need to create a custom hook?
+
+4. useState() : 
+- what is state ?  how state is managed in react js ?
+- if we just declare variables without using useState - what will happen? why they don't work?
+  Ans: React functional components -- state is designed such way that whenever state changes component re - renders but when we 
+  just use variable to store state it does not re-renders component.
+- in use state can we use just a string to initialise it or other data type also ?
+
+5. useEffect() : - Logical use: life cycle && handle sideEffects -> structure: callback function and dependency array
+----------------------------  logical use ----------------------------------------------------------------------
+- what is useEffect ?
+== LifeCycle: 
+- what is life cycle?
+- how life cycle handled in class component 3 methods? 
+- how its done in functional component?
+- can you mention three stages of component life cycle using useEffect in functional component in useEffect hook
+== Side Effects 
+- what are the side effects in useEffect? 
+ans: function has one function to manage state and show  ui other than this all are side effects like 
+"The useEffect hook in React is used to manage side effects in functional components. Side effects are 
+ operations that interact with the outside world, such as data fetching, DOM manipulation, or setting up subscriptions. 
+   1. Data Fetching: Making API calls to retrieve data from a server.
+   2. DOM Manipulation: Directly modifying the Document Object Model, such as changing the title of a page.
+   3. Timers: Setting up and clearing timers, such as setTimeout or setInterval.
+   4. Subscriptions: Establishing subscriptions to external data sources or event listeners.
+   5. Logging: Writing to the console or other logging services.
+   6. State Updates: Modifying state that triggers re-renders, such as updating context, Redux state, or local component state. 
+   7. Local Storage: Interacting with browser local storage to persist data."
+== structure 
+- tell me about useEffect? how its structure is ? 
+"The useEffect hook takes two arguments: a callback function and an optional dependency array.
+The callback function contains the side effect logic, and the dependency array controls when the effect runs."
+- write useEffect ? 
+        a. simple useEffect                                      => useEffect();
+        b. with just call back function                          => useEffect(()=> {});
+        c. useEffect with call back fuction and dependency array => useEffect(()=> {},[]);
+- what is significance of dependency array ? 
+        Ans- it controls page rendering 
+        a. useEffect with just call back function       => useEffect(()=> {});         --- re-renders/refresh page on every state change
+        b. useEffect with empty dependency array        => useEffect(()=> {},[]);      --- refresh page only once when its loaded
+        c. useEffect with values in dependency arrat    => useEffect(()=> {},[v1,v2]); --- whenever values of v1/v2 changes page re-renders
+
+6. misc hooks - useRef(), useMemo(), 
+    useRef() - why do we use ? what is its significance - even if state change page don't refresh for ref hook variable
+
+7. Session,cookies and local storage     
+8. diff between map, filter, foreach loop ? which one of them really alters the state of object?
+==========================================================================================================================
+==========================================================================================================================
+==========================================================================================================================
+==========================================================================================================================
+==========================================================================================================================
+                                ====================== Javascript ======================
+==========================================================================================================================
+==========================================================================================================================
+==========================================================================================================================
+==========================================================================================================================
+==========================================================================================================================
+-> Diff between let, var ,const?
+-> what is scope of let , var, const?
+-> diff between map, filter, foreach loop ? 
+
+
+
+==========================================================================================================================
+==========================================================================================================================
+==========================================================================================================================
+==========================================================================================================================
+==========================================================================================================================
+                                ====================== SQL Server ======================
+==========================================================================================================================
+==========================================================================================================================
+==========================================================================================================================
+==========================================================================================================================
+==========================================================================================================================

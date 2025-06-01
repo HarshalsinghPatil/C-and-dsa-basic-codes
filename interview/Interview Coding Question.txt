@@ -1,0 +1,331 @@
+
+
+======================= coding question ===================
+-------------- webito = real world project and stored proc -----------------------
+Design two tables: Employee and Department, with the following structure:
+EmployeeId (Primary Key, Auto-incremented)
+EmployeeName (nvarchar(100))
+DepartmentId (Foreign Key referencing Department)
+DateOfJoining (datetime)
+Salary (decimal(18,2))
+ 
+Department table
+ 
+DepartmentId (Primary Key, Auto-incremented)
+DepartmentName (nvarchar(100))
+ 
+ 
+Write a SQL query to create these tables with proper constraints.
+
+Insert Data:
+ 
+Write an INSERT statement to add employees and departments using user-provided values.
+
+
+Joins:Write a Stored procedure to retrieve all employees along with their department names.
+
+
+Parameterized Query:
+1. Write a Stored procedure to fetch all employees working in a specific department (parameterize DepartmentId).
+Aggregations:
+ 
+2. Write a Stored procedure to calculate the total salary of all employees in each department.
+
+Stored Procedure Tasks
+Write a stored procedure to:
+ 
+1. Insert or update an employee based on the presence of EmployeeId.
+2. Delete an employee by EmployeeId and handle foreign key constraints.
+
+Create a stored procedure to:
+ Retrieve employee details (name, department, joining date, and salary) by filtering on EmployeeName or DepartmentName.
+ 
+===========================================API Design and Implementation ================================================================
+POST API:
+Design a SaveEmployee API to:
+Accept input (EmployeeName, DepartmentId, DateOfJoining, Salary).
+Save the employee details in SQL  database.
+
+[HttpPost]
+public async Task<ActionResult<Employee>> SaveEmployee ([fromForm] Employee emp)
+{
+    // Check does employee exists
+    if (!EmployeeExist)
+    {
+        Employees employee = new Employees(
+            EmployeeName = emp.EmployeeName, 
+            DepartmentId = emp.DepartmentId, 
+            DateOfJoining = emp.DateOfJoining, 
+            Salary = emp.Salary
+        );
+        _context.Employees.Add(employee);
+        _context.SaveChangesAsync();
+    }
+}
+
+
+public async bool EmployeeExist (int employeeId)
+{
+    var result = await _context.Employees.Any(e => e.EmployeeId == employeeId);
+    if(result == true)
+        return true;
+    else 
+        return false;
+}
+==============================================================================================================================================
+
+GET API:
+ 
+Create an API to retrieve a list of employees from SQL:
+Include details such as EmployeeName, DepartmentName, DateOfJoining, and Salary.
+
+
+public async Task<ActionResult<List<Employees>>> GetAllEmployees ()
+{
+    List<Employees> empList = _context.Employees.ToList();
+
+    return empList;
+}
+==============================================================================================================================================
+Add search filters for employee name or department name.
+
+
+public async Task<IActionResult<List<Employees>>> FilterEmployeeList (string DepartmentName , string employeeName)
+{
+
+    var deptId = await _context.Departments.where(d =>d.DepartmentName == DepartmentName)
+                                            . (//logic to get deptId)
+    var filterResult = await _context.Employees.where(e =>e.EmployeeName == employeeName || e.DepartmentId == deptId ).ToList();
+    return filterResult;
+}
+
+
+---------------------- Vertafore  ----------------------
+
+EmployeeController : ControllerBase
+{
+    private readOnly ApplicationDbContext _context;
+
+    public EmployeeController (ApplicationDbContext context )
+    {
+            _context = context;
+    }
+
+    [Route]
+    public IActionResult Search (int empId)
+    {
+
+        int id = _context.Employee.Where( e => e.Id == empId);
+
+        if(id == null)
+        {
+            return NotFound();
+        }
+
+        return id ;
+    }
+}
+==============================================================================================================================================
+==============================================================================================================================================
+==============================================================================================================================================
+==============================================================================================================================================
+============================== Coding problems================================================================
+==============================================================================================================================================
+==============================================================================================================================================
+==============================================================================================================================================
+===========================================  Array =========================================
+1. Second Highest number in an array : 
+
+using System.Collections;
+using System;
+public class HelloWorld
+{
+    public static int SecondLargetsNo(int[] arr)
+    {
+        int temp = 0;
+        int max = 0;
+        for(int i = 0; i<arr.Length; i++)
+        {
+            if(arr[i]>max)
+            {   temp = max;
+                max = arr[i];
+            }
+            else if(arr[i]>temp && arr[i]<max)
+            {
+                temp = arr[i];
+            }
+        }
+        return temp;
+    }
+    
+    public static void Main(string[] args)
+    {
+        int[] arr = {1,4,6,8,4,1,1,7,6};
+        
+        int secondlargeNo = SecondLargetsNo(arr);
+        Console.WriteLine($"Socond Largest no in array is :{secondlargeNo}");
+        
+    }
+}
+
+2. remove duplicates from array : 
+using System;
+
+public class HelloWorld
+{
+    public static int[] RemoveDuplicates(int[] arr)
+    {
+        int[] UniqueArray = new int[arr.Length];
+        int count = 0;
+
+        for (int i = 0; i < arr.Length; i++)
+        {
+            bool isDuplicate = false;
+            for (int j = 0; j < count; j++)
+            {
+                if (arr[i] == UniqueArray[j])
+                {
+                    isDuplicate = true;
+                    break;
+                }
+            }
+
+            if (!isDuplicate)
+            {
+                UniqueArray[count] = arr[i];
+                count++;
+            }
+        }
+
+     
+        int[] result = new int[count];
+        for (int i = 0; i < count; i++)
+        {
+            result[i] = UniqueArray[i];
+        }
+
+        return result;
+    }
+
+    public static void Main(string[] args)
+    {
+        int[] arr = { 1, 4, 6, 8, 4, 1, 1, 7, 6 };
+
+        int[] withoutDuplicates = RemoveDuplicates(arr);
+        Console.WriteLine("The unique Array is: ");
+
+        for (int i = 0; i < withoutDuplicates.Length; i++)
+        {
+            Console.WriteLine(" " + withoutDuplicates[i]);
+        }
+    }
+}
+
+===================================== string ==========================================
+----------------- omniwyse ----------------------
+1.	Reverse the ordering of words in a String
+2.	Write a program to find duplicate in String
+
+---------------------- Vertafore  ----------------------
+Q1. CountMostReapeatingChar
+Q2. GetWordsWithTwoOrMoreVowels
+
+
+
+public class Program {
+
+    public static void CountMostReapeatingChar(string str)
+    {
+        Dictionary<string ,int > charCount = new Dictionary<string,int> ();
+
+        foreach(char  c in str )
+        {
+            if(charCount.ContainsKey[c])
+            {
+                charCount[c++];
+            }
+            else {
+                charCount[c] = 1;
+            }
+        }
+
+        foreach(char c in charCount)
+        {
+            int maxLength = 0;
+            if(charCount.Value > maxLength)
+                maxLength = charCount.Value;
+
+            Console.WriteLine($"The most repeating char in string is {charCount.Key} -> and repeated {charCount.Value} times");
+        }
+    }
+    
+
+    List<string> GetWordsWithTwoOrMoreVowels(List<string> words)
+    {
+        List<string> stringWithAtLeastTwoVowels = new List<string>();
+
+        foreach (string w in words)
+        {
+            int count = 0;
+
+            foreach(char c in string w)
+            {
+                
+                if( c == "a" || c == "e" || c == "i" || c == "o"|| c == "u")
+                {
+                    count++;
+                }
+
+                if(count>= 2)
+                {
+                    stringWithAtLeastTwoVowels.Add(w);
+                }
+            }
+             
+
+        }
+
+    }
+    
+    
+    public static void Main(string [] args)
+    {
+        string input = "Hello Welcome To Hyderabad";
+
+        CountMostReapeatingChar(input);
+    }
+}
+
+
+==============================================================================================================================================
+==============================================================================================================================================
+==================================================== React JS ======================================================================
+==============================================================================================================================================
+==============================================================================================================================================
+====================== Vertafore ======================
+
+
+<Routes>
+    <Route  path = "/" element = </AdminHomePage>
+    <Route  path = "/user" element = </UserHomePage>
+</Routes>
+
+==============================================================================================
+==============================================================================================
+======================================   SQL Server  =========================================
+==============================================================================================
+==============================================================================================
+-------------vertafore --------------------------
+ Question> Write a Parameterized query 
+ Customer
+ ID, Name
+ Product
+ProductId, Name
+ProductPurchase
+ ProductId, CustomerID, Amount
+How much money has customer name "Ben" spent on product name "Cookies"
+
+SELECT c.Name, c.Product, p.Amount
+from Customer c 
+Join Product p
+where p.CustomerId = c.ID  and c.Name = "Ben";
