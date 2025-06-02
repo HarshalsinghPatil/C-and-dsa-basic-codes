@@ -1,0 +1,40 @@
+using System;
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        string input = "hello welcome to hyderabad";
+        char[] ch = input.ToCharArray();
+        string uniqueString = "";
+        
+        foreach(char c in ch)
+        {
+            if(!uniqueString.Contains(c) && c != ' ')
+                uniqueString += c;
+        }
+        
+        char[] uch = uniqueString.ToCharArray();
+        int maxCount = 0 ;
+        char maxChar = '\0'; 
+       
+        foreach(char uc in uch)
+        {
+             int count = 0;
+            foreach(char c in ch)
+            {
+                if(uc == c)
+                {
+                    count++;
+                }
+                if(count> maxCount)
+                {
+                    maxChar = c;
+                    maxCount = count;
+                }
+            }
+        }
+        
+        Console.WriteLine($"char '{maxChar}' is most repeated {maxCount} times");
+    }
+}
