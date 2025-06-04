@@ -1,25 +1,43 @@
 ============ Theory Questions ================================
------------------ omni wise ---------------------------
+----------------- surat company ----------------------
+1. what is .net core ? diff between .net and .net core?
+2. What are oops  and explain all concepts?
+3. folder structure of web api? 
+4. Have u used entity framework core or have any idea what it does? How migration is done complete set up with running commands
+5. what is having and how do we use it ?
+6. query for counting aggregates 
+8. routing in .NET core project 
+9. what are middleware in C#
+10. In your resume you have written docker and kubernates azure and git , do you have any idea about them ?
+11. How to establish relation ship between two tables ?
+12. what is foreign key?
+13. what is left join and what will be its output?
+14. what is signal R ?
+15. Do u have any idea about web sockets? and have u used them ?
+----------------- omni wise ----------------------------------------
 -> Diff between .net and .net core 
 -> web services vs web API 
 -> Do you have idea about Dependency injection
 -> Web.config file do u have web.config file in .net core web api App ?
 -> show me in writing  how u will handle a specific exception and normal exception?
 -> what is diff between implementation inheritance and interface inheritance ?
-
+-> do you know about reflection ?
+-> what is diff between task and thread?
 ------------------------ money honey -------------------------
 -> how many types of constructors in c#
 _> types of access modifiers
 -> what are bad effect of boxing and unboxing if we do it ? 
 ->  managed and unmanaged code 
 -> remove duplicates using query
-
+-> how garbage collection works in c# ? 
+-> how many types of authentication done in api ? -  API keys, HTTP Basic Authentication, OAuth, and JWT
 ------------------------ Deloitte -----------------------------------------------
-- .net and .net core web api
+- .net and .NET core web api
 - oops 
 - what is runtime polymorphism ? overloading and overriding?
 - diff between abstraction and encapsulation?
-- abstract class vs interface 
+- abstract class vs interface ?
+- explain jwt authentication and how you have used it in frontend ?
 
 ==========================================================================================================================
 ==========================================================================================================================
@@ -47,20 +65,27 @@ _> types of access modifiers
 - what is state ?  how state is managed in react js ?
 - if we just declare variables without using useState - what will happen? why they don't work?
   Ans: React functional components -- state is designed such way that whenever state changes component re - renders but when we 
-  just use variable to store state it does not re-renders component.
-- in use state can we use just a string to initialise it or other data type also ?
+  just use variable to store state it does not re-renders component -- do updated value don't reflect on ui.
+- in useState can we use just a string to initialise it or other data type also ?
 
 5. useEffect() : - Logical use: life cycle && handle sideEffects -> structure: callback function and dependency array
 ----------------------------  logical use ----------------------------------------------------------------------
 - what is useEffect ?
 == LifeCycle: 
 - what is life cycle?
-- how life cycle handled in class component 3 methods? 
+- how life cycle handled in class component 3 methods? - didmount, didupdate , WillUnmount()
 - how its done in functional component?
-- can you mention three stages of component life cycle using useEffect in functional component in useEffect hook
+- can you mention three stages of component life cycle using useEffect in functional component in useEffect hook?
+        Ans : React components go through a lifecycle of mounting, updating, and unmounting. This concept is more explicit in class components but still exists in functional components via hooks like useEffect.
+
+        Phase	        Description
+        Mounting	Component is created and added to DOM
+        Updating	Component re-renders due to props/state change
+        Unmounting	Component is removed from DOM
+
 == Side Effects 
 - what are the side effects in useEffect? 
-ans: function has one function to manage state and show  ui other than this all are side effects like 
+ans: Component has one purpose to manage state and show  ui other than this all are side effects like 
 "The useEffect hook in React is used to manage side effects in functional components. Side effects are 
  operations that interact with the outside world, such as data fetching, DOM manipulation, or setting up subscriptions. 
    1. Data Fetching: Making API calls to retrieve data from a server.
@@ -81,14 +106,89 @@ The callback function contains the side effect logic, and the dependency array c
 - what is significance of dependency array ? 
         Ans- it controls page rendering 
         a. useEffect with just call back function       => useEffect(()=> {});         --- re-renders/refresh page on every state change
-        b. useEffect with empty dependency array        => useEffect(()=> {},[]);      --- refresh page only once when its loaded
-        c. useEffect with values in dependency arrat    => useEffect(()=> {},[v1,v2]); --- whenever values of v1/v2 changes page re-renders
+        b. useEffect with empty dependency array        => useEffect(()=> {},[]);      --- refresh page only once when component mounted
+        c. useEffect with values in dependency arrat    => useEffect(()=> {},[v1,v2]); --- whenever values of v1/v2 changes page 
 
 6. misc hooks - useRef(), useMemo(), 
     useRef() - why do we use ? what is its significance - even if state change page don't refresh for ref hook variable
 
 7. Session,cookies and local storage     
 8. diff between map, filter, foreach loop ? which one of them really alters the state of object?
+9. Global State Management: - context api vs redux api
+- What is Context API ? diff between context api vs redux toolkit? 
+- what is redux toolkit ? what is primary purpose?
+- what are the hooks in redux- toolkit? 
+- what is react-redux? what are hooks in react- redux?
+- what is diff between react-redux and redux toolkit?
+
+10. Controlled and uncontrolled component
+The difference between controlled and uncontrolled components in React lies in how form data is handled.
+
+✅ Summary Table
+Feature	Controlled Component	Uncontrolled Component
+Data Source	React state (useState)	DOM (ref)
+Input Updates	Via onChange handler	Via the DOM (e.g., user types)
+Value Access	Stored in React state	Accessed using ref
+More Suitable For	Validation, dynamic forms, real-time updates	Simple forms, quick inputs, migration from non-React apps
+Example Usage	<input value={value} onChange={handleChange} />	<input ref={inputRef} />
+
+🧠 Think of It Like This:
+Controlled: React is the boss. It controls the value of the form input.
+
+Uncontrolled: The DOM is the boss. React just observes when needed.
+
+✅ Controlled Component Example
+========================================================================================
+import { useState } from 'react';
+
+function ControlledInput() {
+  const [name, setName] = useState('');
+
+  return (
+    <div>
+      <input 
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)} 
+      />
+      <p>Your name: {name}</p>
+    </div>
+  );
+}
+=======================================================================================
+✅ Here, React controls the input value via useState. Every keystroke updates state.
+
+✅ Uncontrolled Component Example
+=======================================================================
+import { useRef } from 'react';
+
+function UncontrolledInput() {
+  const nameRef = useRef();
+
+  const handleSubmit = () => {
+    alert(`Your name is: ${nameRef.current.value}`);
+  };
+
+  return (
+    <div>
+      <input type="text" ref={nameRef} />
+      <button onClick={handleSubmit}>Submit</button>
+    </div>
+  );
+}
+===========================================================================
+✅ Here, the input is not tied to React state. We read the value directly from the DOM using ref.
+
+✅ When to Use What?
+Use Case	                        Recommended Type
+Real-time validation	                Controlled
+Prefilling and editing forms	        Controlled
+Quick forms with minimal logic	        Uncontrolled
+Integrating with non-React libraries	Uncontrolled
+
+
+
+
 ==========================================================================================================================
 ==========================================================================================================================
 ==========================================================================================================================
