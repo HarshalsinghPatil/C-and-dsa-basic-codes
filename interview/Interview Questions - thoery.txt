@@ -25,7 +25,7 @@
 -> what is diff between task and thread?
 ------------------------ money honey -------------------------
 -> how many types of constructors in c#
-_> types of access modifiers
+-> types of access modifiers
 -> what are bad effect of boxing and unboxing if we do it ? 
 ->  managed and unmanaged code 
 -> remove duplicates using query
