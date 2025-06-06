@@ -23,6 +23,7 @@
 -> what is diff between implementation inheritance and interface inheritance ?
 -> do you know about reflection ?
 -> what is diff between task and thread?
+
 ------------------------ money honey -------------------------
 -> how many types of constructors in c#
 -> types of access modifiers
@@ -31,6 +32,10 @@
 -> remove duplicates using query
 -> how garbage collection works in c# ? 
 -> how many types of authentication done in api ? -  API keys, HTTP Basic Authentication, OAuth, and JWT
+-> diff between value types and ref types?
+-> tell me diff between public , protected , private ? their scopes(i.e. solution or assembly level)
+
+
 ------------------------ Deloitte -----------------------------------------------
 - .net and .NET core web api
 - oops 
@@ -38,6 +43,47 @@
 - diff between abstraction and encapsulation?
 - abstract class vs interface ?
 - explain jwt authentication and how you have used it in frontend ?
+-----------------------------------     Rohit sir interview Questions       -------------------------
+------------------------------------------------ Company 1 ----------------------------------------------------
+hooks ?                                                     
+custom hooks ?                                               
+what is context api?                                        
+diff between context api and redux toolkit?
+how to call api using in react js ?                         
+controlled and uncontrolled components? 
+
+.net vs .net core --> platform independent, built in dependency injection?
+what is dependency injection? 
+do you know design patterns ? 
+how garbage collection in .net works ? -- gc.Collect, IDisposable interface- dispose method
+
+ methods we use in .net for authentications ? packages, how works 
+
+
+----------------------------------------------- Company 2 --------------------------------------------------------
+which .net core version u have used ? what are new features in it ? 
+what is DI?
+service lifetime? singleton, transient, addscoped
+example of return types ? IActionResult vs ActionResult, viewResult,....etc
+what are middlewares ? how do u use them ?
+do you know about cors? How do you use them?
+how can we secure out web api request? 2 ways authentication and authorisation
+also explain how you have used jwt in your project
+
+Do you know about microservices? and kahitari vichitra question  -> what is serverless architecture in microservices ? 
+
+so rohit sir said that I have completed assignments on microservices because I have to implement in one project of our company.
+So can i explain microservices
+
+how do you manage services in downtime .? 
+what is scaling  vs Load balancing?
+who are your user? 
+code first and db first ? code first cha advtage?
+
+
+============================================ SQL server  ==========================================================
+1. How do we optimise the query? which steps to follow or which things need to be taken care of ?
+2. when to use table variable  in stored procedure vs temp table
 
 ==========================================================================================================================
 ==========================================================================================================================

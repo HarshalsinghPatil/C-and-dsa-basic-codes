@@ -80,7 +80,7 @@ namespace LinqSample1
                               where obj > 2
                               select obj;
 
-	    // ============= OR ==============
+	    // =============== OR ==============
             Note : here var == IEnumerable<int> (take datatype of IEnumerable like below)
 
             IEnumerable<int> querySyntax = from obj in list
