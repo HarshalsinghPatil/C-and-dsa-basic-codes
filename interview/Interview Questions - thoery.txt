@@ -51,16 +51,22 @@ tell me about yourself ?- .net vs .net core
 - What is the difference between AddSingleton(), AddScoped(), and AddTransient()?
             Answer:
             Lifetime	Behavior
-            Singleton	One instance per application lifecycle
-            Scoped	One instance per HTTP request
-            Transient	New instance each time
+            Singleton : 	One instance per application lifecycle e.g. file logger ,exception logger
+            Scoped: 	One instance per HTTP request e.g. all ourservieces
+            Transient :	New instance each time e.g. payment gateway, don't share
 - scopes-> real life examples where do u use them
 - viewdata , viewbag, tempdata
+- clean architecture , web api 
 - REST API VS WEB API, how can we do Routing ,
 - Do you know how Migration is done tell me commands 
 - Authentication vs authorization 
-- react ?, hooks?, useEffect 3 questions? , props vs state,  How will you apply authentication in react js ?
-- function vs stored procedure, joins, views, cte, cursor ,triggers
+- react ?, hooks?, useEffect 3 questions? , props vs state - 4 to 5 Questions,  How will you apply authentication in react js ?
+- function vs stored procedure, joins, views, cte, cursor ,triggers - after/instead,
+- How do you use git for conflicts, How will you create/manage manage your repository- module wise, timewise, member wise? 
+- In your project how you created branches ? - 
+- what do you know about docker kubernates? have u used them in project ? 
+- what experience do you have in azure? 
+- Have you ever deployed app on IIS server yourself ? -> No but told him procedure -> publish , add this code to iis server on iis.
 - what is solid principles
 -----------------------------------     Rohit sir interview Questions       -------------------------
 ------------------------------------------------ Company 1 ----------------------------------------------------
@@ -132,6 +138,10 @@ code first and db first ? code first cha advtage?
   Ans: React functional components -- state is designed such way that whenever state changes component re - renders but when we 
   just use variable to store state it does not re-renders component -- do updated value don't reflect on ui.
 - in useState can we use just a string to initialise it or other data type also ?
+- state vs prop 
+  State -> state change-yes -> cause re-rendering,parent comp,mutable, pass to child thr' props
+  Props -> prop immutable -> changes - not, if change in parent state cause re-render of child
+- if we need to communicate from child to parent we use call back functions(function which pass function as argument)
 
 5. useEffect() : - Logical use: life cycle && handle sideEffects -> structure: callback function and dependency array
 ----------------------------  logical use ----------------------------------------------------------------------
