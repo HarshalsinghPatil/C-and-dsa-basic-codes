@@ -43,6 +43,25 @@
 - diff between abstraction and encapsulation?
 - abstract class vs interface ?
 - explain jwt authentication and how you have used it in frontend ?
+
+------------------------ sparkle Web -----------------------------------------------
+Hi hello harshal
+tell me about yourself ?- .net vs .net core 
+- oops , interface vs abstract class,  
+- What is the difference between AddSingleton(), AddScoped(), and AddTransient()?
+            Answer:
+            Lifetime	Behavior
+            Singleton	One instance per application lifecycle
+            Scoped	One instance per HTTP request
+            Transient	New instance each time
+- scopes-> real life examples where do u use them
+- viewdata , viewbag, tempdata
+- REST API VS WEB API, how can we do Routing ,
+- Do you know how Migration is done tell me commands 
+- Authentication vs authorization 
+- react ?, hooks?, useEffect 3 questions? , props vs state,  How will you apply authentication in react js ?
+- function vs stored procedure, joins, views, cte, cursor ,triggers
+- what is solid principles
 -----------------------------------     Rohit sir interview Questions       -------------------------
 ------------------------------------------------ Company 1 ----------------------------------------------------
 hooks ?                                                     

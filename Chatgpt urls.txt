@@ -37,5 +37,15 @@ https://chatgpt.com/share/682c04b5-0d20-8003-9fa9-e5517fc19e88
 https://www.assessmentcentrehq.com/amazon-assessment-test/
 
 
+
+.Net basic thoery for interview with questions for 2 year experience.
+https://chatgpt.com/share/6843cece-de28-800b-a04a-810e0c0682e1
+
+===================================================================================
+Interview Quick revision
+------------------------
 # 50 queries for interview and sql server from Basics
 https://chatgpt.com/share/68335e4d-26b8-8003-901f-935d8d1983a1
+
+.Net       => https://chatgpt.com/c/67e4d23e-b808-8003-aadf-a8e85bdcf5a7
+RestApi    => https://chatgpt.com/share/6845da8f-42b8-8003-a912-355647beb073
